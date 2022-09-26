@@ -7,7 +7,6 @@ import CircularProgressLoader from "./CircularProgress";
 import SeekLoader from "./Seek";
 import MosaicLoader from "./Mosaic";
 import RipleLoader from "./Riple";
-// import ToolBar from "../ToolBar";
 import Styled from "./styled";
 
 const Loaders = () => {
@@ -18,40 +17,42 @@ const Loaders = () => {
           A collection of awesome loading indicators to make waiting for a
           response a beautiful thing.
         </Typography>
+        <br />
         <Typography variant="body1"> Start using now: </Typography>
         <Styled.Code
+          variant="subtitle2"
           sx={(theme) => ({
-            ...theme.typography.h6,
+            ...theme.typography.largeCode,
             fontFamily: `"Azeret Mono", monospace`,
             backgroundColor: "#E3E6E8",
           })}
           component="p"
         >
-          npm i react-loading-indicators
+          npm install react-loading-indicators
         </Styled.Code>
       </Box>
 
       <Grid container spacing={2} sx={{ my: 3 }}>
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={6}>
           <CommetLoader />
         </Grid>
 
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={6}>
           <AtomLoader />
         </Grid>
 
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={6}>
           <CircularProgressLoader />
         </Grid>
 
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={6}>
           <MosaicLoader />
         </Grid>
 
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={6}>
           <RipleLoader />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={6}>
           <SeekLoader />
         </Grid>
       </Grid>

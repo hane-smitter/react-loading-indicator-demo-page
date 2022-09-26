@@ -6,7 +6,7 @@ import { Twitter, GitHub, Linkedin } from "react-feather";
 const Footer = () => {
   return (
     <Stack
-      sx={{ bgcolor: "#272727", flexWrap: "wrap", padding: "10px 5px" }}
+      sx={{ bgcolor: "common.black", flexWrap: "wrap", padding: "10px 5px" }}
       direction="row"
     >
       <Stack sx={{ m: "auto" }} direction="row" spacing={3}>

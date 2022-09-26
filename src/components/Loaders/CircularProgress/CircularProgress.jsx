@@ -14,6 +14,10 @@ const VariantsBox = styled("span")`
   top: 0;
   right: 0;
   font-size: 12px;
+
+  @media (max-width: 400px) {
+    display: none;
+  }
 `;
 
 const variantOptions = [

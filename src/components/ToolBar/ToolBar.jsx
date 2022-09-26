@@ -1,4 +1,4 @@
-import { ClickAwayListener, Button } from "@mui/material";
+import { ClickAwayListener } from "@mui/material";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { HexColorPicker } from "react-colorful";
@@ -14,29 +14,18 @@ const sizeOptions = [
 ];
 
 const RenderAction = ({ content, show, undo }) => {
-  // const [, setShowOutput] = useState(false);
   const [, setUndoState] = useState(() => {});
-  // console.group("undo FN");
-  // console.log(undo);
-  // console.groupEnd();
 
   useEffect(() => {
-    // setShowOutput(true);
     return () => {
-      // setShowOutput(false);
       setUndoState(() => undo);
       undo && undo(false);
     };
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     setUndoState((previousUndo) => {
-      // console.group("Undo FNS");
-      // console.log("previousUndo");
-      // console.log(previousUndo);
-      // console.log("Undo");
-      // console.log(undo);
-      // console.groupEnd();
       previousUndo && previousUndo(false);
       return undo;
     });

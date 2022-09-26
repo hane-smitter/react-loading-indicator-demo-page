@@ -21,7 +21,7 @@ const Item = styled(Button)(({ theme }) => ({
   position: "relative",
   color: theme.palette.common.white,
   cursor: "pointer",
-  zIndex: 5,
+  zIndex: -1,
   fontWeight: 700,
   fontSize: "0.9em",
   margin: "0!important",

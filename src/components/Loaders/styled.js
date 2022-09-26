@@ -1,15 +1,22 @@
-import { Paper, Stack, Box } from "@mui/material";
+import { Paper, Stack, Box, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 const Card = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   textAlign: "center",
-  width: "80%",
+  width: "100%",
   minHeight: 100,
   marginInline: "auto",
+
+  [theme.breakpoints.down("sm")]: {
+    width: "80%",
+  },
+  "@media (min-width: 800px)": {
+    width: "80%",
+  },
 }));
 
-const Code = styled(Paper)(({ theme }) => ({
+const Code = styled(Typography)(({ theme }) => ({
   backgroundColor: "#E3E6E8",
   borderRadius: 3,
   fontSize: "13px",
