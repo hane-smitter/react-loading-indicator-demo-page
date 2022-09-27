@@ -163,7 +163,7 @@ const ToolBar = ({
                 return !val;
               });
               setActiveComponent(() => (
-                <HexColorPicker color={textColor} onChange={setTextColor} />
+                <HexColorPicker color={"#cedace"} onChange={setTextColor} />
               ));
 
               return !val;

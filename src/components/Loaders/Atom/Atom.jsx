@@ -7,8 +7,8 @@ const AtomLoader = () => {
   const [color, setColor] = useState("#32cd32");
   const [size, setSize] = useState("medium");
   const [textInputValue, setTextInputValue] = useState("");
-  const [textColor, setTextColor] = useState(""); 
-  // console.log(size)
+  const [textColor, setTextColor] = useState("");
+
   return (
     <Styled.Card>
       <ToolBar
