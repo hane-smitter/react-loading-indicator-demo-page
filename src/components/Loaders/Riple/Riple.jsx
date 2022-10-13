@@ -10,6 +10,11 @@ const RipleLoader = () => {
   const [textInputValue, setTextInputValue] = useState("");
   const [textColor, setTextColor] = useState("");
 
+  const textColorOptimized = React.useMemo(() => {
+    if (textColor.includes("NaN")) return "";
+    return textColor;
+  }, [textColor]);
+
   return (
     <Styled.Card>
       <ToolBar
@@ -23,7 +28,7 @@ const RipleLoader = () => {
         setTextColor={setTextColor}
       />
       <div>
-        <Styled.Code>{`<Riple color="${color}" size="${size}" text="${textInputValue}" textColor="${textColor}" />`}</Styled.Code>
+        <Styled.Code>{`<Riple color="${color}" size="${size}" text="${textInputValue}" textColor="${textColorOptimized}" />`}</Styled.Code>
       </div>
       <Styled.ContentSection>
         <Styled.ComponentContainer>

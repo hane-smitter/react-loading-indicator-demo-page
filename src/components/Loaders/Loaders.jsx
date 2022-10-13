@@ -1,4 +1,4 @@
-import { Grid, Typography, Box } from "@mui/material";
+import { Grid, Typography, Box, Link } from "@mui/material";
 import React from "react";
 
 import AtomLoader from "./Atom";
@@ -7,6 +7,7 @@ import CircularProgressLoader from "./CircularProgress";
 import SeekLoader from "./Seek";
 import MosaicLoader from "./Mosaic";
 import RipleLoader from "./Riple";
+import FourSquareLoader from "./FourSquare";
 import Styled from "./styled";
 
 const Loaders = () => {
@@ -16,6 +17,10 @@ const Loaders = () => {
         <Typography variant="h6" component="p">
           A collection of awesome loading indicators to make waiting for a
           response a beautiful thing.
+          <br />
+          <Link href="https://github.com/hane-smitter/react-loading-indicator">
+            Visit Repo
+          </Link>
         </Typography>
         <br />
         <Typography variant="body1"> Start using now: </Typography>
@@ -54,6 +59,9 @@ const Loaders = () => {
         </Grid>
         <Grid item xs={12} sm={6}>
           <SeekLoader />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <FourSquareLoader />
         </Grid>
       </Grid>
     </React.Fragment>

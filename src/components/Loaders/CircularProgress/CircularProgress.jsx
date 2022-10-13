@@ -34,6 +34,11 @@ const CircularProgressLoader = () => {
   const [textColor, setTextColor] = useState("");
   const [variantOption, setVariantOption] = useState({});
 
+  const textColorOptimized = React.useMemo(() => {
+    if (textColor.includes("NaN")) return "";
+    return textColor;
+  }, [textColor]);
+
   function handleChangeVariantOption(selectedOpt) {
     const newVariant = selectedOpt;
     setVariantOption(newVariant);
@@ -56,7 +61,7 @@ const CircularProgressLoader = () => {
         <Styled.Code>
           {`<CircularProgress ${
             variantOption?.value ? 'variant="' + variantOption?.value + '"' : ""
-          } color="${color}" size="${size}" text="${textInputValue}" textColor="${textColor}" />`}
+          } color="${color}" size="${size}" text="${textInputValue}" textColor="${textColorOptimized}" />`}
         </Styled.Code>
       </div>
 

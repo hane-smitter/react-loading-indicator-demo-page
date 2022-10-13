@@ -24,6 +24,7 @@ const Code = styled(Typography)(({ theme }) => ({
   color: "#232629",
   padding: "1px 5px",
   whiteSpace: "pre-wrap",
+  wordBreak: "break-word",
 }));
 
 const ContentSection = styled(Stack)(({ theme }) => ({
