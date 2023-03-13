@@ -15,15 +15,12 @@ const Loaders = () => {
     <React.Fragment>
       <Box>
         <Typography variant="h6" component="p">
-          A collection of awesome loading indicators to make waiting for a
-          response a beautiful thing.
-          <br />
-          <Link href="https://github.com/hane-smitter/react-loading-indicator">
-            Visit Repo
-          </Link>
+          A collection of <em>simple</em>, <em>light-weight</em> and{" "}
+          <em>elegant</em> loading indicators. App users should be all smiles😊️
+          while waiting for a response.
         </Typography>
         <br />
-        <Typography variant="body1"> Start using now: </Typography>
+        <Typography variant="body1">To start using:</Typography>
         <Styled.Code
           variant="subtitle2"
           sx={(theme) => ({
@@ -36,6 +33,13 @@ const Loaders = () => {
           npm install react-loading-indicators
         </Styled.Code>
       </Box>
+
+      <Typography variant="h3" style={{ marginTop: "35px" }}>
+        Components
+      </Typography>
+      <Typography variant="body2">
+        <i>Use the button controls to customize the components</i>
+      </Typography>
 
       <Grid container spacing={2} sx={{ my: 3 }}>
         <Grid item xs={12} sm={6}>
@@ -64,6 +68,11 @@ const Loaders = () => {
           <FourSquareLoader />
         </Grid>
       </Grid>
+
+      {/* <br /> */}
+      <Link href="https://github.com/hane-smitter/react-loading-indicator">
+        Visit Repo
+      </Link>
     </React.Fragment>
   );
 };

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Atom } from "react-loading-indicators";
 import ToolBar from "../../ToolBar";
 import Styled from "../styled";
+import CodeHighlighter from "../../CodeHighlighter";
 
 const AtomLoader = () => {
   const [color, setColor] = useState("#32cd32");
@@ -27,7 +28,9 @@ const AtomLoader = () => {
         setTextColor={setTextColor}
       />
       <div>
-        <Styled.Code>{`<Atom color="${color}" size="${size}" text="${textInputValue}" textColor="${textColorOptimized}" />`}</Styled.Code>
+        <Styled.Code
+          component={CodeHighlighter}
+        >{`<Atom color="${color}" size="${size}" text="${textInputValue}" textColor="${textColorOptimized}" />`}</Styled.Code>
       </div>
       <Styled.ContentSection>
         <Styled.ComponentContainer>

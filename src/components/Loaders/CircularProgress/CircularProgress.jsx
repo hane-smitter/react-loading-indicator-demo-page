@@ -6,6 +6,7 @@ import Select from "react-select";
 
 import ToolBar from "../../ToolBar";
 import Styled from "../styled";
+import CodeHighlighter from "../../CodeHighlighter";
 
 const VariantsBox = styled("span")`
   width: 100px;
@@ -58,7 +59,7 @@ const CircularProgressLoader = () => {
       />
 
       <div>
-        <Styled.Code>
+        <Styled.Code component={CodeHighlighter}>
           {`<CircularProgress ${
             variantOption?.value ? 'variant="' + variantOption?.value + '"' : ""
           } color="${color}" size="${size}" text="${textInputValue}" textColor="${textColorOptimized}" />`}

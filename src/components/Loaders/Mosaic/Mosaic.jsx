@@ -3,6 +3,7 @@ import { Mosaic } from "react-loading-indicators";
 
 import ToolBar from "../../ToolBar";
 import Styled from "../styled";
+import CodeHighlighter from "../../CodeHighlighter";
 
 const MosaicLoader = () => {
   const [color, setColor] = useState("#32cd32");
@@ -29,7 +30,9 @@ const MosaicLoader = () => {
       />
 
       <div>
-        <Styled.Code>{`<Mosaic color="${color}" size="${size}" text="${textInputValue}" textColor="${textColorOptimized}" />`}</Styled.Code>
+        <Styled.Code component={CodeHighlighter}>
+          {`<Mosaic color="${color}" size="${size}" text="${textInputValue}" textColor="${textColorOptimized}" />`}
+        </Styled.Code>
       </div>
       <Styled.ContentSection>
         <Styled.ComponentContainer>

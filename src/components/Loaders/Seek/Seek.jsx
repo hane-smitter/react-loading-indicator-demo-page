@@ -3,6 +3,7 @@ import { Seek } from "react-loading-indicators";
 import ToolBar from "../../ToolBar";
 
 import Styled from "../styled";
+import CodeHighlighter from "../../CodeHighlighter";
 
 const SeekLoader = () => {
   const [color, setColor] = useState("#32cd32");
@@ -29,7 +30,9 @@ const SeekLoader = () => {
       />
 
       <div>
-        <Styled.Code>{`<Seek color="${color}" size="${size}" text="${textInputValue}" textColor="${textColorOptimized}" />`}</Styled.Code>
+        <Styled.Code component={CodeHighlighter}>
+          {`<Seek color="${color}" size="${size}" text="${textInputValue}" textColor="${textColorOptimized}" />`}
+        </Styled.Code>
       </div>
       <Styled.ContentSection>
         <Styled.ComponentContainer>

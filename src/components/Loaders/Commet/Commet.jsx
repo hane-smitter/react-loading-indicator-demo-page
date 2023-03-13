@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Commet } from "react-loading-indicators";
 
+import CodeHighlighter from "../../CodeHighlighter";
 import ToolBar from "../../ToolBar";
 import Styled from "../styled";
 
@@ -27,9 +28,13 @@ const CommetLoader = () => {
         textColor={textColor}
         setTextColor={setTextColor}
       />
+
       <div>
-        <Styled.Code>{`<Commet color="${color}" size="${size}" text="${textInputValue}" textColor="${textColorOptimized}" />`}</Styled.Code>
+        <Styled.Code component={CodeHighlighter}>
+          {`<Commet color="${color}" size="${size}" text="${textInputValue}" textColor="${textColorOptimized}" />`}
+        </Styled.Code>
       </div>
+
       <Styled.ContentSection>
         <Styled.ComponentContainer>
           <Commet

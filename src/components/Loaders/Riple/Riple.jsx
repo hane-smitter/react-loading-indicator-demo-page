@@ -3,6 +3,7 @@ import { Riple } from "react-loading-indicators";
 
 import ToolBar from "../../ToolBar";
 import Styled from "../styled";
+import CodeHighlighter from "../../CodeHighlighter";
 
 const RipleLoader = () => {
   const [color, setColor] = useState("#32cd32");
@@ -28,7 +29,9 @@ const RipleLoader = () => {
         setTextColor={setTextColor}
       />
       <div>
-        <Styled.Code>{`<Riple color="${color}" size="${size}" text="${textInputValue}" textColor="${textColorOptimized}" />`}</Styled.Code>
+        <Styled.Code component={CodeHighlighter}>
+          {`<Riple color="${color}" size="${size}" text="${textInputValue}" textColor="${textColorOptimized}" />`}
+        </Styled.Code>
       </div>
       <Styled.ContentSection>
         <Styled.ComponentContainer>

@@ -5,7 +5,8 @@ import { styled } from "@mui/material/styles";
 
 const Code = styled(Paper)(({ theme }) => ({
   backgroundColor: "#E3E6E8",
-  borderRadius: 3,
+  borderRadius: 7,
+  border: "2px solid rgb(104 102 102 / 87%)",
   fontSize: "13px",
   fontFamily: `"Azeret Mono", monospace`,
   color: "#232629",
@@ -19,7 +20,11 @@ const Code = styled(Paper)(({ theme }) => ({
 
 const Header = () => {
   return (
-    <AppBar position="static">
+    <AppBar
+      position="static"
+      style={{ backgroundColor: "#102187" }}
+      elevation={0}
+    >
       <Toolbar>
         <Stack direction={"row"} sx={{ m: "auto" }}>
           <Typography variant="h6" component="span" /* sx={{ flexGrow: 1 }} */>
@@ -34,10 +39,10 @@ const Header = () => {
           >
             by{" "}
             <Link
-              href="https://lookupzach.netlify.app"
+              href="https://github.com/hane-smitter"
               sx={{ color: "#fff000" }}
             >
-              Zacky
+              Smitter
             </Link>
           </Typography>
         </Stack>

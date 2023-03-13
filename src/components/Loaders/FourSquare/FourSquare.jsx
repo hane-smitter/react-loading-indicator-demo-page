@@ -3,6 +3,7 @@ import { FourSquare } from "react-loading-indicators";
 
 import ToolBar from "../../ToolBar";
 import Styled from "../styled";
+import CodeHighlighter from "../../CodeHighlighter";
 
 const FourSquareLoader = () => {
   const [color, setColor] = useState("#32cd32");
@@ -28,7 +29,9 @@ const FourSquareLoader = () => {
         setTextColor={setTextColor}
       />
       <div>
-        <Styled.Code>{`<FourSquare color="${color}" size="${size}" text="${textInputValue}" textColor="${textColorOptimized}" />`}</Styled.Code>
+        <Styled.Code component={CodeHighlighter}>
+          {`<FourSquare color="${color}" size="${size}" text="${textInputValue}" textColor="${textColorOptimized}" />`}
+        </Styled.Code>
       </div>
       <Styled.ContentSection>
         <Styled.ComponentContainer>

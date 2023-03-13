@@ -6,6 +6,7 @@ let theme = createTheme({
       styleOverrides: `
             body {
                 background-color: #0b4cd708;
+                color: rgb(76 67 67 / 90%);
             }
             .react-colorful {
                 position: absolute !important;
