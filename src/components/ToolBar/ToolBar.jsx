@@ -1,44 +1,17 @@
-import { ClickAwayListener } from "@mui/material";
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { unmountComponentAtNode, render } from "react-dom";
 import { HexColorPicker } from "react-colorful";
 import Select from "react-select";
 
 import Styled from "./styled";
 import TextInput from "./TextInput";
+import OutsideClickListener from "../OutsideClickListener";
 
 const sizeOptions = [
   { value: "small", label: "Small" },
   { value: "medium", label: "Medium" },
   { value: "large", label: "Large" },
 ];
-
-const RenderAction = ({ content, show, undo }) => {
-  const [, setUndoState] = useState(() => {});
-
-  useEffect(() => {
-    return () => {
-      setUndoState(() => undo);
-      undo && undo(false);
-    };
-    // eslint-disable-next-line
-  }, []);
-
-  useEffect(() => {
-    setUndoState((previousUndo) => {
-      previousUndo && previousUndo(false);
-      return undo;
-    });
-  }, [content]);
-
-  return (
-    <>
-      {show && (
-        <div style={{ minWidth: 200, position: "relative" }}>{content}</div>
-      )}
-    </>
-  );
-};
 
 const ToolBar = ({
   color,
@@ -55,127 +28,158 @@ const ToolBar = ({
   const [textInputOpen, setTextInputOpen] = useState(false);
   const [textColorPickerOpen, setTextColorPickerOpen] = useState(false);
 
-  // RenderAction Controller states
-  const [activeComponent, setActiveComponent] = useState(null);
-  const [showActive, setShowActive] = useState(false);
-  const [undoFn, setUndoFn] = useState(() => () => {});
+  const widgetReference = useRef(null);
+  const resetActiveState = useRef(() => {}); // To track the current `setState` modifying the widget
 
-  function handleCloseOnWidgetClickOutside() {
-    setActiveComponent(null);
-    setShowActive(false);
-    setUndoFn((previous) => {
-      // console.log("previous in TOOLBAR COMPONENT");
-      // console.log(previous);
-      previous && previous();
-      return () => {};
-    });
-  }
+  // ActionWidget Controller states
+  const [widgetActive, setWidgetActive] = useState(false);
+  const [triggerWidgetShutOP, setTriggerWidgetShutOP] = useState(0);
+
+  useEffect(() => {
+    if (!widgetActive) return;
+    unmountComponentAtNode(widgetReference.current);
+    if (typeof resetActiveState.current === "function")
+      resetActiveState.current(false);
+    setWidgetActive(false);
+  }, [triggerWidgetShutOP]);
+
+  const widgetClose = useCallback(
+    function () {
+      // The LOC below does not work correctly inside a function due to closures
+      // if (!widgetActive) return; // A workaround is to use useEffect
+
+      setTriggerWidgetShutOP((prev) => prev + 1);
+    },
+    [widgetActive]
+  );
+
   return (
-    <ClickAwayListener onClickAway={handleCloseOnWidgetClickOutside}>
+    <OutsideClickListener onClickAway={widgetClose}>
       <Styled.Wrapper direction="row" spacing={3}>
-        <Styled.RenderActionBox>
-          <RenderAction
-            show={showActive}
-            undo={undoFn}
-            content={activeComponent}
-          />
-        </Styled.RenderActionBox>
+        {/*  */}
+        <Styled.ActionWidgetBox>
+          <ActionWidget ref={widgetReference} />
+        </Styled.ActionWidgetBox>
 
         <Styled.Item
           onClick={() => {
-            setColorPickerOpen((val) => {
-              setUndoFn((prev) => {
-                return setColorPickerOpen;
-              });
-              setShowActive(() => {
-                return !val;
-              });
-              setActiveComponent(() => (
-                <HexColorPicker color={color} onChange={setColor} />
-              ));
+            if (typeof resetActiveState.current === "function")
+              resetActiveState.current(false);
 
-              return !val;
-            });
+            setColorPickerOpen(!colorPickerOpen);
+
+            setWidgetActive(!colorPickerOpen);
+            resetActiveState.current = setColorPickerOpen;
+
+            !colorPickerOpen
+              ? render(
+                  <HexColorPicker color={color} onChange={setColor} />,
+                  widgetReference.current
+                )
+              : unmountComponentAtNode(widgetReference.current);
           }}
-          sx={{ flexGrow: "1" }}
+          sx={{
+            ...(colorPickerOpen && { backgroundColor: "#070840" }),
+            ...{ flexGrow: "1" },
+          }}
           variant={"contained"}
         >
-          <span>{!colorPickerOpen ? "color" : "close"}</span>
+          <span>{!colorPickerOpen ? "color" : "hide"}</span>
         </Styled.Item>
 
         <Styled.Item
           onClick={() => {
-            setSizeSelectOpen((val) => {
-              setUndoFn(() => {
-                return setSizeSelectOpen;
-              });
-              setShowActive(() => {
-                return !val;
-              });
-              setActiveComponent(() => (
-                <Select
-                  value={sizeOptions.find((item) => item.value === size)}
-                  onChange={(value) => setSize(value.value)}
-                  options={sizeOptions}
-                  className="select-absolute"
-                />
-              ));
+            if (typeof resetActiveState.current === "function")
+              resetActiveState.current(false);
 
-              return !val;
-            });
+            setSizeSelectOpen(!sizeSelectOpen);
+
+            setWidgetActive(!sizeSelectOpen);
+            resetActiveState.current = setSizeSelectOpen;
+
+            !sizeSelectOpen
+              ? render(
+                  <Select
+                    value={sizeOptions.find((item) => item.value === size)}
+                    onChange={(value) => setSize(value.value)}
+                    options={sizeOptions}
+                    className="select-absolute"
+                  />,
+                  widgetReference.current
+                )
+              : unmountComponentAtNode(widgetReference.current);
           }}
           variant={"contained"}
+          sx={{
+            ...(sizeSelectOpen && { backgroundColor: "#070840" }),
+          }}
         >
-          <span>{!sizeSelectOpen ? "size" : "close"}</span>
+          <span>{!sizeSelectOpen ? "size" : "hide"}</span>
         </Styled.Item>
 
         <Styled.Item
           onClick={() => {
-            setTextInputOpen((val) => {
-              setUndoFn(() => {
-                return setTextInputOpen;
-              });
-              setShowActive(() => {
-                return !val;
-              });
-              setActiveComponent(() => (
-                <TextInput
-                  value={textInputValue}
-                  onChange={setTextInputValue}
-                />
-              ));
+            if (typeof resetActiveState.current === "function")
+              resetActiveState.current(false);
 
-              return !val;
-            });
+            setTextInputOpen(!textInputOpen);
+
+            setWidgetActive(!textInputOpen);
+            resetActiveState.current = setTextInputOpen;
+
+            !textInputOpen
+              ? render(
+                  <TextInput
+                    value={textInputValue}
+                    onChange={setTextInputValue}
+                  />,
+                  widgetReference.current
+                )
+              : unmountComponentAtNode(widgetReference.current);
           }}
           variant={"contained"}
+          sx={{
+            ...(textInputOpen && { backgroundColor: "#070840" }),
+          }}
         >
-          <span>{!textInputOpen ? "text" : "close"}</span>
+          <span>{!textInputOpen ? "text" : "hide"}</span>
         </Styled.Item>
 
         <Styled.Item
           onClick={() => {
-            setTextColorPickerOpen((val) => {
-              setUndoFn((prev) => {
-                return setTextColorPickerOpen;
-              });
-              setShowActive(() => {
-                return !val;
-              });
-              setActiveComponent(() => (
-                <HexColorPicker color={textColor} onChange={setTextColor} />
-              ));
+            if (typeof resetActiveState.current === "function")
+              resetActiveState.current(false);
 
-              return !val;
-            });
+            setTextColorPickerOpen(!textColorPickerOpen);
+
+            setWidgetActive(!textColorPickerOpen);
+            resetActiveState.current = setTextColorPickerOpen;
+
+            !textColorPickerOpen
+              ? render(
+                  <HexColorPicker color={textColor} onChange={setTextColor} />,
+                  widgetReference.current
+                )
+              : unmountComponentAtNode(widgetReference.current);
           }}
           variant={"contained"}
+          sx={{
+            ...(textColorPickerOpen && { backgroundColor: "#070840" }),
+          }}
         >
-          <span>{!textColorPickerOpen ? "textcolor" : "close"}</span>
+          <span>{!textColorPickerOpen ? "textcolor" : "hide"}</span>
         </Styled.Item>
       </Styled.Wrapper>
-    </ClickAwayListener>
+    </OutsideClickListener>
   );
 };
 
-export default ToolBar;
+const ActionWidget = React.forwardRef(({ children }, ref) => {
+  return (
+    <div style={{ minWidth: 200, position: "relative" }} ref={ref}>
+      {children}
+    </div>
+  );
+});
+
+export default React.memo(ToolBar);

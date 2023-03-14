@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Atom } from "react-loading-indicators";
 import ToolBar from "../../ToolBar";
-import Styled from "../styled";
+import Styled from "../../IndicatorsPg/styled";
 import CodeHighlighter from "../../CodeHighlighter";
 
 const AtomLoader = () => {
@@ -15,17 +15,22 @@ const AtomLoader = () => {
     return textColor;
   }, [textColor]);
 
+  const cachedSetColor = React.useCallback(setColor, []);
+  const cachedSetSize = React.useCallback(setSize, []);
+  const cachedSetTextInputValue = React.useCallback(setTextInputValue, []);
+  const cachedSetTextColor = React.useCallback(setTextColor, []);
+
   return (
     <Styled.Card>
       <ToolBar
         color={color}
-        setColor={setColor}
+        setColor={cachedSetColor}
         size={size}
-        setSize={setSize}
+        setSize={cachedSetSize}
         textInputValue={textInputValue}
-        setTextInputValue={setTextInputValue}
+        setTextInputValue={cachedSetTextInputValue}
         textColor={textColor}
-        setTextColor={setTextColor}
+        setTextColor={cachedSetTextColor}
       />
       <div>
         <Styled.Code

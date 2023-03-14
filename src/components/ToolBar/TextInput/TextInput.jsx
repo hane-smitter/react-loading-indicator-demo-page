@@ -1,13 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const TextInput = ({ value, onChange }) => {
   const [textInpValue, setTextInpValue] = useState(value || "");
+  const inpRef = useRef(null);
 
   const handleTextInput = (event) => {
     const newValue = event?.target?.value;
     setTextInpValue(newValue);
     onChange(newValue);
   };
+
+  useEffect(() => {
+    if (inpRef.current) {
+      inpRef.current.focus();
+    }
+  }, []);
+
   return (
     <div>
       <input
@@ -15,6 +23,8 @@ const TextInput = ({ value, onChange }) => {
         value={textInpValue}
         onInput={handleTextInput}
         placeholder="Start typing here..."
+        style={{ textAlign: "center", padding: "5px 10px" }}
+        ref={inpRef}
       />
     </div>
   );

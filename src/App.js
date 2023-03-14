@@ -2,8 +2,8 @@ import React from "react";
 import { Container } from "@mui/material";
 
 import Header from "./components/Header";
-import Loaders from "./components/Loaders";
 import Footer from "./components/Footer";
+import Loaders from "./components/IndicatorsPg";
 
 const App = () => {
   return (

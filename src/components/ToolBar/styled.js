@@ -29,7 +29,7 @@ const Item = styled(Button)(({ theme }) => ({
   minWidth: "50px",
 }));
 
-const RenderActionBox = styled("div")(({ theme }) => ({
+const ActionWidgetBox = styled("div")(({ theme }) => ({
   width: "100%",
   position: "absolute",
   bottom: "100%",
@@ -39,6 +39,6 @@ const RenderActionBox = styled("div")(({ theme }) => ({
   alignItems: "center",
 }));
 
-const Styled = { Wrapper, Item, RenderActionBox };
+const Styled = { Wrapper, Item, ActionWidgetBox };
 
 export default Styled;

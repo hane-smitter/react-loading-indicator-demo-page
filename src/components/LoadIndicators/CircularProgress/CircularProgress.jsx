@@ -5,7 +5,7 @@ import { Typography } from "@mui/material";
 import Select from "react-select";
 
 import ToolBar from "../../ToolBar";
-import Styled from "../styled";
+import Styled from "../../IndicatorsPg/styled";
 import CodeHighlighter from "../../CodeHighlighter";
 
 const VariantsBox = styled("span")`

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Mosaic } from "react-loading-indicators";
+import { Riple } from "react-loading-indicators";
 
 import ToolBar from "../../ToolBar";
-import Styled from "../styled";
+import Styled from "../../IndicatorsPg/styled";
 import CodeHighlighter from "../../CodeHighlighter";
 
-const MosaicLoader = () => {
+const RipleLoader = () => {
   const [color, setColor] = useState("#32cd32");
   const [size, setSize] = useState("medium");
   const [textInputValue, setTextInputValue] = useState("");
@@ -16,27 +16,32 @@ const MosaicLoader = () => {
     return textColor;
   }, [textColor]);
 
+  const cachedSetColor = React.useCallback(setColor, []);
+  const cachedSetSize = React.useCallback(setSize, []);
+  const cachedSetTextInputValue = React.useCallback(setTextInputValue, []);
+  const cachedSetTextColor = React.useCallback(setTextColor, []);
+
   return (
     <Styled.Card>
       <ToolBar
         color={color}
-        setColor={setColor}
+        setColor={cachedSetColor}
         size={size}
-        setSize={setSize}
+        setSize={cachedSetSize}
         textInputValue={textInputValue}
-        setTextInputValue={setTextInputValue}
+        setTextInputValue={cachedSetTextInputValue}
         textColor={textColor}
-        setTextColor={setTextColor}
+        setTextColor={cachedSetTextColor}
       />
 
       <div>
         <Styled.Code component={CodeHighlighter}>
-          {`<Mosaic color="${color}" size="${size}" text="${textInputValue}" textColor="${textColorOptimized}" />`}
+          {`<Riple color="${color}" size="${size}" text="${textInputValue}" textColor="${textColorOptimized}" />`}
         </Styled.Code>
       </div>
       <Styled.ContentSection>
         <Styled.ComponentContainer>
-          <Mosaic
+          <Riple
             color={color}
             size={size}
             text={textInputValue}
@@ -48,4 +53,4 @@ const MosaicLoader = () => {
   );
 };
 
-export default MosaicLoader;
+export default RipleLoader;

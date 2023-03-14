@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { FourSquare } from "react-loading-indicators";
+import { Commet } from "react-loading-indicators";
 
-import ToolBar from "../../ToolBar";
-import Styled from "../styled";
 import CodeHighlighter from "../../CodeHighlighter";
+import ToolBar from "../../ToolBar";
+import Styled from "../../IndicatorsPg/styled";
 
-const FourSquareLoader = () => {
+const CommetLoader = () => {
   const [color, setColor] = useState("#32cd32");
   const [size, setSize] = useState("medium");
   const [textInputValue, setTextInputValue] = useState("");
@@ -16,26 +16,33 @@ const FourSquareLoader = () => {
     return textColor;
   }, [textColor]);
 
+  const cachedSetColor = React.useCallback(setColor, []);
+  const cachedSetSize = React.useCallback(setSize, []);
+  const cachedSetTextInputValue = React.useCallback(setTextInputValue, []);
+  const cachedSetTextColor = React.useCallback(setTextColor, []);
+
   return (
     <Styled.Card>
       <ToolBar
         color={color}
-        setColor={setColor}
+        setColor={cachedSetColor}
         size={size}
-        setSize={setSize}
+        setSize={cachedSetSize}
         textInputValue={textInputValue}
-        setTextInputValue={setTextInputValue}
+        setTextInputValue={cachedSetTextInputValue}
         textColor={textColor}
-        setTextColor={setTextColor}
+        setTextColor={cachedSetTextColor}
       />
+
       <div>
         <Styled.Code component={CodeHighlighter}>
-          {`<FourSquare color="${color}" size="${size}" text="${textInputValue}" textColor="${textColorOptimized}" />`}
+          {`<Commet color="${color}" size="${size}" text="${textInputValue}" textColor="${textColorOptimized}" />`}
         </Styled.Code>
       </div>
+
       <Styled.ContentSection>
         <Styled.ComponentContainer>
-          <FourSquare
+          <Commet
             color={color}
             size={size}
             text={textInputValue}
@@ -47,4 +54,4 @@ const FourSquareLoader = () => {
   );
 };
 
-export default FourSquareLoader;
+export default CommetLoader;
