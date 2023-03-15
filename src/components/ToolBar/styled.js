@@ -15,7 +15,9 @@ const Wrapper = styled(Stack)(({ theme }) => ({
   },
 }));
 
-const Item = styled(Button)(({ theme }) => ({
+const Item = styled(Button, {
+  shouldForwardProp: (prop) => prop !== "isActive",
+})(({ theme, isActive }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(0.5),
   position: "relative",
@@ -27,6 +29,7 @@ const Item = styled(Button)(({ theme }) => ({
   margin: "0!important",
   flexBasis: "auto",
   minWidth: "50px",
+  ...(isActive && { backgroundColor: "#070840" }),
 }));
 
 const ActionWidgetBox = styled("div")(({ theme }) => ({

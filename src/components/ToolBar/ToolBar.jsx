@@ -23,10 +23,10 @@ const ToolBar = ({
   textColor,
   setTextColor,
 }) => {
-  const [colorPickerOpen, setColorPickerOpen] = useState(false);
-  const [sizeSelectOpen, setSizeSelectOpen] = useState(false);
-  const [textInputOpen, setTextInputOpen] = useState(false);
-  const [textColorPickerOpen, setTextColorPickerOpen] = useState(false);
+  const [showColorPicker, setShowColorPicker] = useState(false);
+  const [showSizeSelect, setShowSizeSelect] = useState(false);
+  const [showTextInput, setShowTextInput] = useState(false);
+  const [showTextColorPicker, setShowTextColorPicker] = useState(false);
 
   const widgetReference = useRef(null);
   const resetActiveState = useRef(() => {}); // To track the current `setState` modifying the widget
@@ -66,25 +66,23 @@ const ToolBar = ({
             if (typeof resetActiveState.current === "function")
               resetActiveState.current(false);
 
-            setColorPickerOpen(!colorPickerOpen);
+            setShowColorPicker(!showColorPicker);
 
-            setWidgetActive(!colorPickerOpen);
-            resetActiveState.current = setColorPickerOpen;
+            setWidgetActive(!showColorPicker);
+            resetActiveState.current = setShowColorPicker;
 
-            !colorPickerOpen
+            !showColorPicker
               ? render(
                   <HexColorPicker color={color} onChange={setColor} />,
                   widgetReference.current
                 )
               : unmountComponentAtNode(widgetReference.current);
           }}
-          sx={{
-            ...(colorPickerOpen && { backgroundColor: "#070840" }),
-            ...{ flexGrow: "1" },
-          }}
+          sx={{ flexGrow: "1" }}
+          isActive={showColorPicker}
           variant={"contained"}
         >
-          <span>{!colorPickerOpen ? "color" : "hide"}</span>
+          <span>{!showColorPicker ? "color" : "hide"}</span>
         </Styled.Item>
 
         <Styled.Item
@@ -92,12 +90,12 @@ const ToolBar = ({
             if (typeof resetActiveState.current === "function")
               resetActiveState.current(false);
 
-            setSizeSelectOpen(!sizeSelectOpen);
+            setShowSizeSelect(!showSizeSelect);
 
-            setWidgetActive(!sizeSelectOpen);
-            resetActiveState.current = setSizeSelectOpen;
+            setWidgetActive(!showSizeSelect);
+            resetActiveState.current = setShowSizeSelect;
 
-            !sizeSelectOpen
+            !showSizeSelect
               ? render(
                   <Select
                     value={sizeOptions.find((item) => item.value === size)}
@@ -110,11 +108,9 @@ const ToolBar = ({
               : unmountComponentAtNode(widgetReference.current);
           }}
           variant={"contained"}
-          sx={{
-            ...(sizeSelectOpen && { backgroundColor: "#070840" }),
-          }}
+          isActive={showSizeSelect}
         >
-          <span>{!sizeSelectOpen ? "size" : "hide"}</span>
+          <span>{!showSizeSelect ? "size" : "hide"}</span>
         </Styled.Item>
 
         <Styled.Item
@@ -122,12 +118,12 @@ const ToolBar = ({
             if (typeof resetActiveState.current === "function")
               resetActiveState.current(false);
 
-            setTextInputOpen(!textInputOpen);
+            setShowTextInput(!showTextInput);
 
-            setWidgetActive(!textInputOpen);
-            resetActiveState.current = setTextInputOpen;
+            setWidgetActive(!showTextInput);
+            resetActiveState.current = setShowTextInput;
 
-            !textInputOpen
+            !showTextInput
               ? render(
                   <TextInput
                     value={textInputValue}
@@ -138,11 +134,9 @@ const ToolBar = ({
               : unmountComponentAtNode(widgetReference.current);
           }}
           variant={"contained"}
-          sx={{
-            ...(textInputOpen && { backgroundColor: "#070840" }),
-          }}
+          isActive={showTextInput}
         >
-          <span>{!textInputOpen ? "text" : "hide"}</span>
+          <span>{!showTextInput ? "text" : "hide"}</span>
         </Styled.Item>
 
         <Styled.Item
@@ -150,12 +144,12 @@ const ToolBar = ({
             if (typeof resetActiveState.current === "function")
               resetActiveState.current(false);
 
-            setTextColorPickerOpen(!textColorPickerOpen);
+            setShowTextColorPicker(!showTextColorPicker);
 
-            setWidgetActive(!textColorPickerOpen);
-            resetActiveState.current = setTextColorPickerOpen;
+            setWidgetActive(!showTextColorPicker);
+            resetActiveState.current = setShowTextColorPicker;
 
-            !textColorPickerOpen
+            !showTextColorPicker
               ? render(
                   <HexColorPicker color={textColor} onChange={setTextColor} />,
                   widgetReference.current
@@ -163,11 +157,9 @@ const ToolBar = ({
               : unmountComponentAtNode(widgetReference.current);
           }}
           variant={"contained"}
-          sx={{
-            ...(textColorPickerOpen && { backgroundColor: "#070840" }),
-          }}
+          isActive={showTextColorPicker}
         >
-          <span>{!textColorPickerOpen ? "textcolor" : "hide"}</span>
+          <span>{!showTextColorPicker ? "textcolor" : "hide"}</span>
         </Styled.Item>
       </Styled.Wrapper>
     </OutsideClickListener>
