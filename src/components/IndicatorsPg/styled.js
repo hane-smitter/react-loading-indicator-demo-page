@@ -1,4 +1,8 @@
-import { Paper, Stack, Box, Typography } from "@mui/material";
+import Paper from "@mui/material/Paper";
+import Stack from "@mui/material/Stack";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Link from "@mui/material/Link";
 import { styled } from "@mui/material/styles";
 
 const Card = styled(Paper)(({ theme }) => ({
@@ -35,14 +39,27 @@ const Code = styled(Typography)(({ theme }) => ({
   },
 }));
 
-const ContentSection = styled(Stack)(({ theme }) => ({
+const ContentSection = styled(Stack)(() => ({
   minHeight: 200,
   position: "relative",
 }));
-const ComponentContainer = styled(Box)(({ theme }) => ({
+const ComponentContainer = styled(Box)(() => ({
   margin: "auto",
 }));
+const GithubBtn = styled(Link)(() => ({
+  textDecoration: "none",
+  color: "#ffffff",
+  backgroundColor: "#1a212e",
+  display: "inline-block",
+  borderRadius: 10,
+  padding: "10px 15px",
+  ["&:hover"]: {
+    backgroundColor: "#0e121a",
+    transform: "scale(1.03)",
+    transition: "transform 150ms ease-out, backgroun-color 500ms ease-out",
+  },
+}));
 
-const Styled = { Card, Code, ContentSection, ComponentContainer };
+const Styled = { Card, Code, ContentSection, ComponentContainer, GithubBtn };
 
 export default Styled;

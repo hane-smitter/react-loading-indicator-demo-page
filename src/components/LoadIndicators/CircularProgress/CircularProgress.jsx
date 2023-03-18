@@ -7,6 +7,7 @@ import Select from "react-select";
 import ToolBar from "../../ToolBar";
 import Styled from "../../IndicatorsPg/styled";
 import CodeHighlighter from "../../CodeHighlighter";
+import useControllerState from "../../../hooks/useControllerState";
 
 const VariantsBox = styled("span")`
   width: 100px;
@@ -29,16 +30,8 @@ const variantOptions = [
 ];
 
 const CircularProgressLoader = () => {
-  const [color, setColor] = useState("#32cd32");
-  const [size, setSize] = useState("medium");
-  const [textInputValue, setTextInputValue] = useState("");
-  const [textColor, setTextColor] = useState("");
+  const controlStates = useControllerState();
   const [variantOption, setVariantOption] = useState({});
-
-  const textColorOptimized = React.useMemo(() => {
-    if (textColor.includes("NaN")) return "";
-    return textColor;
-  }, [textColor]);
 
   function handleChangeVariantOption(selectedOpt) {
     const newVariant = selectedOpt;
@@ -47,22 +40,15 @@ const CircularProgressLoader = () => {
 
   return (
     <Styled.Card>
-      <ToolBar
-        color={color}
-        setColor={setColor}
-        size={size}
-        setSize={setSize}
-        textInputValue={textInputValue}
-        setTextInputValue={setTextInputValue}
-        textColor={textColor}
-        setTextColor={setTextColor}
-      />
+      <ToolBar {...controlStates} />
 
       <div>
         <Styled.Code component={CodeHighlighter}>
           {`<CircularProgress ${
             variantOption?.value ? 'variant="' + variantOption?.value + '"' : ""
-          } color="${color}" size="${size}" text="${textInputValue}" textColor="${textColorOptimized}" />`}
+          } color="${controlStates.color}" size="${controlStates.size}" text="${
+            controlStates.textInputValue
+          }" textColor="${controlStates.textColor}" />`}
         </Styled.Code>
       </div>
 
@@ -80,10 +66,10 @@ const CircularProgressLoader = () => {
 
         <Styled.ComponentContainer>
           <CircularProgress
-            color={color}
-            size={size}
-            text={textInputValue}
-            textColor={textColor}
+            color={controlStates.color}
+            size={controlStates.size}
+            text={controlStates.textInputValue}
+            textColor={controlStates.textColor}
             variant={variantOption?.value}
           />
         </Styled.ComponentContainer>

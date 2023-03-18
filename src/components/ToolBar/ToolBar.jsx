@@ -151,7 +151,7 @@ const ToolBar = ({
 
             !showTextColorPicker
               ? render(
-                  <HexColorPicker color={textColor} onChange={setTextColor} />,
+                  <HexColorPicker color={textColor || undefined} onChange={setTextColor} />,
                   widgetReference.current
                 )
               : unmountComponentAtNode(widgetReference.current);
