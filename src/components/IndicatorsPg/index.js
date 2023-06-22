@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
@@ -6,9 +6,12 @@ import Box from "@mui/material/Box";
 import * as LoadingIndicators from "../LoadIndicators";
 import Styled from "./styled";
 
-const indicators = Object.keys(LoadingIndicators);
+// Add order of display priority
+const IndicatorNames = ArrangeByDisplayPriority(Object.keys(LoadingIndicators));
+console.log("indicators:: ", IndicatorNames);
 
 const Loaders = () => {
+  const [starEmoji, setStarEmoji] = useState(false);
   return (
     <React.Fragment>
       <Box sx={{ mt: 5 }}>
@@ -40,28 +43,32 @@ const Loaders = () => {
       </Typography>
 
       <Grid container spacing={2} sx={{ my: 3 }}>
-        {indicators.map((indicator, idx) => {
-          const Loader = LoadingIndicators[indicator];
+        {IndicatorNames.map((indicator, idx) => {
+          const Throbber = LoadingIndicators[indicator];
 
           return (
             <Grid item xs={12} sm={6} key={idx}>
-              <Loader />
+              <Throbber />
             </Grid>
           );
         })}
       </Grid>
 
-      <Typography variant="h6" component="p" sx={{ mt: 5 }}>
-        <Typography variant="h5" component="span" sx={{ fontWeight: 700 }}>
-          You like what you see?
-        </Typography>{" "}
-        If this is so, kindly take a moment to star ⭐️ the Github repository.
-        <br />
-        Your support helps me improve this project and spread the word.
+      <Typography variant="h5" component="p" sx={{ mt: 5 }}>
+        Like what you see?
       </Typography>
       <div style={{ textAlign: "center", margin: "10px 0" }}>
         <Styled.GithubBtn href="https://github.com/hane-smitter/react-loading-indicator">
-          Drop a star ⭐️ on Github
+          {starEmoji ? (
+            "⭐️"
+          ) : (
+            <img
+              src="https://raw.githubusercontent.com/hane-smitter/react-loading-indicator-demo-page/assets/images/star-emoticon.png"
+              onError={() => setStarEmoji(true)}
+              alt="Smiley Star"
+            />
+          )}{" "}
+          on Github
         </Styled.GithubBtn>
       </div>
     </React.Fragment>
@@ -69,3 +76,34 @@ const Loaders = () => {
 };
 
 export default Loaders;
+
+function ArrangeByDisplayPriority(indicators) {
+  const indicatorsByPriority = indicators
+    .map((indicator) => {
+      let priority = 0;
+
+      switch (indicator) {
+        case "Atom":
+          priority = priority + 3;
+          break;
+
+        case "OrbitProgress":
+          priority = priority + 2;
+          break;
+
+        case "Mosaic":
+          priority = priority + 1;
+          break;
+
+        case "ThreeDot":
+          priority = priority + 1;
+          break;
+      }
+
+      return { indicator, priority };
+    })
+    .sort((a, b) => b.priority - a.priority)
+    .map((indicator) => indicator.indicator);
+
+  return indicatorsByPriority;
+}

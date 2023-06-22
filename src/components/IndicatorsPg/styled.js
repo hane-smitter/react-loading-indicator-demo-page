@@ -59,7 +59,26 @@ const GithubBtn = styled(Link)(() => ({
     transition: "transform 150ms ease-out, backgroun-color 500ms ease-out",
   },
 }));
+const VariantsBox = styled("span")`
+  width: 100px;
+  padding: 8px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 12px;
 
-const Styled = { Card, Code, ContentSection, ComponentContainer, GithubBtn };
+  @media (max-width: 400px) {
+    display: none;
+  }
+`;
+
+const Styled = {
+  Card,
+  Code,
+  ContentSection,
+  ComponentContainer,
+  GithubBtn,
+  VariantsBox,
+};
 
 export default Styled;

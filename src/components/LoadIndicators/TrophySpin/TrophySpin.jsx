@@ -1,12 +1,12 @@
 import React from "react";
-import { Pulse } from "react-loading-indicators";
+import TrophySpin from "react-loading-indicators/dist/TrophySpin";
 import ToolBar from "../../ToolBar";
 
 import Styled from "../../IndicatorsPg/styled";
 import CodeHighlighter from "../../CodeHighlighter";
 import useControllerState from "../../../hooks/useControllerState";
 
-const PulseLoader = () => {
+const TrophySpinIndicator = () => {
   const controlStates = useControllerState();
 
   return (
@@ -15,12 +15,12 @@ const PulseLoader = () => {
 
       <div>
         <Styled.Code component={CodeHighlighter}>
-          {`<Pulse color="${controlStates.color}" size="${controlStates.size}" text="${controlStates.textInputValue}" textColor="${controlStates.textColor}" />`}
+          {`<TrophySpin color="${controlStates.color}" size="${controlStates.size}" text="${controlStates.textInputValue}" textColor="${controlStates.textColor}" />`}
         </Styled.Code>
       </div>
       <Styled.ContentSection>
         <Styled.ComponentContainer>
-          <Pulse
+          <TrophySpin
             color={controlStates.color}
             size={controlStates.size}
             text={controlStates.textInputValue}
@@ -32,4 +32,4 @@ const PulseLoader = () => {
   );
 };
 
-export default PulseLoader;
+export default TrophySpinIndicator;
