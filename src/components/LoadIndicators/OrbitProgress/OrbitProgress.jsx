@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import OrbitProgress from "react-loading-indicators/dist/OrbitProgress";
-import { styled } from "@mui/material/styles";
 import { Typography } from "@mui/material";
 import Select from "react-select";
 
@@ -8,19 +7,6 @@ import ToolBar from "../../ToolBar";
 import Styled from "../../IndicatorsPg/styled";
 import CodeHighlighter from "../../CodeHighlighter";
 import useControllerState from "../../../hooks/useControllerState";
-
-// const VariantsBox = styled("span")`
-//   width: 100px;
-//   padding: 8px;
-//   position: absolute;
-//   top: 0;
-//   right: 0;
-//   font-size: 12px;
-
-//   @media (max-width: 400px) {
-//     display: none;
-//   }
-// `;
 
 const variantOptions = [
   { value: "disc", label: "Disc" },

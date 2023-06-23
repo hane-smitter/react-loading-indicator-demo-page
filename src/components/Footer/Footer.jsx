@@ -1,6 +1,7 @@
-import { Link, Typography } from "@mui/material";
-import { Stack } from "@mui/system";
 import React from "react";
+import Typography from "@mui/material/Typography";
+import Link from "@mui/material/Link";
+import { Stack } from "@mui/system";
 import { Twitter, GitHub, Linkedin } from "react-feather";
 
 const Footer = () => {
@@ -9,7 +10,7 @@ const Footer = () => {
       sx={{ bgcolor: "common.black", flexWrap: "wrap", padding: "10px 5px" }}
       direction="row"
     >
-      <Stack sx={{ m: "auto" }} direction="row" spacing={3}>
+      <Stack sx={{ m: "auto" }} direction="row" spacing={4}>
         <Link href="https://twitter.com/smitterhane">
           <Twitter />
         </Link>

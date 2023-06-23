@@ -32,6 +32,9 @@ const Code = styled(Typography)(({ theme }) => ({
   whiteSpace: "pre-wrap",
   wordBreak: "break-word",
 
+  backgroundColor: "#e3e6e8",
+  display: "inline-block",
+
   "& code": {
     whiteSpace: "pre-wrap !important",
     fontFamily: `"Azeret Mono", monospace`,
@@ -50,13 +53,15 @@ const GithubBtn = styled(Link)(() => ({
   textDecoration: "none",
   color: "#ffffff",
   backgroundColor: "#1a212e",
-  display: "inline-block",
+  display: "inline-flex",
+  justifyContent: "center",
+  alignItems: "center",
   borderRadius: 10,
   padding: "10px 15px",
-  ["&:hover"]: {
+  transition: "transform 500ms ease-out, background-color 150ms ease-out",
+  "&:hover": {
     backgroundColor: "#0e121a",
     transform: "scale(1.03)",
-    transition: "transform 150ms ease-out, backgroun-color 500ms ease-out",
   },
 }));
 const VariantsBox = styled("span")`
