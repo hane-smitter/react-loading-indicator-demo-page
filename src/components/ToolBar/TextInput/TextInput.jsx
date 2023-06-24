@@ -24,7 +24,6 @@ const TextInput = ({ value, onChange }) => {
         onInput={handleTextInput}
         placeholder="Start typing here..."
         style={{
-          textAlign: "center",
           padding: "3px 8px",
           backgroundColor: "#fff",
         }}

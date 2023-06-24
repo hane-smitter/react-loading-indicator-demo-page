@@ -19,7 +19,7 @@ const WallPaper = styled(AppBar)({
     zIndex: "-1",
     pointerEvents: "none",
     backgroundImage:
-      "radial-gradient(circle at 100% 0%, rgba(50, 76, 228, 0.06) 15%, #f7f9fe08 45%)",
+      "radial-gradient(circle at 100% 0%, rgba(50, 76, 228, 0.07) 15%, #f7f9fe08 40%)",
       // "linear-gradient(192deg, rgba(50, 76, 228, 0.2) 15%, #f7f9fe08 50%)",
   },
 });

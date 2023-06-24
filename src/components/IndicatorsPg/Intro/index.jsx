@@ -46,6 +46,9 @@ const Intro = () => {
             <span>🔧️ Customizable to fit into your needs</span>
           </li>
           <li>
+            <span>🍃️ Tree-shakeable</span>
+          </li>
+          <li>
             <span>🙅‍♀️️ No css import required</span>
           </li>
           <li>

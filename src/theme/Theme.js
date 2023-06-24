@@ -5,20 +5,20 @@ let theme = createTheme({
     MuiCssBaseline: {
       styleOverrides: `
             body {
-                background-color: #0b4cd708;
+                background-color: #fafbfd4d;
                 color: rgb(76 67 67 / 90%);
             }
-            .react-colorful {
-                position: absolute !important;
-                z-index: 15;
-                bottom: 100%;
-                left: 0;
-            }
-            .select-absolute {
-                position: absolute !important;
-                bottom: 100%;
-                left: 0;
-            }
+            // .react-colorful {
+            //     position: absolute !important;
+            //     z-index: 15;
+            //     bottom: 100%;
+            //     left: 0;
+            // }
+            // .select-absolute {
+            //     position: absolute !important;
+            //     bottom: 100%;
+            //     left: 0;
+            // }
         `,
     },
   },

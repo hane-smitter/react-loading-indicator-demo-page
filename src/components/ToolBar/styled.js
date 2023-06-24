@@ -29,7 +29,10 @@ const Item = styled(Button, {
   margin: "0!important",
   flexBasis: "auto",
   minWidth: "50px",
-  ...(isActive && { backgroundColor: "#070840" }),
+  ...(isActive && {
+    backgroundColor: "#07084099",
+    "&:hover": { backgroundColor: "#070840" }, // #07084005
+  }),
 }));
 
 const ActionWidgetBox = styled("div")(({ theme }) => ({
@@ -37,11 +40,18 @@ const ActionWidgetBox = styled("div")(({ theme }) => ({
   position: "absolute",
   bottom: "100%",
   left: "0",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
+  // display: "flex",
+  // justifyContent: "center",
+  // alignItems: "center",
 }));
 
-const Styled = { Wrapper, Item, ActionWidgetBox };
+const PoppingWidget = styled("div")({
+  position: "absolute",
+  pointerEvents: "all"
+  // bottom: "100%",
+  // left: 0,
+});
+
+const Styled = { Wrapper, Item, ActionWidgetBox, PoppingWidget };
 
 export default Styled;
