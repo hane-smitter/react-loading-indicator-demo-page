@@ -76,7 +76,6 @@ const ToolBar = ({
           }}
           sx={{ flexGrow: "1" }}
           isActive={showColorPicker}
-          variant={"contained"}
         >
           <span>{!showColorPicker ? "color" : "hide"}</span>
         </Styled.Item>
@@ -100,7 +99,6 @@ const ToolBar = ({
                 )
               : unmountComponentAtNode(widgetReference.current);
           }}
-          variant={"contained"}
           isActive={showSizeSelect}
         >
           <span>{!showSizeSelect ? "size" : "hide"}</span>
@@ -128,7 +126,6 @@ const ToolBar = ({
                 )
               : unmountComponentAtNode(widgetReference.current);
           }}
-          variant={"contained"}
           isActive={showTextInput}
         >
           <span>{!showTextInput ? "text" : "hide"}</span>
@@ -150,14 +147,12 @@ const ToolBar = ({
                     <HexColorPicker
                       color={textColor || undefined}
                       onChange={setTextColor}
-                      // key="hexPicker_two"
                     />
                   </ControllerWidget>,
                   widgetReference.current
                 )
               : unmountComponentAtNode(widgetReference.current);
           }}
-          variant={"contained"}
           isActive={showTextColorPicker}
         >
           <span>{!showTextColorPicker ? "textcolor" : "hide"}</span>

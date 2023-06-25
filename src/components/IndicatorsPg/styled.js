@@ -22,25 +22,27 @@ const Card = styled(Paper)(({ theme }) => ({
   },
 }));
 
-const Code = styled(Typography)(({ theme }) => ({
-  // backgroundColor: "#E3E6E8",
-  borderRadius: 5,
-  fontSize: "13px",
-  fontFamily: `"Azeret Mono", monospace`,
-  color: "#232629",
-  padding: "1px 5px",
-  whiteSpace: "pre-wrap",
-  wordBreak: "break-word",
-
-  backgroundColor: "#e3e6e8",
-  display: "inline-block",
-
-  "& code": {
-    whiteSpace: "pre-wrap !important",
+const Code = styled((props) => <Typography component="span" {...props} />)(
+  ({ theme }) => ({
+    // backgroundColor: "#E3E6E8",
+    borderRadius: 5,
+    fontSize: "13px",
     fontFamily: `"Azeret Mono", monospace`,
-    letterSpacing: "0.4px",
-  },
-}));
+    color: "#232629",
+    padding: "1px 5px",
+    whiteSpace: "pre-wrap",
+    wordBreak: "break-word",
+
+    backgroundColor: "#e3e6e8",
+    display: "inline-block",
+
+    "& code": {
+      whiteSpace: "pre-wrap !important",
+      fontFamily: `"Azeret Mono", monospace`,
+      letterSpacing: "0.4px",
+    },
+  })
+);
 
 const ContentSection = styled(Stack)(() => ({
   minHeight: 200,
@@ -76,6 +78,41 @@ const VariantsBox = styled("span")`
     display: none;
   }
 `;
+const Heading = styled((props) => {
+  const { id, ...rem } = props;
+
+  const ID = id ? `#${id}` : "#";
+
+  return (
+    <a
+      href={ID}
+      style={{
+        color: "inherit",
+        textDecoration: "none",
+        display: "block",
+      }}
+      className="heading-anchor"
+    >
+      <Typography sx={{ display: "inline-block" }} {...rem} />
+    </a>
+  );
+})`
+  position: relative;
+
+  &::after {
+    content: "#";
+    position: absolute;
+    right: -36px;
+    opacity: 0;
+    transition: opacity 100ms linear;
+  }
+  &:hover::after,
+  .heading-anchor:hover &::after {
+    color: #23359f;
+    text-decoration: underline;
+    opacity: 1;
+  }
+`;
 
 const Styled = {
   Card,
@@ -84,6 +121,7 @@ const Styled = {
   ComponentContainer,
   GithubBtn,
   VariantsBox,
+  Heading,
 };
 
 export default Styled;

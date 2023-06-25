@@ -15,7 +15,7 @@ const Wrapper = styled(Stack)(({ theme }) => ({
   },
 }));
 
-const Item = styled(Button, {
+const Item = styled((props) => <Button variant="contained" {...props} />, {
   shouldForwardProp: (prop) => prop !== "isActive",
 })(({ theme, isActive }) => ({
   ...theme.typography.body2,
@@ -35,23 +35,23 @@ const Item = styled(Button, {
   }),
 }));
 
-const ActionWidgetBox = styled("div")(({ theme }) => ({
-  width: "100%",
-  position: "absolute",
-  bottom: "100%",
-  left: "0",
-  // display: "flex",
-  // justifyContent: "center",
-  // alignItems: "center",
-}));
+// const ActionWidgetBox = styled("div")(({ theme }) => ({
+//   width: "100%",
+//   position: "absolute",
+//   bottom: "100%",
+//   left: "0",
+//   // display: "flex",
+//   // justifyContent: "center",
+//   // alignItems: "center",
+// }));
 
 const PoppingWidget = styled("div")({
   position: "absolute",
-  pointerEvents: "all"
+  pointerEvents: "all",
   // bottom: "100%",
   // left: 0,
 });
 
-const Styled = { Wrapper, Item, ActionWidgetBox, PoppingWidget };
+const Styled = { Wrapper, Item, PoppingWidget };
 
 export default Styled;

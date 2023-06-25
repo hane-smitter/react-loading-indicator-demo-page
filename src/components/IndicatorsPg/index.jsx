@@ -16,9 +16,11 @@ const LoadIndicators = () => {
     <React.Fragment>
       <Intro />
 
-      <Typography variant="h4" style={{ marginTop: "35px" }}>
-        Components
-      </Typography>
+      <div style={{ marginTop: "35px" }}>
+        <Styled.Heading id="components" variant="h4">
+          Components
+        </Styled.Heading>
+      </div>
       <Typography variant="body2">
         <i>Use the button controls to customize the components</i>
       </Typography>
@@ -35,7 +37,7 @@ const LoadIndicators = () => {
         })}
       </Grid>
 
-      <Typography variant="body2">
+      <Typography variant="body1" sx={{ marginTop: "4em" }}>
         <strong>💡️ Tip:</strong>
         <br />
         <i>
@@ -43,6 +45,12 @@ const LoadIndicators = () => {
           array of colors via the <Styled.Code>color</Styled.Code> prop.
         </i>
       </Typography>
+
+      <div style={{ marginTop: "35px" }}>
+        <Styled.Heading id="Increase-decrease-speed" variant="h3">
+          Increase/decrease speed
+        </Styled.Heading>
+      </div>
 
       <Outro />
     </React.Fragment>

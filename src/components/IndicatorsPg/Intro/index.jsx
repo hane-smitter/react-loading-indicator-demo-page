@@ -40,7 +40,9 @@ const Intro = () => {
         </Typography>
         <ul>
           <li>
-            <span>🥣️ Ready-made loading indicators with good defaults</span>
+            <span>
+              🥣️ Out of the box loading components with good defaults
+            </span>
           </li>
           <li>
             <span>🔧️ Customizable to fit into your needs</span>
@@ -52,12 +54,10 @@ const Intro = () => {
             <span>🙅‍♀️️ No css import required</span>
           </li>
           <li>
-            <span>
-              ✅️ Animating layout changes is expensive. This is well handled
-            </span>
+            <span>✅️ Browser performant animations</span>
           </li>
           <li>
-            <span>🚢️ Shipped with Typescript declarations</span>
+            <span>🚢️ Ships with Typescript declarations</span>
           </li>
           <li>
             <span>🪶️ Light build</span>

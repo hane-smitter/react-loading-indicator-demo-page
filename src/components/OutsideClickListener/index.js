@@ -30,7 +30,6 @@ function useOutsideClickListener(runner) {
       }
     }
 
-    console.log("Ott")
     targetElem.addEventListener("click", handleClickOutside, {
       signal: controller.signal,
       capture: true,
