@@ -47,7 +47,7 @@ const LoadIndicators = () => {
       </Typography>
 
       <div style={{ marginTop: "35px" }}>
-        <Styled.Heading id="Increase-decrease-speed" variant="h3">
+        <Styled.Heading id="increase-decrease-speed" variant="h4">
           Increase/decrease speed
         </Styled.Heading>
       </div>

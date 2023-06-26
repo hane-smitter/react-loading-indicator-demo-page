@@ -8,17 +8,6 @@ let theme = createTheme({
                 background-color: #fafbfd4d;
                 color: rgb(76 67 67 / 90%);
             }
-            // .react-colorful {
-            //     position: absolute !important;
-            //     z-index: 15;
-            //     bottom: 100%;
-            //     left: 0;
-            // }
-            // .select-absolute {
-            //     position: absolute !important;
-            //     bottom: 100%;
-            //     left: 0;
-            // }
         `,
     },
   },
@@ -33,20 +22,9 @@ let theme = createTheme({
         fontSize: "1.3rem",
       },
     },
+    fontFamily: "Nunito",
   },
 });
 theme = responsiveFontSizes(theme);
-// theme.typography.subtitle2 = {
-//     fontSize: '1.2rem',
-//     '@media (min-width:600px)': {
-//       fontSize: '1.5rem',
-//     },
-//     [theme.breakpoints.up('md')]: {
-//       fontSize: '2.4rem',
-//     },
-//   };
-
-// Primary color - #324CE4
-// black-ish - #3542E3
 
 export default theme;

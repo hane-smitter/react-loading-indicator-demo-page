@@ -6,6 +6,7 @@
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
     "@fontsource/azeret-mono": "^4.5.10",
+    "@fontsource/nunito": "^5.0.3",
     "@mui/material": "^5.10.6",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.2",

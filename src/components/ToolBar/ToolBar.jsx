@@ -50,6 +50,38 @@ const ToolBar = ({
     [widgetActive]
   );
 
+  /**
+   * This functions waits transitions on **Text** control input to finish before removal
+   * Does not work for other controls other than `<Text />` control
+   * @param {HTMLElement} elContainer - Element containing element to be removed
+   */
+  async function unmountComponent(elContainer) {
+    const transitionElements = Array.from(
+      elContainer?.querySelectorAll("span.focus-border, span.focus-border i")
+    );
+
+    const promises = new Array();
+    transitionElements.forEach((el) => {
+      const controller = new AbortController();
+
+      promises.push(
+        new Promise((resolve, reject) => {
+          el.addEventListener(
+            "transitionend",
+            () => {
+              resolve();
+              controller.abort();
+            },
+            { signal: controller.signal }
+          );
+        })
+      );
+    });
+
+    await Promise.all(promises);
+    unmountComponentAtNode(elContainer);
+  }
+
   return (
     <OutsideClickListener onClickAway={widgetClose}>
       <Styled.Wrapper direction="row" spacing={3}>
@@ -124,7 +156,7 @@ const ToolBar = ({
                   </ControllerWidget>,
                   widgetReference.current
                 )
-              : unmountComponentAtNode(widgetReference.current);
+              : unmountComponent(widgetReference.current);
           }}
           isActive={showTextInput}
         >

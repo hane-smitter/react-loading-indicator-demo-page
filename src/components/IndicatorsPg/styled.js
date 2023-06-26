@@ -102,9 +102,11 @@ const Heading = styled((props) => {
   &::after {
     content: "#";
     position: absolute;
-    right: -36px;
+    right: -25px;
+    bottom: 0;
     opacity: 0;
     transition: opacity 100ms linear;
+    font-size: 0.9em;
   }
   &:hover::after,
   .heading-anchor:hover &::after {

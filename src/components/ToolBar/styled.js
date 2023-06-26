@@ -52,6 +52,77 @@ const PoppingWidget = styled("div")({
   // left: 0,
 });
 
-const Styled = { Wrapper, Item, PoppingWidget };
+const TextInput = styled((props) => {
+  const { inputRef: ref, ...rem } = props;
+
+  const inputRef = ref ? { ref } : null;
+
+  return (
+    <div>
+      <input {...inputRef} type="text" {...rem} />
+      <span className="focus-border">
+        <i></i>
+      </span>
+    </div>
+  );
+})(({ theme }) => ({
+  width: "100%",
+  height: "100%",
+  border: "1px solid #ccc",
+  padding: "10px 8px",
+  transition: "backgroundColor 0.5s linear",
+  outline: "none",
+  backgroundColor: "#f0f1f1",
+  borderRadius: "3px",
+  fontSize: "0.95rem",
+
+  "& ~ span.focus-border::before, & ~ span.focus-border:after": {
+    content: "''",
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: 0,
+    height: "2px",
+    backgroundColor: theme.palette.primary.light,
+    transition: "0.3s",
+  },
+
+  "& ~ span.focus-border:after": {
+    top: "auto",
+    bottom: 0,
+    left: "auto",
+    right: 0,
+  },
+
+  "& ~ span.focus-border i:before,& ~ span.focus-border i:after": {
+    content: "''",
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "2px",
+    height: 0,
+    backgroundColor: theme.palette.primary.main,
+    transition: "0.4s",
+  },
+
+  "& ~ span.focus-border i:after": {
+    left: "auto",
+    right: 0,
+    top: "auto",
+    bottom: 0,
+  },
+
+  "&:focus ~ span.focus-border:before, &:focus ~ span.focus-border:after": {
+    width: "100%",
+    transition: "0.3s",
+  },
+
+  "&:focus ~ span.focus-border i:before, &:focus ~ span.focus-border i:after": {
+    height: "100%",
+    transition: "0.4s",
+  },
+}));
+
+const Styled = { Wrapper, Item, PoppingWidget, TextInput };
 
 export default Styled;
