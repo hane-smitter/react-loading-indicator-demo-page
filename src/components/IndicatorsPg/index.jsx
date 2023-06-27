@@ -6,21 +6,24 @@ import * as LoadingIndicators from "../LoadIndicators";
 import Intro from "./Intro";
 import Outro from "./Outro";
 import Styled from "./styled";
+import CustomizeSpeed from "../CustomizeSpeed";
 
 // Align order of display priority
-const IndicatorNames = ArrangeByDisplayPriority(Object.keys(LoadingIndicators));
-console.log("indicators:: ", IndicatorNames);
+const IndicatorNames = Arrange(Object.keys(LoadingIndicators));
+// console.log("indicators:: ", IndicatorNames);
 
 const LoadIndicators = () => {
   return (
     <React.Fragment>
       <Intro />
 
-      <div style={{ marginTop: "35px" }}>
-        <Styled.Heading id="components" variant="h4">
-          Components
-        </Styled.Heading>
-      </div>
+      <Styled.Heading
+        id="components"
+        variant="h4"
+        style={{ marginTop: "35px" }}
+      >
+        Components
+      </Styled.Heading>
       <Typography variant="body2">
         <i>Use the button controls to customize the components</i>
       </Typography>
@@ -37,19 +40,38 @@ const LoadIndicators = () => {
         })}
       </Grid>
 
-      <Typography variant="body1" sx={{ marginTop: "4em" }}>
+      <Styled.Tip sx={{ marginTop: "4em" }}>
         <strong>💡️ Tip:</strong>
         <br />
         <i>
           Some loading indicators can be multi-colored when supplied with an
           array of colors via the <Styled.Code>color</Styled.Code> prop.
         </i>
+      </Styled.Tip>
+
+      <Styled.Heading
+        id="increase-decrease-speed"
+        variant="h4"
+        style={{ marginTop: "35px" }}
+      >
+        Increase/decrease speed
+      </Styled.Heading>
+
+      <Typography variant="subtitle1" component="p">
+        Animation can be too slow or too fast for your preferences. You can
+        alter the speed of the animation using a{" "}
+        <Styled.Code>speedPlus</Styled.Code> prop.
+        <br />A fixed range of value is accepted, i.e an integer ranging from{" "}
+        <Styled.Code>-5</Styled.Code> through <Styled.Code>5</Styled.Code>.{" "}
+        <Styled.Code>0</Styled.Code> value means <em>normal</em> speed. Greater
+        number means <em>higher</em> speed. Smaller number means <em>slower</em>{" "}
+        speed. And number out of range means <em>normal</em> speed.
       </Typography>
 
-      <div style={{ marginTop: "35px" }}>
-        <Styled.Heading id="increase-decrease-speed" variant="h4">
-          Increase/decrease speed
-        </Styled.Heading>
+      <br />
+      <Typography variant="h6">See Example:</Typography>
+      <div>
+        <CustomizeSpeed />
       </div>
 
       <Outro />
@@ -59,7 +81,11 @@ const LoadIndicators = () => {
 
 export default LoadIndicators;
 
-function ArrangeByDisplayPriority(indicators) {
+/**
+ * @param {string[]} indicators Names of loading indicators
+ * @returns Array of ordered names
+ */
+function Arrange(indicators) {
   const orderedList = indicators
     .map((indicator) => {
       let priority = 0;

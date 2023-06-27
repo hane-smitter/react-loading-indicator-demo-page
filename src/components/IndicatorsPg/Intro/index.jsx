@@ -9,9 +9,9 @@ const Intro = () => {
   return (
     <Box sx={{ mt: 5 }}>
       <Typography variant="h6" component="p">
-        A collection of <em>simplistic</em>, <em>customizable</em> and{" "}
-        <em>elegant</em> loading indicators to fancy users as they wait for a
-        response
+        A library of <em>simple</em>, <em>highly customizable</em> and{" "}
+        <em>elegant</em> loading indicators to fancy users' patience when they
+        wait for a response from your dream project
         <OrbitProgress
           variant="dotted"
           speedPlus={2}
@@ -40,6 +40,9 @@ const Intro = () => {
         </Typography>
         <ul>
           <li>
+            <span>🪶️ Light weight</span>
+          </li>
+          <li>
             <span>
               🥣️ Out of the box loading components with good defaults
             </span>
@@ -60,7 +63,7 @@ const Intro = () => {
             <span>🚢️ Ships with Typescript declarations</span>
           </li>
           <li>
-            <span>🪶️ Light build</span>
+            <span>🏗️ Light build available</span>
           </li>
         </ul>
       </div>

@@ -81,40 +81,50 @@ const VariantsBox = styled("span")`
 const Heading = styled((props) => {
   const { id, ...rem } = props;
 
-  const ID = id ? `#${id}` : "#";
+  const ID = id ? { id } : null;
 
   return (
-    <a
-      href={ID}
-      style={{
-        color: "inherit",
-        textDecoration: "none",
-        display: "block",
+    <Typography
+      onClick={(event) => {
+        event.currentTarget.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+          inline: "nearest",
+        });
+        ID && (window.location.hash = `#${ID.id}`);
       }}
-      className="heading-anchor"
-    >
-      <Typography sx={{ display: "inline-block" }} {...rem} />
-    </a>
+      {...ID}
+      {...rem}
+    />
   );
 })`
   position: relative;
+  font-weight: 600;
+  text-transform: capitalize;
 
-  &::after {
+  &::before {
     content: "#";
     position: absolute;
-    right: -25px;
-    bottom: 0;
+    bottom: 50%;
+    transform: translate(-120%, 50%);
+    cursor: pointer;
     opacity: 0;
     transition: opacity 100ms linear;
-    font-size: 0.9em;
+    font-size: 0.7em;
+    font-weight: 200;
   }
-  &:hover::after,
-  .heading-anchor:hover &::after {
+  &:hover::before {
     color: #23359f;
     text-decoration: underline;
     opacity: 1;
   }
 `;
+const Tip = styled((props) => <Typography variant="body1" {...props} />)({
+  border: "2px solid #0cab0c",
+  borderRadius: "5px",
+  backgroundColor: "#f1fff1",
+  padding: "8px 15px",
+});
 
 const Styled = {
   Card,
@@ -124,6 +134,7 @@ const Styled = {
   GithubBtn,
   VariantsBox,
   Heading,
+  Tip,
 };
 
 export default Styled;

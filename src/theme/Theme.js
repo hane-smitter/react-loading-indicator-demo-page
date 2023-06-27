@@ -7,6 +7,11 @@ let theme = createTheme({
             body {
                 background-color: #fafbfd4d;
                 color: rgb(76 67 67 / 90%);
+                scroll-behavior: smooth;
+            }
+
+            * {
+                scroll-behavior: smooth;
             }
         `,
     },
