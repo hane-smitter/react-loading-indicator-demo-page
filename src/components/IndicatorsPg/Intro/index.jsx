@@ -10,7 +10,7 @@ const Intro = () => {
     <Box sx={{ mt: 5 }}>
       <Typography variant="h6" component="p">
         A library of <em>simple</em>, <em>highly customizable</em> and{" "}
-        <em>elegant</em> loading indicators to fancy users' patience when they
+        <em>elegant</em> loading indicators to inform users of a working progress when they
         wait for a response from your dream project
         <OrbitProgress
           variant="dotted"

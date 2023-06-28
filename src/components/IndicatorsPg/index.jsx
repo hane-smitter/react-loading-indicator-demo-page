@@ -57,7 +57,7 @@ const LoadIndicators = () => {
         Increase/decrease speed
       </Styled.Heading>
 
-      <Typography variant="subtitle1" component="p">
+      <Styled.BodyText>
         Animation can be too slow or too fast for your preferences. You can
         alter the speed of the animation using a{" "}
         <Styled.Code>speedPlus</Styled.Code> prop.
@@ -66,13 +66,31 @@ const LoadIndicators = () => {
         <Styled.Code>0</Styled.Code> value means <em>normal</em> speed. Greater
         number means <em>higher</em> speed. Smaller number means <em>slower</em>{" "}
         speed. And number out of range means <em>normal</em> speed.
-      </Typography>
+      </Styled.BodyText>
 
       <br />
-      <Typography variant="h6">See Example:</Typography>
-      <div>
+      <Typography variant="h6" component="p">
+        See Example:
+      </Typography>
+      <div style={{ marginBottom: "80px" }}>
         <CustomizeSpeed />
       </div>
+
+      <Styled.BodyText>
+        As shown above, you can as well pass an{" "}
+        <Styled.Code>easing</Styled.Code> prop to control motion
+        "ease/smoothness" of an animation.
+        <br />
+        It accepts values of{" "}
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function"
+          target="_blank"
+          rel="noreferrer"
+        >
+          CSS easing function
+        </a>{" "}
+        passed as a string.
+      </Styled.BodyText>
 
       <Outro />
     </React.Fragment>

@@ -48,9 +48,11 @@ const ContentSection = styled(Stack)(() => ({
   minHeight: 200,
   position: "relative",
 }));
+
 const ComponentContainer = styled(Box)(() => ({
   margin: "auto",
 }));
+
 const GithubBtn = styled(Link)(() => ({
   textDecoration: "none",
   color: "#ffffff",
@@ -66,6 +68,7 @@ const GithubBtn = styled(Link)(() => ({
     transform: "scale(1.03)",
   },
 }));
+
 const VariantsBox = styled("span")`
   width: 100px;
   padding: 8px;
@@ -78,10 +81,13 @@ const VariantsBox = styled("span")`
     display: none;
   }
 `;
+
 const Heading = styled((props) => {
   const { id, ...rem } = props;
 
-  const ID = id ? { id } : null;
+  const ID = id
+    ? { id: String(id).replace(/[^\w]/gi, "-").toLowerCase() }
+    : null;
 
   return (
     <Typography
@@ -126,6 +132,10 @@ const Tip = styled((props) => <Typography variant="body1" {...props} />)({
   padding: "8px 15px",
 });
 
+const BodyText = styled((props) => (
+  <Typography variant="subtitle1" component="p" {...props} />
+))({});
+
 const Styled = {
   Card,
   Code,
@@ -135,6 +145,7 @@ const Styled = {
   VariantsBox,
   Heading,
   Tip,
+  BodyText,
 };
 
 export default Styled;

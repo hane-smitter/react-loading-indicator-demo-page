@@ -28,7 +28,7 @@ const CustomizeSpeed = () => {
   }
 
   function handleChangeEaseOption(newVal) {
-    console.log("Select val: ", newVal);
+    // console.log("Select val: ", newVal);
     setEaseValue(newVal);
   }
 
