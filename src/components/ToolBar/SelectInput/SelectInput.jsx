@@ -29,6 +29,7 @@ const SelectInput = ({ size, setSize }) => {
         setSize(value.value);
       }}
       options={sizeOptions}
+      defaultMenuIsOpen
       className="select-absolute"
     />
   );

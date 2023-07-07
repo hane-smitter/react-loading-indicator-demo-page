@@ -8,6 +8,6 @@ export { default as Slab } from "./Slab";
 export { default as Riple } from "./Riple";
 export { default as LifeLine } from "./LifeLine";
 export { default as ThreeDot } from "./ThreeDot";
-export { default as GlidingBlink } from "./GlidingBlink";
+export { default as BlinkBlur } from "./BlinkBlur";
 
 

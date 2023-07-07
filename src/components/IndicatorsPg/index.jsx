@@ -8,7 +8,6 @@ import Outro from "./Outro";
 import Styled from "./styled";
 import CustomizeSpeed from "../CustomizeSpeed";
 
-// Align order of display priority
 const IndicatorNames = Arrange(Object.keys(LoadingIndicators));
 // console.log("indicators:: ", IndicatorNames);
 
@@ -100,8 +99,9 @@ const LoadIndicators = () => {
 export default LoadIndicators;
 
 /**
+ * Orders names of loading indicators
  * @param {string[]} indicators Names of loading indicators
- * @returns Array of ordered names
+ * @returns {string[]} Array of ordered names
  */
 function Arrange(indicators) {
   const orderedList = indicators
@@ -124,6 +124,8 @@ function Arrange(indicators) {
         case "ThreeDot":
           priority = priority + 1;
           break;
+
+        // eslint-disable-next-line default-case
       }
 
       return { indicator, priority };

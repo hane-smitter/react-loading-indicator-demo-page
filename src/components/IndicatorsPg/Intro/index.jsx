@@ -10,8 +10,8 @@ const Intro = () => {
     <Box sx={{ mt: 5 }}>
       <Typography variant="h6" component="p">
         A library of <em>simple</em>, <em>highly customizable</em> and{" "}
-        <em>elegant</em> loading indicators to inform users of a working progress when they
-        wait for a response from your dream project
+        <em>elegant</em> loading indicators to inform users of a working
+        progress when they wait for a response from your dream project
         <OrbitProgress
           variant="dotted"
           speedPlus={2}
@@ -44,11 +44,14 @@ const Intro = () => {
           </li>
           <li>
             <span>
-              🥣️ Out of the box loading components with good defaults
+              🥣️ Ready-made loading components with good defaults
             </span>
           </li>
           <li>
             <span>🔧️ Customizable to fit into your needs</span>
+          </li>
+          <li>
+            <span>🥢 Same API for all components</span>
           </li>
           <li>
             <span>🍃️ Tree-shakeable</span>
@@ -57,7 +60,12 @@ const Intro = () => {
             <span>🙅‍♀️️ No css import required</span>
           </li>
           <li>
-            <span>✅️ Browser performant animations</span>
+            <span>
+              ✅️ Animations considerate of browser performance{" "}
+              <small>
+                (<i>with optimizations where necessary</i> )
+              </small>
+            </span>
           </li>
           <li>
             <span>🚢️ Ships with Typescript declarations</span>
