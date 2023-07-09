@@ -1,5 +1,6 @@
 import React from "react";
 import { Atom } from "react-loading-indicators";
+
 import ToolBar from "../../ToolBar";
 import Styled from "../../IndicatorsPg/styled";
 import CodeHighlighter from "../../CodeHighlighter";

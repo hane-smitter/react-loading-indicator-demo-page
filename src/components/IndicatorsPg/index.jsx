@@ -28,8 +28,8 @@ const LoadIndicators = () => {
       </Typography>
 
       <Grid container spacing={2} sx={{ my: 3 }}>
-        {IndicatorNames.map((indicator, idx) => {
-          const Throbber = LoadingIndicators[indicator];
+        {IndicatorNames.map((name, idx) => {
+          const Throbber = LoadingIndicators[name];
 
           return (
             <Grid item xs={12} sm={6} key={idx}>
@@ -108,6 +108,7 @@ function Arrange(indicators) {
     .map((indicator) => {
       let priority = 0;
 
+      // eslint-disable-next-line default-case
       switch (indicator) {
         case "Atom":
           priority = priority + 3;
@@ -124,8 +125,6 @@ function Arrange(indicators) {
         case "ThreeDot":
           priority = priority + 1;
           break;
-
-        // eslint-disable-next-line default-case
       }
 
       return { indicator, priority };

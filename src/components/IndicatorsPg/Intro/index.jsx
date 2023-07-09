@@ -9,9 +9,9 @@ const Intro = () => {
   return (
     <Box sx={{ mt: 5 }}>
       <Typography variant="h6" component="p">
-        A library of <em>simple</em>, <em>highly customizable</em> and{" "}
-        <em>elegant</em> loading indicators to inform users of a working
-        progress when they wait for a response from your dream project
+        A library of <em>simple</em>, <em>customizable</em> and{" "}
+        <em>elegant</em> loading indicators to indicate a 'behind scenes' progress  to
+        users of your dream project
         <OrbitProgress
           variant="dotted"
           speedPlus={2}
@@ -43,9 +43,7 @@ const Intro = () => {
             <span>🪶️ Light weight</span>
           </li>
           <li>
-            <span>
-              🥣️ Ready-made loading components with good defaults
-            </span>
+            <span>🥣️ Ready-made loading components with good defaults</span>
           </li>
           <li>
             <span>🔧️ Customizable to fit into your needs</span>
@@ -61,10 +59,7 @@ const Intro = () => {
           </li>
           <li>
             <span>
-              ✅️ Animations considerate of browser performance{" "}
-              <small>
-                (<i>with optimizations where necessary</i> )
-              </small>
+              ✅️ Perfomant animations
             </span>
           </li>
           <li>

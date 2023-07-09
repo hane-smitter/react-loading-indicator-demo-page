@@ -11,6 +11,7 @@ const Card = styled(Paper)(({ theme }) => ({
   width: "100%",
   minHeight: 100,
   marginInline: "auto",
+  // isolation: "isolate",
   boxShadow:
     "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
 
@@ -32,6 +33,7 @@ const Code = styled((props) => <Typography component="span" {...props} />)(
     padding: "1px 5px",
     whiteSpace: "pre-wrap",
     wordBreak: "break-word",
+    userSelect: "all",
 
     backgroundColor: "#e3e6e8",
     display: "inline-block",

@@ -10,8 +10,8 @@ const WidgetActionCenter = React.forwardRef((props, ref) => {
         left: "0",
         right: "0",
         bottom: "0",
-        zIndex: "1",
-        pointerEvents: "none"
+        // zIndex: "1",
+        // pointerEvents: "none"
       }}
     ></div>
   );

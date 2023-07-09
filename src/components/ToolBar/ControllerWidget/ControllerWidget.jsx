@@ -39,7 +39,6 @@ const ControllerWidget = ({ controllingBtn, children }) => {
   return (
     <Styled.PoppingWidget
       ref={elemRef}
-      style={{ minWidth: 200 }}
       className="widget"
     >
       {children}

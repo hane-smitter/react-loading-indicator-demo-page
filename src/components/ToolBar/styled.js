@@ -3,7 +3,7 @@ import { Stack, Button } from "@mui/material";
 
 const Wrapper = styled(Stack)(({ theme }) => ({
   padding: theme.spacing(1),
-  zIndex: 10,
+  // zIndex: 10, // Avoiding to create stacking context; it conflicts with react-select dropdown
   fontSize: "13px",
   position: "relative",
   gap: "10px",
@@ -23,7 +23,7 @@ const Item = styled((props) => <Button variant="contained" {...props} />, {
   position: "relative",
   color: theme.palette.common.white,
   cursor: "pointer",
-  zIndex: -1,
+  // zIndex: -1,
   fontWeight: 700,
   fontSize: "0.9em",
   margin: "0!important",
@@ -47,7 +47,9 @@ const Item = styled((props) => <Button variant="contained" {...props} />, {
 
 const PoppingWidget = styled("div")({
   position: "absolute",
-  pointerEvents: "all",
+  zIndex: 3,
+  minWidth: 200,
+  // pointerEvents: "all",
   // bottom: "100%",
   // left: 0,
 });
