@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import Styled from "../styled";
 
 const TextInput = ({ value, onChange }) => {
   const [textInpValue, setTextInpValue] = useState(value || "");
@@ -18,17 +19,12 @@ const TextInput = ({ value, onChange }) => {
 
   return (
     <div>
-      <input
+      <Styled.TextInput
         type={"text"}
         value={textInpValue}
         onInput={handleTextInput}
         placeholder="Start typing here..."
-        style={{
-          textAlign: "center",
-          padding: "3px 8px",
-          backgroundColor: "#fff",
-        }}
-        ref={inpRef}
+        inputRef={inpRef}
       />
     </div>
   );

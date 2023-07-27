@@ -1,12 +1,12 @@
 import React from "react";
-import { Seek } from "react-loading-indicators";
-import ToolBar from "../../ToolBar";
+import { BlinkBlur } from "react-loading-indicators";
 
+import ToolBar from "../../ToolBar";
 import Styled from "../../IndicatorsPg/styled";
 import CodeHighlighter from "../../CodeHighlighter";
 import useControllerState from "../../../hooks/useControllerState";
 
-const SeekLoader = () => {
+const BlinkBlurIndicator = () => {
   const controlStates = useControllerState();
 
   return (
@@ -15,12 +15,12 @@ const SeekLoader = () => {
 
       <div>
         <Styled.Code component={CodeHighlighter}>
-          {`<Seek color="${controlStates.color}" size="${controlStates.size}" text="${controlStates.textInputValue}" textColor="${controlStates.textColor}" />`}
+          {`<BlinkBlur color="${controlStates.color}" size="${controlStates.size}" text="${controlStates.textInputValue}" textColor="${controlStates.textColor}" />`}
         </Styled.Code>
       </div>
       <Styled.ContentSection>
         <Styled.ComponentContainer>
-          <Seek
+          <BlinkBlur
             color={controlStates.color}
             size={controlStates.size}
             text={controlStates.textInputValue}
@@ -32,4 +32,4 @@ const SeekLoader = () => {
   );
 };
 
-export default SeekLoader;
+export default BlinkBlurIndicator;

@@ -7,22 +7,22 @@ const useControllerState = () => {
   const [textColor, setTextColor] = useState("");
 
   const cachedSetColor = useCallback(
-    setColor,
+    (value) => setColor(value),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
   const cachedSetSize = useCallback(
-    setSize,
+    (value) => setSize(value),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
   const cachedSetTextInputValue = useCallback(
-    setTextInputValue,
+    (value) => setTextInputValue(value),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
   const cachedSetTextColor = useCallback(
-    setTextColor,
+    (value) => setTextColor(value),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );

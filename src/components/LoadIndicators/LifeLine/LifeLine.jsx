@@ -1,12 +1,12 @@
 import React from "react";
-import { Twist } from "react-loading-indicators";
+import LifeLine from "react-loading-indicators/dist/LifeLine";
 import ToolBar from "../../ToolBar";
 
 import Styled from "../../IndicatorsPg/styled";
 import CodeHighlighter from "../../CodeHighlighter";
 import useControllerState from "../../../hooks/useControllerState";
 
-const TwistLoader = () => {
+const LifeLineIndicator = () => {
   const controlStates = useControllerState();
 
   return (
@@ -15,12 +15,12 @@ const TwistLoader = () => {
 
       <div>
         <Styled.Code component={CodeHighlighter}>
-          {`<Twist color="${controlStates.color}" size="${controlStates.size}" text="${controlStates.textInputValue}" textColor="${controlStates.textColor}" />`}
+          {`<LifeLine color="${controlStates.color}" size="${controlStates.size}" text="${controlStates.textInputValue}" textColor="${controlStates.textColor}" />`}
         </Styled.Code>
       </div>
       <Styled.ContentSection>
         <Styled.ComponentContainer>
-          <Twist
+          <LifeLine
             color={controlStates.color}
             size={controlStates.size}
             text={controlStates.textInputValue}
@@ -32,4 +32,4 @@ const TwistLoader = () => {
   );
 };
 
-export default TwistLoader;
+export default LifeLineIndicator;
