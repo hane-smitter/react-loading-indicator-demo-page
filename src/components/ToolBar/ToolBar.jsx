@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { unmountComponentAtNode, render } from "react-dom";
 import { HexColorPicker } from "react-colorful";
@@ -41,6 +43,7 @@ const ToolBar = ({
 
   const widgetClose = useCallback(
     function () {
+      console.log("Widget close triggered")
       // Below commented code does not work correctly inside a function due to closure issues
       // if (!widgetActive) return; // A workaround is to use useEffect
 

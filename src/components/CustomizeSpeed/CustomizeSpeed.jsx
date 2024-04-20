@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useRef, useState } from "react";
 import OrbitProgress from "react-loading-indicators/dist/OrbitProgress";
 import Select from "react-select";

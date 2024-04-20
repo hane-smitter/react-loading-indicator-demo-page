@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import OrbitProgress from "react-loading-indicators/dist/OrbitProgress";
 import { Typography } from "@mui/material";
 import Select from "react-select";
@@ -7,6 +6,7 @@ import ToolBar from "../../ToolBar";
 import Styled from "../../IndicatorsPg/styled";
 import CodeHighlighter from "../../CodeHighlighter";
 import useControllerState from "../../../hooks/useControllerState";
+import useReactSelectOptions from "src/hooks/useReactSelectOptions";
 
 const variantOptions = [
   { value: "disc", label: "Disc" },
@@ -18,12 +18,7 @@ const variantOptions = [
 
 const OrbitProgressIndicator = () => {
   const controlStates = useControllerState();
-  const [variantOption, setVariantOption] = useState({});
-
-  function handleChangeVariantOption(selectedOpt) {
-    const newVariant = selectedOpt;
-    setVariantOption(newVariant);
-  }
+  const { variantOption, handleChangeVariantOption } = useReactSelectOptions();
 
   return (
     <Styled.Card>

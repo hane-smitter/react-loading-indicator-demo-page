@@ -1,5 +1,5 @@
 import React from "react";
-import { Mosaic } from "react-loading-indicators";
+import Mosaic from "react-loading-indicators/dist/Mosaic";
 
 import ToolBar from "../../ToolBar";
 import Styled from "../../IndicatorsPg/styled";

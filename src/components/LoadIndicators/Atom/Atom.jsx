@@ -1,23 +1,42 @@
+"use client";
+
 import React from "react";
 import { Atom } from "react-loading-indicators";
+import Typography from "@mui/material/Typography";
 
 import ToolBar from "../../ToolBar";
-import Styled from "../../IndicatorsPg/styled";
+// import Styled from "../../IndicatorsPg/styled";
 import CodeHighlighter from "../../CodeHighlighter";
 import useControllerState from "../../../hooks/useControllerState";
+import CardBoard from "src/components/IndicatorsPg/MUIClient/Card/CardBoard";
+import CardContent from "src/components/IndicatorsPg/MUIClient/Card/CardContent";
+import IndicatorContainer from "src/components/IndicatorsPg/MUIClient/Card/IndicatorContainer";
 
 const AtomLoader = () => {
   const controlStates = useControllerState();
 
   return (
-    <Styled.Card>
+    <CardBoard>
       <ToolBar {...controlStates} />
       <div>
-        <Styled.Code component={CodeHighlighter}>
+        {/* <Styled.Code component={CodeHighlighter}>
           {`<Atom color="${controlStates.color}" size="${controlStates.size}" text="${controlStates.textInputValue}" textColor="${controlStates.textColor}" />`}
-        </Styled.Code>
+        </Styled.Code> */}
+        <Typography variant="code" component={CodeHighlighter}>{`<Atom color="${controlStates.color}" size="${controlStates.size}" text="${controlStates.textInputValue}" textColor="${controlStates.textColor}" />`}</Typography>
       </div>
-      <Styled.ContentSection>
+
+      <CardContent>
+        <IndicatorContainer>
+          <Atom
+            color={controlStates.color}
+            size={controlStates.size}
+            text={controlStates.textInputValue}
+            textColor={controlStates.textColor}
+          />
+        </IndicatorContainer>
+      </CardContent>
+
+      {/* <Styled.ContentSection>
         <Styled.ComponentContainer>
           <Atom
             color={controlStates.color}
@@ -26,8 +45,8 @@ const AtomLoader = () => {
             textColor={controlStates.textColor}
           />
         </Styled.ComponentContainer>
-      </Styled.ContentSection>
-    </Styled.Card>
+      </Styled.ContentSection> */}
+    </CardBoard>
   );
 };
 

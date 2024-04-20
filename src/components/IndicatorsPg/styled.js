@@ -1,9 +1,12 @@
+// "use client";
+
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
-import { styled } from "@mui/material/styles";
+import styled from "@emotion/styled";
+// import { styled } from "@mui/material/styles";
 
 const Card = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
@@ -28,7 +31,7 @@ const Code = styled((props) => <Typography component="span" {...props} />)(
     // backgroundColor: "#E3E6E8",
     borderRadius: 5,
     fontSize: "13px",
-    fontFamily: `"Azeret Mono", monospace`,
+    fontFamily: "var(--font-azeret-mono)",
     color: "#232629",
     padding: "1px 5px",
     whiteSpace: "pre-wrap",
@@ -40,93 +43,93 @@ const Code = styled((props) => <Typography component="span" {...props} />)(
 
     "& code": {
       whiteSpace: "pre-wrap !important",
-      fontFamily: `"Azeret Mono", monospace`,
+      fontFamily: "var(--font-azeret-mono)",
       letterSpacing: "0.4px",
     },
   })
 );
 
-const ContentSection = styled(Stack)(() => ({
-  minHeight: 200,
-  position: "relative",
-}));
+// const ContentSection = styled(Stack)(() => ({
+//   minHeight: 200,
+//   position: "relative",
+// }));
 
-const ComponentContainer = styled(Box)(() => ({
-  margin: "auto",
-}));
+// const ComponentContainer = styled(Box)(() => ({
+//   margin: "auto",
+// }));
 
-const GithubBtn = styled(Link)(() => ({
-  textDecoration: "none",
-  color: "#ffffff",
-  backgroundColor: "#1a212e",
-  display: "inline-flex",
-  justifyContent: "center",
-  alignItems: "center",
-  borderRadius: 10,
-  padding: "10px 15px",
-  transition: "transform 500ms ease-out, background-color 150ms ease-out",
-  "&:hover": {
-    backgroundColor: "#0e121a",
-    transform: "scale(1.03)",
-  },
-}));
+// const GithubBtn = styled(Link)(() => ({
+//   textDecoration: "none",
+//   color: "#ffffff",
+//   backgroundColor: "#1a212e",
+//   display: "inline-flex",
+//   justifyContent: "center",
+//   alignItems: "center",
+//   borderRadius: 10,
+//   padding: "10px 15px",
+//   transition: "transform 500ms ease-out, background-color 150ms ease-out",
+//   "&:hover": {
+//     backgroundColor: "#0e121a",
+//     transform: "scale(1.03)",
+//   },
+// }));
 
-const VariantsBox = styled("span")`
-  width: 100px;
-  padding: 8px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  font-size: 12px;
+// const VariantsBox = styled("span")`
+//   width: 100px;
+//   padding: 8px;
+//   position: absolute;
+//   top: 0;
+//   right: 0;
+//   font-size: 12px;
 
-  @media (max-width: 400px) {
-    display: none;
-  }
-`;
+//   @media (max-width: 400px) {
+//     display: none;
+//   }
+// `;
 
-const Heading = styled((props) => {
-  const { id, ...rem } = props;
+// const Heading = styled((props) => {
+//   const { id, ...rem } = props;
 
-  const ID = id
-    ? { id: String(id).replace(/[^\w]/gi, "-").toLowerCase() }
-    : null;
+//   const ID = id
+//     ? { id: String(id).replace(/[^\w]/gi, "-").toLowerCase() }
+//     : null;
 
-  return (
-    <Typography
-      onClick={(event) => {
-        event.currentTarget.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-          inline: "nearest",
-        });
-        ID && (window.location.hash = `#${ID.id}`);
-      }}
-      {...ID}
-      {...rem}
-    />
-  );
-})`
-  position: relative;
-  font-weight: 600;
-  text-transform: capitalize;
+//   return (
+//     <Typography
+//       onClick={(event) => {
+//         event.currentTarget.scrollIntoView({
+//           behavior: "smooth",
+//           block: "start",
+//           inline: "nearest",
+//         });
+//         ID && (window.location.hash = `#${ID.id}`);
+//       }}
+//       {...ID}
+//       {...rem}
+//     />
+//   );
+// })`
+//   position: relative;
+//   font-weight: 600;
+//   text-transform: capitalize;
 
-  &::before {
-    content: "#";
-    position: absolute;
-    bottom: 50%;
-    transform: translate(-120%, 50%);
-    cursor: pointer;
-    opacity: 0;
-    transition: opacity 100ms linear;
-    font-size: 0.7em;
-    font-weight: 200;
-  }
-  &:hover::before {
-    color: #23359f;
-    text-decoration: underline;
-    opacity: 1;
-  }
-`;
+//   &::before {
+//     content: "#";
+//     position: absolute;
+//     bottom: 50%;
+//     transform: translate(-120%, 50%);
+//     cursor: pointer;
+//     opacity: 0;
+//     transition: opacity 100ms linear;
+//     font-size: 0.7em;
+//     font-weight: 200;
+//   }
+//   &:hover::before {
+//     color: #23359f;
+//     text-decoration: underline;
+//     opacity: 1;
+//   }
+// `;
 const Tip = styled((props) => <Typography variant="body1" {...props} />)({
   border: "2px solid #0cab0c",
   borderRadius: "5px",
@@ -141,11 +144,11 @@ const BodyText = styled((props) => (
 const Styled = {
   Card,
   Code,
-  ContentSection,
-  ComponentContainer,
-  GithubBtn,
-  VariantsBox,
-  Heading,
+  // ContentSection,
+  // ComponentContainer,
+  // GithubBtn,
+  // VariantsBox,
+  // Heading,
   Tip,
   BodyText,
 };

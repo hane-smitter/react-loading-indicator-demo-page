@@ -1,0 +1,81 @@
+.heading {
+  position: relative;
+  font-weight: 600;
+  text-transform: inherit;
+  cursor: pointer;
+
+  &::before {
+    content: "#";
+    position: absolute;
+    bottom: 50%;
+    transform: translate(-120%, 50%);
+    cursor: pointer;
+    opacity: 0;
+    font-family: var(--font-nunito);
+    transition: opacity 80ms linear;
+    font-size: 0.7em;
+    font-weight: 200;
+  }
+  &:hover {
+    text-decoration: underline;
+  }
+  &:hover::before {
+    color: var(--text-muted);
+    font-weight: 700;
+    opacity: 1;
+  }
+}
+
+.card {
+  padding: 8px;
+  text-align: center;
+  width: 100%;
+  min-height: 100px;
+  margin-inline: auto;
+  overflow: visible;
+  // isolation: isolate;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+
+  :global {
+    & .cardContent {
+      min-height: 200px;
+      position: relative;
+    }
+
+    & .indicatorContainer {
+      margin: auto;
+    }
+
+    & .variantsContainer {
+      width: 100px;
+      padding: 8px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 12px;
+
+      @media (max-width: 400px) {
+        display: none;
+      }
+    }
+  }
+}
+
+.githubLnk {
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #1a212e;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  padding: 10px 15px;
+  transition: transform 500ms ease-out, background-color 150ms ease-out;
+
+  &:hover {
+    background-color: #0e121a;
+    transform: scale(1.03);
+  }
+}

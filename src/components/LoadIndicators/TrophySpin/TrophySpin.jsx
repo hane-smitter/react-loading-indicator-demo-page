@@ -1,7 +1,7 @@
 import React from "react";
 import TrophySpin from "react-loading-indicators/dist/TrophySpin";
-import ToolBar from "../../ToolBar";
 
+import ToolBar from "../../ToolBar";
 import Styled from "../../IndicatorsPg/styled";
 import CodeHighlighter from "../../CodeHighlighter";
 import useControllerState from "../../../hooks/useControllerState";

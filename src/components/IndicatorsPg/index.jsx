@@ -1,25 +1,44 @@
-import React from "react";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
 import * as LoadingIndicators from "../LoadIndicators";
 import Intro from "./Intro";
 import Outro from "./Outro";
-import Styled from "./styled";
-import CustomizeSpeed from "../CustomizeSpeed";
+import { ScrollHeading } from "./MUIClient";
+// import Styled from "./styled";
+// import CustomizeSpeed from "../CustomizeSpeed";
 
 const IndicatorNames = Arrange(Object.keys(LoadingIndicators));
 // console.log("indicators:: ", IndicatorNames);
 
 const LoadIndicators = () => {
   return (
-    <React.Fragment>
+    <>
       <Intro />
 
-      <Styled.Heading
+      <ScrollHeading sx={{ mt: 4 }} variant="h4">
+        Components
+      </ScrollHeading>
+
+      <Typography variant="body2">
+        <i>Use the button controls to customize the components</i>
+      </Typography>
+
+      <Grid container spacing={2} sx={{ my: 3 }}>
+        {IndicatorNames.map((name, idx) => {
+          const Throbber = LoadingIndicators[name];
+
+          return (
+            <Grid item xs={12} sm={6} key={idx}>
+              <Throbber />
+            </Grid>
+          );
+        })}
+      </Grid>
+      {/* <Styled.Heading
         id="components"
         variant="h4"
-        style={{ marginTop: "35px" }}
+        sx={{ mt: 4 }}
       >
         Components
       </Styled.Heading>
@@ -91,8 +110,9 @@ const LoadIndicators = () => {
         passed as a string.
       </Styled.BodyText>
 
+      */}
       <Outro />
-    </React.Fragment>
+    </>
   );
 };
 

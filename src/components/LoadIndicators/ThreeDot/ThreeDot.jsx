@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import ThreeDot from "react-loading-indicators/dist/ThreeDot";
 import Select from "react-select";
