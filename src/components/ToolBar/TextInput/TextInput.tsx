@@ -1,14 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
 import Styled from "../styled";
 
-const TextInput = ({ value, onChange }) => {
-  const [textInpValue, setTextInpValue] = useState(value || "");
-  const inpRef = useRef(null);
+export interface ITextInput {
+  value?: string;
+  handleTextChange?: (text: string | undefined) => void;
+}
 
-  const handleTextInput = (event) => {
-    const newValue = event?.target?.value;
+const TextInput = ({ value, handleTextChange }: ITextInput) => {
+  const [textInpValue, setTextInpValue] = useState(value || "");
+  const inpRef = useRef<HTMLInputElement>(null);
+
+  const handleTextInput = (event: React.FormEvent<HTMLInputElement>) => {
+    const newValue = event.currentTarget.value;
     setTextInpValue(newValue);
-    onChange(newValue);
+    if (typeof handleTextChange === "function") handleTextChange(newValue);
   };
 
   useEffect(() => {
