@@ -1,11 +1,12 @@
 import React, { useRef, useLayoutEffect, PropsWithChildren } from "react";
 import { HexColorPicker } from "react-colorful";
 
-import Styled from "../styled";
+// import Styled from "../styled";
 import SelectInput from "../SelectInput";
 import TextInput from "../TextInput";
 import { ISelectInput } from "../SelectInput/SelectInput";
 import { ITextInput } from "../TextInput/TextInput";
+import styles from "./styles.module.scss";
 
 interface IinputTypes {
   ColorInput: {
@@ -59,41 +60,57 @@ function ControllerWidget<
   // effect below is responsible for moving the widget to the active btn on the toolbar that has triggered to show content on widget
   useLayoutEffect(() => {
     if (elemRef.current && targetBtnRef.current) {
-      const element = elemRef.current;
+      const widgetElem = elemRef.current;
       const widgetOpenerBtn = targetBtnRef.current;
-      let elementBounds = element.getBoundingClientRect();
+      let widgetDOMBounds: DOMRect | null = null;
+      let widgetOpenerBtnBounds: DOMRect | null = null;
 
       //Set X position relative to `targetBtnRef`
       const left = widgetOpenerBtn?.offsetLeft || 0;
 
-      element.style.bottom = "100%";
-      element.style.left = left + "px";
-      element.style.transition = "left 150ms ease-in-out";
-      element.style.removeProperty("right");
+      widgetElem.style.bottom = "100%";
+      widgetElem.style.left = left + "px";
+      widgetElem.style.transition = "left 150ms ease-in-out";
+      widgetElem.style.removeProperty("right");
 
       // Triger browser to see and calculate new positions
-      elementBounds = element.getBoundingClientRect();
+      widgetDOMBounds = widgetElem.getBoundingClientRect();
+      widgetOpenerBtnBounds = widgetOpenerBtn.getBoundingClientRect();
 
-      if (elementBounds.x + elementBounds.width > window.innerWidth) {
-        element.style.right = "0px";
-        element.style.transition = "right 150ms ease-in-out";
-        element.style.removeProperty("left");
+      // We `getBoundingClientRect` of `widgetOpenerBtn` (widgetOpenerBtnBounds) to get x distance of the widget since its `widgetDOMBounds.x` may still be lagging behind its final position
+      // when browser flashes to check DOM Layout due to transition animation. The `x` axis distance of `widgetOpenerBtn` is the final position the widget will be.
+      if (widgetOpenerBtnBounds.x + widgetDOMBounds.width > window.innerWidth) {
+        widgetElem.style.right = "0px";
+        // widgetElem.style.transition = "right 150ms ease-in-out";
+        widgetElem.style.removeProperty("left");
       }
 
       // Set Y position
-      if (elementBounds.y < 0) {
-        element.style.top = "90%";
-        element.style.removeProperty("bottom");
+      if (widgetDOMBounds.y < 0) {
+        console.group("Widget Y bounds < 0: GOES OFFSCREEN ON Y-AXIS");
+        console.log(widgetElem);
+        console.log("widgetDOMBounds.y: ", widgetDOMBounds.y);
+        console.groupEnd();
+
+        widgetElem.style.top = "90%";
+        widgetElem.style.removeProperty("bottom");
+        widgetElem.classList.add("bottomTranspose");
       } else {
-        element.style.bottom = "100%";
-        element.style.removeProperty("top");
+        console.group("Widget Y bounds GREATER THAN 0: WITHIN Y AXIS VIEWPORT");
+        console.log(widgetElem);
+        console.log("widgetDOMBounds.y: ", widgetDOMBounds.y);
+        console.groupEnd();
+
+        widgetElem.style.bottom = "100%";
+        widgetElem.style.removeProperty("top");
+        widgetElem.classList.remove("bottomTranspose");
       }
     }
     // eslint-disable-next-line
   }, [JSON.stringify(activeWidgetTraits)]);
 
   return (
-    <Styled.PoppingWidget ref={elemRef} className="widget">
+    <div ref={elemRef} className={styles.widget}>
       {inputType === "colorinput" && hasProps ? (
         <HexColorPicker
           {...(activeWidgetTraits.props as IinputTypes["ColorInput"])}
@@ -107,7 +124,7 @@ function ControllerWidget<
           {...(activeWidgetTraits.props as IinputTypes["TextInput"])}
         />
       ) : null}
-    </Styled.PoppingWidget>
+    </div>
   );
 }
 

@@ -14,10 +14,12 @@ const CodeHighlighter = (props) => {
   return (
     <SyntaxHighlighter
       language="javascript"
-      style={{
-        ...darkish,
+      style={darkish}
+      customStyle={{
+        letterSpacing: "0.8px",
         fontFamily: "var(--font-inconsolata)",
-        letterSpacing: "0.4px",
+        borderRadius: 4,
+        fontWeight: 600,
       }}
       wrapLongLines
       {...props}

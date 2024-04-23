@@ -20,16 +20,6 @@ const ToolBar = ({
   textColor,
   setTextColor,
 }) => {
-  const [showIndicatorColorPicker, setShowIndicatorColorPicker] =
-    useState(false);
-  const [showSizeSelect, setShowSizeSelect] = useState(false);
-  const [showTextInput, setShowTextInput] = useState(false);
-  const [showTextColorPicker, setShowTextColorPicker] = useState(false);
-
-  const widgetReference = useRef(null); // Ref to widget that displays the component controls
-  const resetActiveState = useRef(null); // To track the current `setState` modifying the widget
-
-  // -----NEW impl------
   const activeWidgetBtn = useRef<HTMLButtonElement | null>(null);
   // Below refs are useful to find the current active button showing widget
   const colorWidgetBtn = useRef<HTMLButtonElement | null>(null);
@@ -84,19 +74,6 @@ const ToolBar = ({
 
     setActiveWidgetTraits({ ...widgetSelectinputTraits });
   }, [widgetSelectinputTraits]);
-  // -----NEW impl------
-
-  // ActionWidget Controller states
-  const [widgetActive, setWidgetActive] = useState(false);
-  const [triggerWidgetShutOP, setTriggerWidgetShutOP] = useState(0);
-
-  // useEffect(() => {
-  //   if (!widgetActive) return;
-  //   unmountComponentAtNode(widgetReference.current);
-  //   if (typeof resetActiveState.current === "function")
-  //     resetActiveState.current(null);
-  //   setWidgetActive(false);
-  // }, [triggerWidgetShutOP]); // eslint-disable-line
 
   const widgetOpen = useCallback(
     function (event: React.MouseEvent<HTMLButtonElement>) {
@@ -116,6 +93,21 @@ const ToolBar = ({
           setWidgetSelectinputTraits({
             ...widgetSelectinputTraits,
             props: { handleSizeChange: setSize, size: size },
+          });
+          break;
+        case "indicatortxtbtn":
+          setWidgetTextinputTraits({
+            ...widgetTextinputTraits,
+            props: {
+              handleTextChange: setTextInputValue,
+              value: textInputValue,
+            },
+          });
+          break;
+        case "indicatortxtcolorbtn":
+          setWidgetColorinputTraits({
+            ...widgetColorinputTraits,
+            props: { color: textColor, onChange: setTextColor },
           });
           break;
 
@@ -140,42 +132,6 @@ const ToolBar = ({
     },
     [setActiveWidgetTraits]
   );
-
-  // console.group("The active BTN");
-  // console.log(activeWidgetBtn.current);
-  // console.groupEnd();
-
-  /**
-   * This functions waits transitions on **Text** control input to finish before removal
-   * Does not work for other controls other than `<Text />` control
-   * @param {HTMLElement} elContainer - Element containing element to be removed
-   */
-  // async function unmountComponent(elContainer) {
-  //   const transitionElements = Array.from(
-  //     elContainer?.querySelectorAll("span.focus-border, span.focus-border i")
-  //   );
-
-  //   const promises = new Array();
-  //   transitionElements.forEach((el) => {
-  //     const controller = new AbortController();
-
-  //     promises.push(
-  //       new Promise((resolve, reject) => {
-  //         el.addEventListener(
-  //           "transitionend",
-  //           () => {
-  //             resolve();
-  //             controller.abort();
-  //           },
-  //           { signal: controller.signal }
-  //         );
-  //       })
-  //     );
-  //   });
-
-  //   await Promise.all(promises);
-  //   unmountComponentAtNode(elContainer);
-  // }
 
   return (
     <>
@@ -221,50 +177,10 @@ const ToolBar = ({
             }}
             ref={colorWidgetBtn}
             name="indicatorbodycolorbtn"
-            sx={{ flexGrow: "1" }}
+            sx={{ flexGrow: "1" }} // Does not support passing a function(not hanled).
             isActive={colorWidgetBtnActive}
           >
             <span>{colorWidgetBtnActive ? "hide" : "color"}</span>
-          </WidgetBtn>
-
-          {/* <Styled.Item
-            onClick={(event) => {
-              if (typeof resetActiveState.current === "function")
-                resetActiveState.current(null);
-
-              const clickedTarget = event.currentTarget;
-              setShowSizeSelect(!showSizeSelect);
-              setWidgetActive(!showSizeSelect);
-              resetActiveState.current = setShowSizeSelect;
-
-              !showSizeSelect
-                ? render(
-                    <ControllerWidget controllingBtn={clickedTarget} key={2}>
-                      <SelectInput setSize={setSize} size={size} />
-                    </ControllerWidget>,
-                    widgetReference.current
-                  )
-                : unmountComponentAtNode(widgetReference.current);
-            }}
-            isActive={showSizeSelect}
-          >
-            <span>{!showSizeSelect ? "size" : "hide"}</span>
-          </Styled.Item> */}
-          <WidgetBtn
-            onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-              console.log({ sizeWidgetBtnActive });
-              console.log(sizeWidgetBtn.current);
-              if (!sizeWidgetBtnActive) {
-                widgetOpen(event);
-              } else {
-                widgetClose();
-              }
-            }}
-            ref={sizeWidgetBtn}
-            name="indicatorsizebtn"
-            isActive={sizeWidgetBtnActive}
-          >
-            <span>{sizeWidgetBtnActive ? "hide" : "size"}</span>
           </WidgetBtn>
 
           {/* <Styled.Item
@@ -292,9 +208,23 @@ const ToolBar = ({
             isActive={showTextInput}
           >
             <span>{!showTextInput ? "text" : "hide"}</span>
-          </Styled.Item>
+          </Styled.Item> */}
+          <WidgetBtn
+            onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+              if (!txtWidgetBtnActive) {
+                widgetOpen(event);
+              } else {
+                widgetClose();
+              }
+            }}
+            ref={txtWidgetBtn}
+            name="indicatortxtbtn"
+            isActive={txtWidgetBtnActive}
+          >
+            <span>{txtWidgetBtnActive ? "hide" : "text"}</span>
+          </WidgetBtn>
 
-          <Styled.Item
+          {/* <Styled.Item
             onClick={(event) => {
               if (typeof resetActiveState.current === "function")
                 resetActiveState.current(null);
@@ -320,6 +250,58 @@ const ToolBar = ({
           >
             <span>{!showTextColorPicker ? "textcolor" : "hide"}</span>
           </Styled.Item> */}
+          <WidgetBtn
+            onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+              if (!txtColorWidgetBtnActive) {
+                widgetOpen(event);
+              } else {
+                widgetClose();
+              }
+            }}
+            ref={txtColorWidgetBtn}
+            name="indicatortxtcolorbtn"
+            isActive={txtColorWidgetBtnActive}
+          >
+            <span>{txtColorWidgetBtnActive ? "hide" : "textcolor"}</span>
+          </WidgetBtn>
+
+          {/* <Styled.Item
+            onClick={(event) => {
+              if (typeof resetActiveState.current === "function")
+                resetActiveState.current(null);
+
+              const clickedTarget = event.currentTarget;
+              setShowSizeSelect(!showSizeSelect);
+              setWidgetActive(!showSizeSelect);
+              resetActiveState.current = setShowSizeSelect;
+
+              !showSizeSelect
+                ? render(
+                    <ControllerWidget controllingBtn={clickedTarget} key={2}>
+                      <SelectInput setSize={setSize} size={size} />
+                    </ControllerWidget>,
+                    widgetReference.current
+                  )
+                : unmountComponentAtNode(widgetReference.current);
+            }}
+            isActive={showSizeSelect}
+          >
+            <span>{!showSizeSelect ? "size" : "hide"}</span>
+          </Styled.Item> */}
+          <WidgetBtn
+            onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+              if (!sizeWidgetBtnActive) {
+                widgetOpen(event);
+              } else {
+                widgetClose();
+              }
+            }}
+            ref={sizeWidgetBtn}
+            name="indicatorsizebtn"
+            isActive={sizeWidgetBtnActive}
+          >
+            <span>{sizeWidgetBtnActive ? "hide" : "size"}</span>
+          </WidgetBtn>
         </Styled.Wrapper>
       </OutsideClickListener>
     </>

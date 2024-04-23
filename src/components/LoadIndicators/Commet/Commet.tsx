@@ -1,35 +1,43 @@
+"use client";
+
 import React from "react";
 import { Commet } from "react-loading-indicators";
+import Typography from "@mui/material/Typography";
 
 import CodeHighlighter from "../../CodeHighlighter";
 import ToolBar from "../../ToolBar";
-import Styled from "../../IndicatorsPg/styled";
+// import Styled from "../../IndicatorsPg/styled";
 import useControllerState from "../../../hooks/useControllerState";
+import {
+  CardBoard,
+  CardContent,
+  IndicatorContainer,
+} from "src/components/IndicatorsPg/MUIClient/Card";
 
 const CommetLoader = () => {
   const controlStates = useControllerState();
 
   return (
-    <Styled.Card>
+    <CardBoard>
       <ToolBar {...controlStates} />
 
       <div>
-        <Styled.Code component={CodeHighlighter}>
+        <Typography variant="code" component={CodeHighlighter}>
           {`<Commet color="${controlStates.color}" size="${controlStates.size}" text="${controlStates.textInputValue}" textColor="${controlStates.textColor}" />`}
-        </Styled.Code>
+        </Typography>
       </div>
 
-      <Styled.ContentSection>
-        <Styled.ComponentContainer>
+      <CardContent>
+        <IndicatorContainer>
           <Commet
             color={controlStates.color}
             size={controlStates.size}
             text={controlStates.textInputValue}
             textColor={controlStates.textColor}
           />
-        </Styled.ComponentContainer>
-      </Styled.ContentSection>
-    </Styled.Card>
+        </IndicatorContainer>
+      </CardContent>
+    </CardBoard>
   );
 };
 

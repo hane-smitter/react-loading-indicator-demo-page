@@ -8,9 +8,11 @@ import ToolBar from "../../ToolBar";
 // import Styled from "../../IndicatorsPg/styled";
 import CodeHighlighter from "../../CodeHighlighter";
 import useControllerState from "../../../hooks/useControllerState";
-import CardBoard from "src/components/IndicatorsPg/MUIClient/Card/CardBoard";
-import CardContent from "src/components/IndicatorsPg/MUIClient/Card/CardContent";
-import IndicatorContainer from "src/components/IndicatorsPg/MUIClient/Card/IndicatorContainer";
+import {
+  CardBoard,
+  CardContent,
+  IndicatorContainer,
+} from "src/components/IndicatorsPg/MUIClient/Card";
 
 const AtomLoader = () => {
   const controlStates = useControllerState();
@@ -22,7 +24,9 @@ const AtomLoader = () => {
         {/* <Styled.Code component={CodeHighlighter}>
           {`<Atom color="${controlStates.color}" size="${controlStates.size}" text="${controlStates.textInputValue}" textColor="${controlStates.textColor}" />`}
         </Styled.Code> */}
-        <Typography variant="code" component={CodeHighlighter}>{`<Atom color="${controlStates.color}" size="${controlStates.size}" text="${controlStates.textInputValue}" textColor="${controlStates.textColor}" />`}</Typography>
+        <Typography variant="code" component={CodeHighlighter}>
+          {`<Atom color="${controlStates.color}" size="${controlStates.size}" text="${controlStates.textInputValue}" textColor="${controlStates.textColor}" />`}
+        </Typography>
       </div>
 
       <CardContent>

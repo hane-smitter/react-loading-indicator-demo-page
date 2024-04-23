@@ -1,0 +1,37 @@
+.widget {
+  position: absolute;
+  z-index: 3;
+  min-width: 200px;
+
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 4%;
+    bottom: 0;
+    top: unset;
+    transform: translateY(100%);
+    filter: drop-shadow(0px 0px 0.3px rgba(0, 0, 0, 0.3));
+
+    width: 0;
+    height: 0;
+    border: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #f5f5f5;
+  }
+
+  &.bottomTranspose, &::before {
+    transform: translateY(-100%);
+
+    bottom: unset;
+    top: 0;
+    border: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #f5f5f5;
+  }
+}
