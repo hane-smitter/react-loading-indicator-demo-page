@@ -57,6 +57,9 @@ function ControllerWidget<
   const inputType = activeWidgetTraits.name;
   const hasProps = Object.keys(activeWidgetTraits.props).length > 0;
 
+  // To toggle when we show/hide wiget & widget arrow
+  const widgetWillHaveContent = inputType && hasProps;
+
   // effect below is responsible for moving the widget to the active btn on the toolbar that has triggered to show content on widget
   useLayoutEffect(() => {
     if (elemRef.current && targetBtnRef.current) {
@@ -64,18 +67,27 @@ function ControllerWidget<
       const widgetOpenerBtn = targetBtnRef.current;
       let widgetDOMBounds: DOMRect | null = null;
       let widgetOpenerBtnBounds: DOMRect | null = null;
+      let widgetOpenerBtnParentBounds: DOMRect | null = null;
 
-      //Set X position relative to `targetBtnRef`
-      const left = widgetOpenerBtn?.offsetLeft || 0;
-
+      // Y axis placement
       widgetElem.style.bottom = "100%";
+      widgetElem.style.removeProperty("top");
+      widgetElem.classList.remove("arrow-orientaton-up");
+
+      // Get Left value of the button that triggered the widget.
+      const left = widgetOpenerBtn?.offsetLeft || 0;
+      // X axis placement
       widgetElem.style.left = left + "px";
-      widgetElem.style.transition = "left 150ms ease-in-out";
       widgetElem.style.removeProperty("right");
+      widgetElem.classList.remove("arrow-orientaton-right");
+      widgetElem.style.removeProperty("--arrow-orientaton-right");
+      widgetElem.style.transition = "left 150ms ease-in-out";
 
       // Triger browser to see and calculate new positions
       widgetDOMBounds = widgetElem.getBoundingClientRect();
       widgetOpenerBtnBounds = widgetOpenerBtn.getBoundingClientRect();
+      widgetOpenerBtnParentBounds =
+        widgetOpenerBtn?.parentElement?.getBoundingClientRect() || null;
 
       // We `getBoundingClientRect` of `widgetOpenerBtn` (widgetOpenerBtnBounds) to get x distance of the widget since its `widgetDOMBounds.x` may still be lagging behind its final position
       // when browser flashes to check DOM Layout due to transition animation. The `x` axis distance of `widgetOpenerBtn` is the final position the widget will be.
@@ -83,47 +95,69 @@ function ControllerWidget<
         widgetElem.style.right = "0px";
         // widgetElem.style.transition = "right 150ms ease-in-out";
         widgetElem.style.removeProperty("left");
+        widgetElem.classList.add("arrow-orientaton-right");
+
+        // All these properties needed to calculate absolute placement of the pointing arrow.
+        if (
+          widgetOpenerBtn?.parentElement &&
+          widgetOpenerBtnParentBounds?.right &&
+          widgetOpenerBtnBounds?.x
+        ) {
+          const widgetOpenerBtnParentStyles = window.getComputedStyle(
+            widgetOpenerBtn?.parentElement
+          );
+          const surplusLengthDeterminants = {
+            borderWidth: widgetOpenerBtnParentStyles.borderWidth,
+            marginLeft: widgetOpenerBtnParentStyles.marginLeft,
+            paddingLeft: widgetOpenerBtnParentStyles.paddingLeft,
+          };
+          const surplusLength: number =
+            parseFloat(surplusLengthDeterminants.borderWidth) +
+            parseFloat(surplusLengthDeterminants.marginLeft) +
+            parseFloat(surplusLengthDeterminants.paddingLeft);
+
+          const rightPlacement: number =
+            widgetOpenerBtnParentBounds.right -
+            surplusLength -
+            widgetOpenerBtnBounds.x;
+
+          widgetElem.style.setProperty(
+            "--arrow-orientaton-right",
+            rightPlacement + "px"
+          );
+        }
       }
 
-      // Set Y position
+      // Checking and ensure full visibility in Viewport along Y axis.
       if (widgetDOMBounds.y < 0) {
-        console.group("Widget Y bounds < 0: GOES OFFSCREEN ON Y-AXIS");
-        console.log(widgetElem);
-        console.log("widgetDOMBounds.y: ", widgetDOMBounds.y);
-        console.groupEnd();
-
-        widgetElem.style.top = "90%";
+        widgetElem.style.top = "100%";
         widgetElem.style.removeProperty("bottom");
-        widgetElem.classList.add("bottomTranspose");
-      } else {
-        console.group("Widget Y bounds GREATER THAN 0: WITHIN Y AXIS VIEWPORT");
-        console.log(widgetElem);
-        console.log("widgetDOMBounds.y: ", widgetDOMBounds.y);
-        console.groupEnd();
-
-        widgetElem.style.bottom = "100%";
-        widgetElem.style.removeProperty("top");
-        widgetElem.classList.remove("bottomTranspose");
+        widgetElem.classList.add("arrow-orientaton-up");
       }
     }
     // eslint-disable-next-line
   }, [JSON.stringify(activeWidgetTraits)]);
 
   return (
-    <div ref={elemRef} className={styles.widget}>
-      {inputType === "colorinput" && hasProps ? (
-        <HexColorPicker
-          {...(activeWidgetTraits.props as IinputTypes["ColorInput"])}
-        />
-      ) : inputType === "selectinput" && hasProps ? (
-        <SelectInput
-          {...(activeWidgetTraits.props as IinputTypes["SelectInput"])}
-        />
-      ) : inputType === "textinput" && hasProps ? (
-        <TextInput
-          {...(activeWidgetTraits.props as IinputTypes["TextInput"])}
-        />
-      ) : null}
+    <div
+      ref={elemRef}
+      className={`${styles.widget}${!widgetWillHaveContent ? " no-show" : ""}`}
+    >
+      <div style={{ zIndex: 3, position: "relative" }}>
+        {inputType === "colorinput" && hasProps ? (
+          <HexColorPicker
+            {...(activeWidgetTraits.props as IinputTypes["ColorInput"])}
+          />
+        ) : inputType === "selectinput" && hasProps ? (
+          <SelectInput
+            {...(activeWidgetTraits.props as IinputTypes["SelectInput"])}
+          />
+        ) : inputType === "textinput" && hasProps ? (
+          <TextInput
+            {...(activeWidgetTraits.props as IinputTypes["TextInput"])}
+          />
+        ) : null}
+      </div>
     </div>
   );
 }
