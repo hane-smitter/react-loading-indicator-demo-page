@@ -8,9 +8,10 @@ const Intro = () => {
   return (
     <Box sx={{ mt: 5 }}>
       <Typography variant="h6" component="p">
-        A library of <em>simple</em>, <em>customizable</em> and <em>elegant</em>{" "}
-        loading indicators to indicate a 'behind scenes' progress to users of
-        your dream project
+        A library of <em>simply elegant</em>👌 loading indicators for your
+        million dollar project. With high customizability and neat finish✨,
+        patience of website users should <em>not</em> be put to test. Users should have a
+        fun experience waiting for a background process to complete
         <SampleIndicator />.
       </Typography>
       <br />

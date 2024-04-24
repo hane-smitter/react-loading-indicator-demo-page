@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import Styled from "../styled";
+// import Styled from "../styled";
+import styles from "./styles.module.scss";
 
 export interface ITextInput {
   value?: string;
@@ -24,13 +25,27 @@ const TextInput = ({ value, handleTextChange }: ITextInput) => {
 
   return (
     <div>
-      <Styled.TextInput
+      {/* <Styled.TextInput
         type={"text"}
         value={textInpValue}
         onInput={handleTextInput}
         placeholder="Start typing here..."
         inputRef={inpRef}
-      />
+      /> */}
+
+      <div className={styles.txtInp}>
+        <input
+          ref={inpRef}
+          type={"text"}
+          value={textInpValue}
+          onInput={handleTextInput}
+          placeholder="Start typing here..."
+          className={styles.fancyInput}
+        />
+        <span className="borderDecorations">
+          <i></i>
+        </span>
+      </div>
     </div>
   );
 };
