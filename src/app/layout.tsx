@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Inconsolata } from "next/font/google";
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import { CssBaseline } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
+import { Experimental_CssVarsProvider as CssVarsProvider } from "@mui/material/styles";
 
 import theme from "src/theme";
 import "./global.scss";
@@ -134,10 +135,10 @@ export default function RootLayout({
       <body>
         <noscript>This app runs better with Javascript enabled.</noscript>
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-          <ThemeProvider theme={theme}>
+          <CssVarsProvider theme={theme}>
             <CssBaseline />
             {children}
-          </ThemeProvider>
+          </CssVarsProvider>
         </AppRouterCacheProvider>
       </body>
     </html>

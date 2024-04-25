@@ -10,17 +10,6 @@
     border-radius: 3px;
     font-size: 0.95rem;
 
-    // &:focus ~ [class~="borderDecorations"]::before,
-    // &:focus ~ [class~="borderDecorations"]::after {
-    //   // background-color: green;
-    //   // & .borderDecorations::before,
-    //   // & .borderDecorations::after {
-    //   // }
-    //   width: 100%;
-    //   transition: 0.3s;
-
-    // }
-    // &:focus ~ [class~="borderDecorations"] {
     &:focus ~ :global(.borderDecorations) {
       &::before,
       &::after {
@@ -34,9 +23,8 @@
       }
     }
   }
-  :global(.borderDecorations) {
-    color: red;
 
+  :global(.borderDecorations) {
     &::before,
     &::after {
       content: "";
@@ -46,7 +34,7 @@
       width: 0;
       height: 2px;
       // background-color: theme.palette.primary.light;
-      background-color: blue;
+      background-color: var(--rli-palette-primary-light);
       transition: 0.3s;
     }
 
@@ -66,7 +54,7 @@
       width: 2px;
       height: 0;
       // background-color: theme.palette.primary.main;
-      background-color: dodgerblue;
+      background-color: var(--rli-palette-primary-main);
       transition: 0.4s;
     }
 

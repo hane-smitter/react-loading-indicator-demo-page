@@ -141,6 +141,7 @@ const ToolBar = ({
           spacing={3}
           sx={(theme) => ({
             padding: theme.spacing(1),
+            paddingBlock: "10px",
             // zIndex: 10, // Avoiding to create stacking context; it conflicts with react-select dropdown
             fontSize: "13px",
             position: "relative",

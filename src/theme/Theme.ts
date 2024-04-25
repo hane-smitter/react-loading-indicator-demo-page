@@ -1,7 +1,10 @@
 "use client";
 
 import React from "react";
-import { createTheme, responsiveFontSizes } from "@mui/material/styles";
+import {
+  experimental_extendTheme as extendTheme,
+  responsiveFontSizes,
+} from "@mui/material/styles";
 import { Nunito } from "next/font/google";
 
 // import { TypographyOptions } from "@mui/material/styles/createTypography";
@@ -53,7 +56,8 @@ export const FontNunito = Nunito({
   display: "swap",
 });
 
-let theme = createTheme({
+let theme = extendTheme({
+  cssVarPrefix: "rli",
   components: {
     MuiCssBaseline: {
       styleOverrides: `
@@ -83,7 +87,11 @@ let theme = createTheme({
       },
     },
   },
-  palette: { primary: { main: "#324CE4" }, common: { black: "#06021d" } },
+  colorSchemes: {
+    light: {
+      palette: { primary: { main: "#324CE4" }, common: { black: "#06021d" } },
+    },
+  },
   typography: {
     fontFamily: "var(--font-nunito)",
     code: {
@@ -113,6 +121,6 @@ let theme = createTheme({
     },
   },
 });
-theme = responsiveFontSizes(theme);
+// theme = responsiveFontSizes(theme);
 
 export default theme;
