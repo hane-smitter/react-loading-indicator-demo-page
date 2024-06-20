@@ -1,25 +1,30 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { ActionMeta } from "react-select";
+import type { ActionMeta } from "react-select";
 
-interface Opt {
-  value: string;
-  label: string;
+export interface SelectOpt<V = string> {
+  value: V | undefined;
+  label: string | undefined;
 }
 
-function useReactSelectOptions(options: Opt[]): {
-  variantOption: {};
-  handleChangeVariantOption: (opt: Opt, actionMeta: ActionMeta<Opt>) => void;
+function useReactSelectOptions<OptVal = string>(): {
+  variantOption: SelectOpt<OptVal>;
+  handleChangeVariantOption: (
+    opt: SelectOpt<OptVal>,
+    actionMeta: ActionMeta<SelectOpt<OptVal>>
+  ) => void;
 } {
-  const [variantOption, setVariantOption] = useState<Opt>({
-    value: "",
-    label: "",
+  const [variantOption, setVariantOption] = useState<SelectOpt<OptVal>>({
+    value: undefined,
+    label: undefined,
   });
 
-  const handleChangeVariantOption: (selectedOpt: Opt) => void = useCallback(
-    (selectedOpt: Opt) => {
-      console.log({ "React-select-opt-newvalue": selectedOpt });
+  const handleChangeVariantOption = useCallback<
+    (selectedOpt: SelectOpt<OptVal>) => void
+  >(
+    (selectedOpt) => {
+      // console.log({ "React-select-opt-newvalue": selectedOpt });
       setVariantOption(selectedOpt);
     },
     [setVariantOption]

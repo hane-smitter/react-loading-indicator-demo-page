@@ -1,34 +1,42 @@
+"use client";
+
 import React from "react";
 import { Slab } from "react-loading-indicators";
-import ToolBar from "../../ToolBar";
+import Typography from "@mui/material/Typography";
 
-import Styled from "../../IndicatorsPg/styled";
+import ToolBar from "../../ToolBar";
 import CodeHighlighter from "../../CodeHighlighter";
 import useControllerState from "../../../hooks/useControllerState";
+import {
+  CardBoard,
+  CardContent,
+  IndicatorContainer,
+} from "src/components/IndicatorsPg/MUIClient/Card";
 
 const SlabLoader = () => {
   const controlStates = useControllerState();
 
   return (
-    <Styled.Card>
+    <CardBoard>
       <ToolBar {...controlStates} />
 
       <div>
-        <Styled.Code component={CodeHighlighter}>
+        <Typography variant="code" component={CodeHighlighter}>
           {`<Slab color="${controlStates.color}" size="${controlStates.size}" text="${controlStates.textInputValue}" textColor="${controlStates.textColor}" />`}
-        </Styled.Code>
+        </Typography>
       </div>
-      <Styled.ContentSection>
-        <Styled.ComponentContainer>
+
+      <CardContent>
+        <IndicatorContainer>
           <Slab
             color={controlStates.color}
             size={controlStates.size}
             text={controlStates.textInputValue}
             textColor={controlStates.textColor}
           />
-        </Styled.ComponentContainer>
-      </Styled.ContentSection>
-    </Styled.Card>
+        </IndicatorContainer>
+      </CardContent>
+    </CardBoard>
   );
 };
 

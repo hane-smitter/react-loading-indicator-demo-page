@@ -1,16 +1,30 @@
 "use client";
 
-import React, { useState } from "react";
 import ThreeDot from "react-loading-indicators/dist/ThreeDot";
 import Select from "react-select";
+import Typography from "@mui/material/Typography";
 
 import ToolBar from "../../ToolBar";
-import Styled from "../../IndicatorsPg/styled";
 import CodeHighlighter from "../../CodeHighlighter";
 import useControllerState from "../../../hooks/useControllerState";
-import { Typography } from "@mui/material";
+import useReactSelectOptions, {
+  type SelectOpt,
+} from "src/hooks/useReactSelectOptions";
+import {
+  CardBoard,
+  CardContent,
+  IndicatorContainer,
+  VariantsContainer,
+} from "src/components/IndicatorsPg/MUIClient/Card";
 
-const variantOptions = [
+type ThreeDotVariant =
+  | "pulsate"
+  | "windmill"
+  | "bob"
+  | "brick-stack"
+  | undefined;
+
+const variantOptions: SelectOpt<ThreeDotVariant>[] = [
   { value: "pulsate", label: "Pulsate" },
   { value: "windmill", label: "Windmill" },
   { value: "bob", label: "Bob" },
@@ -19,28 +33,25 @@ const variantOptions = [
 
 const ThreeDotIndicator = () => {
   const controlStates = useControllerState();
-  const [variantOption, setVariantOption] = useState({});
-
-  function handleChangeVariantOption(selectedOpt) {
-    const newVariant = selectedOpt;
-    setVariantOption(newVariant);
-  }
+  const { variantOption, handleChangeVariantOption } =
+    useReactSelectOptions<ThreeDotVariant>();
 
   return (
-    <Styled.Card>
+    <CardBoard>
       <ToolBar {...controlStates} />
 
       <div>
-        <Styled.Code component={CodeHighlighter}>
+        <Typography variant="code" component={CodeHighlighter}>
           {`<ThreeDot ${
             variantOption?.value ? 'variant="' + variantOption?.value + '"' : ""
           } color="${controlStates.color}" size="${controlStates.size}" text="${
             controlStates.textInputValue
           }" textColor="${controlStates.textColor}" />`}
-        </Styled.Code>
+        </Typography>
       </div>
-      <Styled.ContentSection>
-        <Styled.VariantsBox>
+
+      <CardContent>
+        <VariantsContainer>
           <Typography variant="caption" sx={{ fontSize: "9.8px" }}>
             Choose Variation
           </Typography>
@@ -49,19 +60,19 @@ const ThreeDotIndicator = () => {
             onChange={handleChangeVariantOption}
             options={variantOptions}
           />
-        </Styled.VariantsBox>
+        </VariantsContainer>
 
-        <Styled.ComponentContainer>
+        <IndicatorContainer>
           <ThreeDot
             color={controlStates.color}
             size={controlStates.size}
             text={controlStates.textInputValue}
             textColor={controlStates.textColor}
-            variant={variantOption?.value}
+            variant={variantOption.value}
           />
-        </Styled.ComponentContainer>
-      </Styled.ContentSection>
-    </Styled.Card>
+        </IndicatorContainer>
+      </CardContent>
+    </CardBoard>
   );
 };
 

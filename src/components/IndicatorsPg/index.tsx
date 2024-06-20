@@ -35,28 +35,7 @@ const LoadIndicators = () => {
           );
         })}
       </Grid>
-      {/* <Styled.Heading
-        id="components"
-        variant="h4"
-        sx={{ mt: 4 }}
-      >
-        Components
-      </Styled.Heading>
-      <Typography variant="body2">
-        <i>Use the button controls to customize the components</i>
-      </Typography>
-
-      <Grid container spacing={2} sx={{ my: 3 }}>
-        {IndicatorNames.map((name, idx) => {
-          const Throbber = LoadingIndicators[name];
-
-          return (
-            <Grid item xs={12} sm={6} key={idx}>
-              <Throbber />
-            </Grid>
-          );
-        })}
-      </Grid>
+      {/* 
 
       <Styled.Tip sx={{ marginTop: "4em" }}>
         <strong>💡️ Tip:</strong>
@@ -118,12 +97,7 @@ const LoadIndicators = () => {
 
 export default LoadIndicators;
 
-/**
- * Orders names of loading indicators
- * @param {string[]} indicators Names of loading indicators
- * @returns {string[]} Array of ordered names
- */
-function Arrange(indicators) {
+function Arrange(indicators: string[]): string[] {
   const orderedList = indicators
     .map((indicator) => {
       let priority = 0;

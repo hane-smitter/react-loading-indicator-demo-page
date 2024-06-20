@@ -10,8 +10,8 @@ const Intro = () => {
       <Typography variant="h6" component="p">
         A library of <em>simply elegant</em>👌 loading indicators for your
         million dollar project. With high customizability and neat finish✨,
-        patience of website users should <em>not</em> be put to test. Users should have a
-        fun experience waiting for a background process to complete
+        patience of system users waiting for a background process to complete
+        should <em>not</em> be put to test. Instead, it should be fun
         <SampleIndicator />.
       </Typography>
       <br />

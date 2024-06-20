@@ -1,34 +1,42 @@
+"use client";
+
 import React from "react";
 import TrophySpin from "react-loading-indicators/dist/TrophySpin";
+import Typography from "@mui/material/Typography";
 
 import ToolBar from "../../ToolBar";
-import Styled from "../../IndicatorsPg/styled";
 import CodeHighlighter from "../../CodeHighlighter";
 import useControllerState from "../../../hooks/useControllerState";
+import {
+  CardBoard,
+  CardContent,
+  IndicatorContainer,
+} from "src/components/IndicatorsPg/MUIClient/Card";
 
 const TrophySpinIndicator = () => {
   const controlStates = useControllerState();
 
   return (
-    <Styled.Card>
+    <CardBoard>
       <ToolBar {...controlStates} />
 
       <div>
-        <Styled.Code component={CodeHighlighter}>
+        <Typography variant="code" component={CodeHighlighter}>
           {`<TrophySpin color="${controlStates.color}" size="${controlStates.size}" text="${controlStates.textInputValue}" textColor="${controlStates.textColor}" />`}
-        </Styled.Code>
+        </Typography>
       </div>
-      <Styled.ContentSection>
-        <Styled.ComponentContainer>
+
+      <CardContent>
+        <IndicatorContainer>
           <TrophySpin
             color={controlStates.color}
             size={controlStates.size}
             text={controlStates.textInputValue}
             textColor={controlStates.textColor}
           />
-        </Styled.ComponentContainer>
-      </Styled.ContentSection>
-    </Styled.Card>
+        </IndicatorContainer>
+      </CardContent>
+    </CardBoard>
   );
 };
 

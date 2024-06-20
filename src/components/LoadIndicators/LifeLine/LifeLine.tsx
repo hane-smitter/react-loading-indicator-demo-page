@@ -1,34 +1,42 @@
+"use client";
+
 import React from "react";
 import LifeLine from "react-loading-indicators/dist/LifeLine";
-import ToolBar from "../../ToolBar";
+import Typography from "@mui/material/Typography";
 
-import Styled from "../../IndicatorsPg/styled";
+import ToolBar from "../../ToolBar";
 import CodeHighlighter from "../../CodeHighlighter";
 import useControllerState from "../../../hooks/useControllerState";
+import {
+  CardBoard,
+  CardContent,
+  IndicatorContainer,
+} from "src/components/IndicatorsPg/MUIClient/Card";
 
 const LifeLineIndicator = () => {
   const controlStates = useControllerState();
 
   return (
-    <Styled.Card>
+    <CardBoard>
       <ToolBar {...controlStates} />
 
       <div>
-        <Styled.Code component={CodeHighlighter}>
+        <Typography variant="code" component={CodeHighlighter}>
           {`<LifeLine color="${controlStates.color}" size="${controlStates.size}" text="${controlStates.textInputValue}" textColor="${controlStates.textColor}" />`}
-        </Styled.Code>
+        </Typography>
       </div>
-      <Styled.ContentSection>
-        <Styled.ComponentContainer>
+
+      <CardContent>
+        <IndicatorContainer>
           <LifeLine
             color={controlStates.color}
             size={controlStates.size}
             text={controlStates.textInputValue}
             textColor={controlStates.textColor}
           />
-        </Styled.ComponentContainer>
-      </Styled.ContentSection>
-    </Styled.Card>
+        </IndicatorContainer>
+      </CardContent>
+    </CardBoard>
   );
 };
 
