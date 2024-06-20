@@ -4,12 +4,11 @@ import Typography from "@mui/material/Typography";
 import * as LoadingIndicators from "../LoadIndicators";
 import Intro from "./Intro";
 import Outro from "./Outro";
-import { ScrollHeading } from "./MUIClient";
-// import Styled from "./styled";
-// import CustomizeSpeed from "../CustomizeSpeed";
+import { BodyCode, BodyText, ScrollHeading } from "./MUIClient";
+import styles from "./styles.module.scss";
+import CustomizeSpeed from "../CustomizeSpeed";
 
 const IndicatorNames = Arrange(Object.keys(LoadingIndicators));
-// console.log("indicators:: ", IndicatorNames);
 
 const LoadIndicators = () => {
   return (
@@ -35,35 +34,39 @@ const LoadIndicators = () => {
           );
         })}
       </Grid>
-      {/* 
 
-      <Styled.Tip sx={{ marginTop: "4em" }}>
-        <strong>💡️ Tip:</strong>
+      <Typography
+        variant="body1"
+        sx={{ marginTop: "4em" }}
+        className={styles.tip}
+      >
+        <strong style={{ fontSize: "1.1rem" }}>💡️ Tip:</strong>
         <br />
         <i>
-          Some loading indicators can be multi-colored when supplied with an
-          array of colors via the <Styled.Code>color</Styled.Code> prop.
+          Loading indicators can animate between colors in each frame. Pass an
+          array of colors via the&#8200;
+          <BodyCode>color</BodyCode>
+          &#8200;prop. The array of colors can be any length upto a maximum of
+          4. Any surplus colors outside this length is ignored.
         </i>
-      </Styled.Tip>
+      </Typography>
 
-      <Styled.Heading
-        id="increase-decrease-speed"
-        variant="h4"
-        style={{ marginTop: "35px" }}
-      >
+      <ScrollHeading sx={{ mt: 4 }} variant="h4">
         Increase/decrease speed
-      </Styled.Heading>
+      </ScrollHeading>
 
-      <Styled.BodyText>
+      <BodyText>
         Animation can be too slow or too fast for your preferences. You can
-        alter the speed of the animation using a{" "}
-        <Styled.Code>speedPlus</Styled.Code> prop.
-        <br />A fixed range of value is accepted, i.e an integer ranging from{" "}
-        <Styled.Code>-5</Styled.Code> through <Styled.Code>5</Styled.Code>.{" "}
-        <Styled.Code>0</Styled.Code> value means <em>normal</em> speed. Greater
-        number means <em>higher</em> speed. Smaller number means <em>slower</em>{" "}
-        speed. And number out of range means <em>normal</em> speed.
-      </Styled.BodyText>
+        alter the speed of the animation using a&#8200;
+        <BodyCode>speedPlus</BodyCode>
+        &#8200;prop.
+        <br />A fixed range of value is accepted, i.e an integer ranging
+        from&#8200;
+        <BodyCode>-5</BodyCode> through <BodyCode>5</BodyCode>.&#8200;
+        <BodyCode>0</BodyCode> value means <em>normal</em> speed. Greater number
+        means <em>higher</em> speed. Smaller number means <em>slower</em> speed.
+        And number out of range means <em>normal</em> speed.
+      </BodyText>
 
       <br />
       <Typography variant="h6" component="p">
@@ -73,23 +76,21 @@ const LoadIndicators = () => {
         <CustomizeSpeed />
       </div>
 
-      <Styled.BodyText>
-        As shown above, you can as well pass an{" "}
-        <Styled.Code>easing</Styled.Code> prop to control motion
-        "ease/smoothness" of an animation.
+      <BodyText>
+        As shown above, you can as well pass an <BodyCode>easing</BodyCode> prop
+        to control motion "ease/smoothness" of an animation.
         <br />
-        It accepts values of{" "}
+        It accepts values of&#8200;
         <a
           href="https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function"
           target="_blank"
           rel="noreferrer"
         >
           CSS easing function
-        </a>{" "}
-        passed as a string.
-      </Styled.BodyText>
+        </a>
+        &#8200;passed as a string.
+      </BodyText>
 
-      */}
       <Outro />
     </>
   );

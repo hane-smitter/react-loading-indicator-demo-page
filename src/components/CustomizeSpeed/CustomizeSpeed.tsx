@@ -4,10 +4,13 @@ import React, { useEffect, useRef, useState } from "react";
 import OrbitProgress from "react-loading-indicators/dist/OrbitProgress";
 import Select from "react-select";
 import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
-import Styled from "../IndicatorsPg/styled";
-import LocalStyled from "./styled";
+import styles from "./styles.module.scss";
 import CodeHighlighter from "../CodeHighlighter";
+import { CardBoard } from "../IndicatorsPg/MUIClient/Card";
+
+type OPSpeedPlus = 0 | 2 | 1 | 5 | -5 | 4 | -4 | 3 | -3 | -2 | -1 | undefined;
 
 const easeOptions = [
   { value: "linear", label: "Linear" },
@@ -16,21 +19,21 @@ const easeOptions = [
 ];
 
 const CustomizeSpeed = () => {
-  const sliderRef = useRef(null);
-  const [sliderValue, setSliderValue] = useState(0);
+  const sliderRef = useRef<HTMLInputElement | null>(null);
+  const [sliderValue, setSliderValue] = useState<OPSpeedPlus>(0);
   const [easeValue, setEaseValue] = useState({
     value: "linear",
     label: "Linear",
   });
 
-  function handleInputChange(event) {
-    const value = event.target.value;
-
-    setSliderValue(value);
+  function handleInputChange(event: Event): void {
+    if (event.target instanceof HTMLInputElement) {
+      const value = event.target.value;
+      setSliderValue(+value as OPSpeedPlus);
+    }
   }
 
-  function handleChangeEaseOption(newVal) {
-    // console.log("Select val: ", newVal);
+  function handleChangeEaseOption(newVal: { value: string; label: string }) {
     setEaseValue(newVal);
   }
 
@@ -51,18 +54,23 @@ const CustomizeSpeed = () => {
   }, []);
 
   return (
-    <LocalStyled.Wrapper>
+    <div className={styles.wrapper}>
       <Typography variant="body2" textAlign="center">
         <i>Use the slider to adjust animation speed</i>
       </Typography>
-      <Styled.Card>
-        <div style={{ marginBottom: "20px" }}>
+      <CardBoard>
+        {/* <div style={{ marginBottom: "20px" }}>
           <Styled.Code component={CodeHighlighter}>
             {`<OrbitProgress variant="track-disc" speedPlus="${sliderValue}" easing="${easeValue.value}" />`}
           </Styled.Code>
+        </div> */}
+        <div style={{ marginBottom: "20px" }}>
+          <Typography variant="code" component={CodeHighlighter}>
+            {`<OrbitProgress variant="track-disc" speedPlus="${sliderValue}" easing="${easeValue.value}" />`}
+          </Typography>
         </div>
 
-        <LocalStyled.SpeedAdjustBox>
+        <Box className={styles.speedAdjustBox}>
           <div style={{ position: "relative" }}>
             <input
               ref={sliderRef}
@@ -74,19 +82,20 @@ const CustomizeSpeed = () => {
               list="speed-ranges"
               style={{ width: "100%", cursor: "pointer" }}
             />
-            <LocalStyled.DataList id="speed-ranges">
-              <LocalStyled.Option value="-5" label="-5"></LocalStyled.Option>
-              <LocalStyled.Option value="-4" label="-4"></LocalStyled.Option>
-              <LocalStyled.Option value="-3" label="-3"></LocalStyled.Option>
-              <LocalStyled.Option value="-2" label="-2"></LocalStyled.Option>
-              <LocalStyled.Option value="-1" label="-1"></LocalStyled.Option>
-              <LocalStyled.Option value="0" label="0"></LocalStyled.Option>
-              <LocalStyled.Option value="1" label="1"></LocalStyled.Option>
-              <LocalStyled.Option value="2" label="2"></LocalStyled.Option>
-              <LocalStyled.Option value="3" label="3"></LocalStyled.Option>
-              <LocalStyled.Option value="4" label="4"></LocalStyled.Option>
-              <LocalStyled.Option value="5" label="5"></LocalStyled.Option>
-            </LocalStyled.DataList>
+
+            <datalist id="speed-ranges" className={styles.dataList}>
+              <option value="-5" label="-5" className={styles.option}></option>
+              <option value="-4" label="-4" className={styles.option}></option>
+              <option value="-3" label="-3" className={styles.option}></option>
+              <option value="-2" label="-2" className={styles.option}></option>
+              <option value="-1" label="-1" className={styles.option}></option>
+              <option value="0" label="0" className={styles.option}></option>
+              <option value="1" label="1" className={styles.option}></option>
+              <option value="2" label="2" className={styles.option}></option>
+              <option value="3" label="3" className={styles.option}></option>
+              <option value="4" label="4" className={styles.option}></option>
+              <option value="5" label="5" className={styles.option}></option>
+            </datalist>
           </div>
 
           <div style={{ justifySelf: "center", marginTop: "40px" }}>
@@ -97,7 +106,7 @@ const CustomizeSpeed = () => {
             />
           </div>
 
-          <LocalStyled.EasingBox>
+          <div className={styles.easingBox}>
             <Typography variant="caption" sx={{ fontSize: "12px" }}>
               Choose easing
             </Typography>
@@ -106,10 +115,10 @@ const CustomizeSpeed = () => {
               onChange={handleChangeEaseOption}
               options={easeOptions}
             />
-          </LocalStyled.EasingBox>
-        </LocalStyled.SpeedAdjustBox>
-      </Styled.Card>
-    </LocalStyled.Wrapper>
+          </div>
+        </Box>
+      </CardBoard>
+    </div>
   );
 };
 

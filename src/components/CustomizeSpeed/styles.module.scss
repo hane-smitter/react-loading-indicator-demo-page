@@ -1,0 +1,43 @@
+.wrapper {
+    display: block;
+    width: 35em;
+    margin: auto;
+
+    @media (max-width: 650px) {
+        font-size: 13px;
+    }
+    @media (max-width: 500px) {
+        font-size: 10px;
+    }
+    @media (max-width: 400px) {
+        font-size: 8px;
+    }
+}
+
+.speedAdjustBox {
+    display: grid;
+    justify-items: stretch;
+    position: relative;
+}
+
+.option {
+    padding: 0;
+    width: 2ch;
+}
+
+.dataList {
+    display: flex;
+    width: 100%;
+    position: absolute;
+    justify-content: space-between;
+}
+
+.easingBox {
+    position: absolute;
+    bottom: 10%;
+    right: 0;
+
+    @media (max-width: 400px) {
+        display: none;
+    }
+}
