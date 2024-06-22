@@ -1,6 +1,8 @@
 "use client";
 
-import ThreeDot from "react-loading-indicators/dist/ThreeDot";
+import ThreeDot, {
+  type ThreeDotProps,
+} from "react-loading-indicators/ThreeDot";
 import Select from "react-select";
 import Typography from "@mui/material/Typography";
 
@@ -17,16 +19,9 @@ import {
   VariantsContainer,
 } from "src/components/IndicatorsPg/MUIClient/Card";
 
-type ThreeDotVariant =
-  | "pulsate"
-  | "windmill"
-  | "bob"
-  | "brick-stack"
-  | undefined;
-
-const variantOptions: SelectOpt<ThreeDotVariant>[] = [
+const variantOptions: SelectOpt<ThreeDotProps["variant"]>[] = [
   { value: "pulsate", label: "Pulsate" },
-  { value: "windmill", label: "Windmill" },
+  { value: "bounce", label: "Bounce" },
   { value: "bob", label: "Bob" },
   { value: "brick-stack", label: "Brick-stack" },
 ];
@@ -34,7 +29,7 @@ const variantOptions: SelectOpt<ThreeDotVariant>[] = [
 const ThreeDotIndicator = () => {
   const controlStates = useControllerState();
   const { variantOption, handleChangeVariantOption } =
-    useReactSelectOptions<ThreeDotVariant>();
+    useReactSelectOptions<ThreeDotProps["variant"]>();
 
   return (
     <CardBoard>

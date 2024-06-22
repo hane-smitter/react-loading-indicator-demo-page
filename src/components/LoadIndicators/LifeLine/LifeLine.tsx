@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import LifeLine from "react-loading-indicators/dist/LifeLine";
+import LifeLine from "react-loading-indicators/LifeLine";
 import Typography from "@mui/material/Typography";
 
 import ToolBar from "../../ToolBar";

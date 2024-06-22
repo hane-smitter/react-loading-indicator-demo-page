@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import TrophySpin from "react-loading-indicators/dist/TrophySpin";
+import TrophySpin from "react-loading-indicators/TrophySpin";
 import Typography from "@mui/material/Typography";
 
 import ToolBar from "../../ToolBar";

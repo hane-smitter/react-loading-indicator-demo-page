@@ -1,6 +1,8 @@
 "use client";
 
-import OrbitProgress from "react-loading-indicators/dist/OrbitProgress";
+import OrbitProgress, {
+  type OrbitProgressProps,
+} from "react-loading-indicators/OrbitProgress";
 import Typography from "@mui/material/Typography";
 import Select from "react-select";
 
@@ -17,18 +19,10 @@ import {
   VariantsContainer,
 } from "src/components/IndicatorsPg/MUIClient/Card";
 
-type OrbitProgressVariant =
-  | "disc"
-  | "split-disc"
-  | "bubble-dotted"
-  | "dotted"
-  | "track-disc"
-  | undefined;
-
-const variantOptions: SelectOpt<OrbitProgressVariant>[] = [
+const variantOptions: SelectOpt<OrbitProgressProps["variant"]>[] = [
   { value: "disc", label: "Disc" },
   { value: "split-disc", label: "Split-disc" },
-  { value: "bubble-dotted", label: "Bubble-dotted" },
+  { value: "spokes", label: "Spokes" },
   { value: "dotted", label: "dotted" },
   { value: "track-disc", label: "Track-disc" },
 ];
@@ -36,7 +30,7 @@ const variantOptions: SelectOpt<OrbitProgressVariant>[] = [
 const OrbitProgressIndicator = () => {
   const controlStates = useControllerState();
   const { variantOption, handleChangeVariantOption } =
-    useReactSelectOptions<OrbitProgressVariant>();
+    useReactSelectOptions<OrbitProgressProps["variant"]>();
 
   return (
     <CardBoard>

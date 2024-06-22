@@ -1,6 +1,6 @@
 "use client";
 
-import OrbitProgress from "react-loading-indicators/dist/OrbitProgress";
+import OrbitProgress from "react-loading-indicators/OrbitProgress";
 
 function SampleIndicator() {
   return (

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import OrbitProgress from "react-loading-indicators/dist/OrbitProgress";
+import OrbitProgress from "react-loading-indicators/OrbitProgress";
 import Select from "react-select";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";

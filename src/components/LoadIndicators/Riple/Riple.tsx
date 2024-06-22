@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import Typography from "@mui/material/Typography";
 import { Riple } from "react-loading-indicators";
+import Typography from "@mui/material/Typography";
 
 import ToolBar from "../../ToolBar";
 import CodeHighlighter from "../../CodeHighlighter";

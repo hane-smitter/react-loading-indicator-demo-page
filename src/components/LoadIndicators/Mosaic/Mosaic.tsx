@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Mosaic from "react-loading-indicators/dist/Mosaic";
+import Mosaic from "react-loading-indicators/Mosaic";
 import Typography from "@mui/material/Typography";
 
 import ToolBar from "../../ToolBar";
