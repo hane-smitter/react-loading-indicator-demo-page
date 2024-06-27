@@ -18,6 +18,7 @@ import {
   IndicatorContainer,
   VariantsContainer,
 } from "src/components/IndicatorsPg/MUIClient/Card";
+import { useId } from "react";
 
 const variantOptions: SelectOpt<OrbitProgressProps["variant"]>[] = [
   { value: "disc", label: "Disc" },
@@ -55,6 +56,7 @@ const OrbitProgressIndicator = () => {
             value={variantOption}
             onChange={handleChangeVariantOption}
             options={variantOptions}
+            instanceId={useId()}
           />
         </VariantsContainer>
 

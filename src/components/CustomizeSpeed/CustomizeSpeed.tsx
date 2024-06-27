@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useId, useRef, useState } from "react";
 import OrbitProgress from "react-loading-indicators/OrbitProgress";
 import Select from "react-select";
 import Typography from "@mui/material/Typography";
@@ -114,6 +114,7 @@ const CustomizeSpeed = () => {
               value={easeValue}
               onChange={handleChangeEaseOption}
               options={easeOptions}
+              instanceId={useId()}
             />
           </div>
         </Box>

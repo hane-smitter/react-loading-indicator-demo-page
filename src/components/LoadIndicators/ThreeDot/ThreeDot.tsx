@@ -18,6 +18,7 @@ import {
   IndicatorContainer,
   VariantsContainer,
 } from "src/components/IndicatorsPg/MUIClient/Card";
+import { useId } from "react";
 
 const variantOptions: SelectOpt<ThreeDotProps["variant"]>[] = [
   { value: "pulsate", label: "Pulsate" },
@@ -54,6 +55,7 @@ const ThreeDotIndicator = () => {
             value={variantOption}
             onChange={handleChangeVariantOption}
             options={variantOptions}
+            instanceId={useId()}
           />
         </VariantsContainer>
 
