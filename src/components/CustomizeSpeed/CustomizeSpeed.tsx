@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useEffect, useId, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import OrbitProgress from "react-loading-indicators/OrbitProgress";
-import Select from "react-select";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
 import styles from "./styles.module.scss";
 import CodeHighlighter from "../CodeHighlighter";
 import { CardBoard } from "../IndicatorsPg/MUIClient/Card";
+import Selectable from "../IndicatorsPg/MUIClient/Selectable";
 
 type OPSpeedPlus = 0 | 2 | 1 | 5 | -5 | 4 | -4 | 3 | -3 | -2 | -1 | undefined;
 
@@ -110,11 +110,10 @@ const CustomizeSpeed = () => {
             <Typography variant="caption" sx={{ fontSize: "12px" }}>
               Choose easing
             </Typography>
-            <Select
+            <Selectable
               value={easeValue}
               onChange={handleChangeEaseOption}
               options={easeOptions}
-              instanceId={useId()}
             />
           </div>
         </Box>

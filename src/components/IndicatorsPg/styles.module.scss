@@ -33,7 +33,6 @@
   min-height: 100px;
   margin-inline: auto;
   overflow: visible;
-  // isolation: isolate;
   box-shadow:
     rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
@@ -42,20 +41,39 @@
   :global {
     & .cardContent {
       min-height: 200px;
-      position: relative;
+      // position: relative;
+      flex-direction: row;
+      flex-wrap: nowrap;
     }
 
     & .indicatorContainer {
       margin: auto;
+      order: 1;
+    }
+
+    & .variantsWrapper {
+      display: block;
+      // margin-block: auto;
+      max-width: 150px;
+      box-sizing: border-box;
+
+      display: grid;
+      order: 2;
+      align-self: stretch;
     }
 
     & .variantsContainer {
-      width: 100px;
+      width: 100%;
+      margin-block: auto;
+      min-height: 86%;
       padding: 8px;
-      position: absolute;
-      top: 0;
-      right: 0;
-      font-size: 12px;
+      padding-inline-start: 16px;
+      font-size: 0.6625rem;
+
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      border-left: 1px solid #eeeeee;
 
       @media (max-width: 400px) {
         display: none;

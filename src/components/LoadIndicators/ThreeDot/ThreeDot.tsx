@@ -3,7 +3,6 @@
 import ThreeDot, {
   type ThreeDotProps,
 } from "react-loading-indicators/ThreeDot";
-import Select from "react-select";
 import Typography from "@mui/material/Typography";
 
 import ToolBar from "../../ToolBar";
@@ -18,9 +17,10 @@ import {
   IndicatorContainer,
   VariantsContainer,
 } from "src/components/IndicatorsPg/MUIClient/Card";
-import { useId } from "react";
+import Selectable from "src/components/IndicatorsPg/MUIClient/Selectable";
 
 const variantOptions: SelectOpt<ThreeDotProps["variant"]>[] = [
+  { value: undefined, label: "Default" },
   { value: "pulsate", label: "Pulsate" },
   { value: "bounce", label: "Bounce" },
   { value: "bob", label: "Bob" },
@@ -48,15 +48,24 @@ const ThreeDotIndicator = () => {
 
       <CardContent>
         <VariantsContainer>
-          <Typography variant="caption" sx={{ fontSize: "9.8px" }}>
-            Choose Variation
-          </Typography>
-          <Select
-            value={variantOption}
-            onChange={handleChangeVariantOption}
-            options={variantOptions}
-            instanceId={useId()}
-          />
+          {/* No styling for `.group` class name; only for sematic meaning of grouping items for aligned Flexbox layout */}
+          <div className="group">
+            <Typography
+              variant="caption"
+              sx={{
+                fontSize:
+                  "1em" /* relative to Font-size set in `VariantsContainer` */,
+                fontWeight: 600,
+              }}
+            >
+              Choose Variant
+            </Typography>
+            <Selectable
+              value={variantOption}
+              onChange={handleChangeVariantOption}
+              options={variantOptions}
+            />
+          </div>
         </VariantsContainer>
 
         <IndicatorContainer>

@@ -68,7 +68,7 @@ let theme = extendTheme({
               --font-nunito: ${FontNunito.style.fontFamily};
             }
             body {
-                background-color: #fafbfd4d;
+                background-color: #f9fbfd;
                 color: rgb(76 67 67 / 90%);
                 scroll-behavior: smooth;
             }
@@ -89,7 +89,7 @@ let theme = extendTheme({
   },
   colorSchemes: {
     light: {
-      palette: { primary: { main: "#324CE4" }, common: { black: "#06021d" } },
+      palette: { primary: { main: "#026CC4" }, common: { black: "#06021d" } },
     },
   },
   typography: {
@@ -109,6 +109,8 @@ let theme = extendTheme({
       fontWeight: 600,
       userSelect: "all",
       backgroundColor: "#e3e6e8",
+      boxShadow:
+        "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)",
       display: "inline-block",
       padding: "1px 5px",
       borderRadius: 5,

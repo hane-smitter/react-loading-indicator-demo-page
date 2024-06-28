@@ -2,21 +2,18 @@
   min-height: 80px;
   align-items: center;
   justify-content: center;
-  position: relative;
 
   &::after {
     content: "";
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    height: 60vh;
+    position: fixed;
+    inset: 0;
     z-index: -1;
     pointer-events: none;
     background-image: radial-gradient(
-      circle at 100% 0%,
-      rgba(50, 76, 228, 0.07) 15%,
-      #f7f9fe08 40%
+      circle farthest-side at 100% 100%,
+      rgba(245, 245, 245, 0.7) 0%,
+      rgb(245, 245, 245) 40%,
+      rgba(2, 108, 196, 0.08)
     );
   }
 }

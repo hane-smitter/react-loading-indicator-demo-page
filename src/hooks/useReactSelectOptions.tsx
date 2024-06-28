@@ -17,7 +17,7 @@ function useReactSelectOptions<OptVal = string>(): {
 } {
   const [variantOption, setVariantOption] = useState<SelectOpt<OptVal>>({
     value: undefined,
-    label: undefined,
+    label: "Default",
   });
 
   const handleChangeVariantOption = useCallback<
