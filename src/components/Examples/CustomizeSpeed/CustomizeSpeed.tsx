@@ -6,9 +6,9 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
 import styles from "./styles.module.scss";
-import CodeHighlighter from "../CodeHighlighter";
-import { CardBoard } from "../IndicatorsPg/MUIClient/Card";
-import Selectable from "../IndicatorsPg/MUIClient/Selectable";
+import CodeHighlighter from "../../CodeHighlighter";
+import { CardBoard } from "../../IndicatorsPg/MUIClient/Card";
+import Selectable from "../../IndicatorsPg/MUIClient/Selectable";
 
 type OPSpeedPlus = 0 | 2 | 1 | 5 | -5 | 4 | -4 | 3 | -3 | -2 | -1 | undefined;
 

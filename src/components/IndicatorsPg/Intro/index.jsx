@@ -8,10 +8,12 @@ const Intro = () => {
   return (
     <Box sx={{ mt: 5 }}>
       <Typography variant="h6" component="p">
-        A library of <em>simply elegant</em>👌 loading indicators for your
-        million dollar project. With high customizability and neat finish✨,
-        patience of system users waiting for a background process to complete
-        should <em>not</em> be put to test. Instead, it should be fun
+        If you cannot rid the loading time, then you should make the wait more
+        pleasant to users. React Loading Indicators is here to ensure you excel
+        at that.
+        <br />
+        With high customizability and elegance✨, your apps and splash screens
+        should emit pleasantries and good vibes.
         <SampleIndicator />.
       </Typography>
       <br />

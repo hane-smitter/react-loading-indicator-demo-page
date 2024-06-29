@@ -38,8 +38,8 @@ const ThreeDotIndicator = () => {
 
       <div>
         <Typography variant="code" component={CodeHighlighter}>
-          {`<ThreeDot ${
-            variantOption?.value ? 'variant="' + variantOption?.value + '"' : ""
+          {`<ThreeDot${
+            variantOption?.value ? ' variant="' + variantOption?.value + '"' : ""
           } color="${controlStates.color}" size="${controlStates.size}" text="${
             controlStates.textInputValue
           }" textColor="${controlStates.textColor}" />`}

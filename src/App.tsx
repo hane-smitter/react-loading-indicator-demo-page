@@ -8,7 +8,7 @@ const App = () => {
   return (
     <>
       <Header />
-      <Container>
+      <Container maxWidth="lg">
         <Loaders />
       </Container>
       <Footer />

@@ -1,8 +1,8 @@
 function VariantsContainer({ children }) {
   return (
-    <span className="variantsWrapper">
-      <span className="variantsContainer">{children}</span>
-    </span>
+    <div className="variantsWrapper">
+      <div className="variantsContainer">{children}</div>
+    </div>
   );
 }
 

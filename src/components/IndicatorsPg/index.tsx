@@ -6,7 +6,8 @@ import Intro from "./Intro";
 import Outro from "./Outro";
 import { BodyCode, BodyText, ScrollHeading } from "./MUIClient";
 import styles from "./styles.module.scss";
-import CustomizeSpeed from "../CustomizeSpeed";
+import CustomizeSpeed from "../Examples/CustomizeSpeed";
+import PlayColors from "../Examples/PlayColors";
 
 const IndicatorNames = Arrange(Object.keys(LoadingIndicators));
 
@@ -35,23 +36,38 @@ const LoadIndicators = () => {
         })}
       </Grid>
 
+      <ScrollHeading sx={{ mt: 6 }} variant="h4">
+        Color animation
+      </ScrollHeading>
+      <BodyText>
+        A loading indicator can change colors. Flashing colors is one way to
+        entice waiting users.
+        <br />
+        To make an indicator change between colors, pass an array of colors via
+        the <BodyCode>color</BodyCode> prop. And each color will be applied per
+        frame.
+      </BodyText>
+      <Typography variant="h6" component="p" sx={{ mt: 3, mb: 1 }}>
+        An example result would look like this:
+      </Typography>
+
+      <PlayColors />
+
       <Typography
         variant="body1"
         sx={{ marginTop: "4em" }}
         className={styles.tip}
       >
-        <strong style={{ fontSize: "1.1rem" }}>💡️ Tip:</strong>
+        <strong style={{ fontSize: "1.1rem" }}>💡️ Hear this:</strong>
         <br />
-        <i>
-          Loading indicators can animate between colors in each frame. Pass an
-          array of colors via the&#8200;
-          <BodyCode>color</BodyCode>
-          &#8200;prop. The array of colors can be any length upto a maximum of
-          4. Any surplus colors outside this length is ignored.
-        </i>
+        <span style={{ fontStyle: "italic" }}>
+          Maximum number of colors played for an indicator is <strong>4</strong>
+          . Therefore color array longer than this limit will be truncated to
+          the first four. Otherwise any length of colors is accepted.
+        </span>
       </Typography>
 
-      <ScrollHeading sx={{ mt: 4 }} variant="h4">
+      <ScrollHeading sx={{ mt: 5 }} variant="h4">
         Increase/decrease speed
       </ScrollHeading>
 
