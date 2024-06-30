@@ -1,0 +1,115 @@
+.widget {
+  --widget-bg: #ffffff;
+  --widget-shadow: rgba(0, 0, 0, 0.2);
+
+  --widget-shadow-blur-size: 4px;
+  --shadow-sign: 1;
+  $shadowPlacement: calc(var(--widget-shadow-blur-size) * var(--shadow-sign));
+
+  position: absolute;
+  z-index: 3;
+  isolation: isolate;
+  min-width: 200px;
+
+  padding: 8px;
+  background-color: var(--widget-bg);
+  border-radius: 8px;
+  box-shadow: $shadowPlacement $shadowPlacement var(--widget-shadow-blur-size)
+    0px var(--widget-shadow);
+
+  &:global {
+    &.no-show {
+      visibility: hidden;
+      opacity: 0;
+      user-select: none;
+      display: none;
+    }
+
+    &::after {
+      --shadow-sign: -1;
+      $shadowPlacement: calc(
+        var(--widget-shadow-blur-size) * var(--shadow-sign)
+      );
+
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: inherit;
+      z-index: 2;
+
+      box-shadow: $shadowPlacement $shadowPlacement
+        var(--widget-shadow-blur-size) 0px var(--widget-shadow);
+      border-radius: 8px;
+    }
+
+    &::before {
+      --arrow-size: 10px;
+
+      content: "";
+      position: absolute;
+      left: 10px;
+      right: unset;
+      bottom: 0;
+      top: unset;
+      transform: translateY(100%);
+      filter: drop-shadow(
+        0px 0px var(--widget-shadow-blur-size) var(--widget-shadow)
+      );
+
+      width: 0;
+      height: 0;
+      border: 0;
+      border-left: var(--arrow-size) solid transparent;
+      border-right: var(--arrow-size) solid transparent;
+      border-top: var(--arrow-size) solid var(--widget-bg);
+      z-index: 1;
+
+      @supports (left: clamp(8px, 4%, 12px)) {
+        left: clamp(8px, 5%, 14px);
+      }
+    }
+
+    &.arrow-orientaton-up {
+      --shadow-sign: -1;
+      $shadowPlacement: calc(
+        var(--widget-shadow-blur-size) * var(--shadow-sign)
+      );
+
+      box-shadow: $shadowPlacement $shadowPlacement
+        var(--widget-shadow-blur-size) 0px var(--widget-shadow);
+
+      &::before {
+        transform: translateY(-100%);
+
+        bottom: unset;
+        top: 0;
+        border: 0;
+        border-left: var(--arrow-size) solid transparent;
+        border-right: var(--arrow-size) solid transparent;
+        border-bottom: var(--arrow-size) solid var(--widget-bg);
+      }
+      &::after {
+        --shadow-sign: 1;
+        $shadowPlacement: calc(
+          var(--widget-shadow-blur-size) * var(--shadow-sign)
+        );
+
+        box-shadow: $shadowPlacement $shadowPlacement
+          var(--widget-shadow-blur-size) 0px var(--widget-shadow);
+      }
+    }
+
+    &.arrow-orientaton-right {
+      &::before {
+        // The below Css property is an absolute value set by Javascript
+        right: var(--arrow-orientaton-right);
+
+        margin-right: -15px;
+        left: unset;
+      }
+    }
+  }
+}

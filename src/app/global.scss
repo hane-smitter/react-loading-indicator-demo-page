@@ -1,0 +1,19 @@
+.code {
+  border-radius: 5px;
+  font-size: 13px;
+  font-family: var(--font-inconsolata);
+  color: #232629;
+  padding: 1px 5px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  user-select: all;
+
+  background-color: #e3e6e8;
+  display: inline-block;
+
+  & code {
+    white-space: pre-wrap !important;
+    font-family: var(--font-inconsolata);
+    letter-spacing: 0.4px;
+  }
+}

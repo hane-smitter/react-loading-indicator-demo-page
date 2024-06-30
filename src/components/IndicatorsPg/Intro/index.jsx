@@ -1,41 +1,35 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import OrbitProgress from "react-loading-indicators/dist/OrbitProgress";
 
-import Styled from "../styled";
+import SampleIndicator from "./SampleIndicator";
 
 const Intro = () => {
   return (
     <Box sx={{ mt: 5 }}>
       <Typography variant="h6" component="p">
-        A library of <em>simple</em>, <em>customizable</em> and{" "}
-        <em>elegant</em> loading indicators to indicate a 'behind scenes' progress  to
-        users of your dream project
-        <OrbitProgress
-          variant="dotted"
-          speedPlus={2}
-          style={{ fontSize: "4px", marginLeft: "6px" }}
-        />
-        .
+        If you cannot rid the loading time, then you should make the wait more
+        pleasant to users. React Loading Indicators is here to ensure you excel
+        at that.
+        <br />
+        With high customizability and elegance✨, your apps and splash screens
+        should emit pleasantries and good vibes.
+        <SampleIndicator />.
       </Typography>
       <br />
       <Typography variant="body1">To start using:</Typography>
       <div>
-        <Styled.Code
-          variant="subtitle2"
-          sx={(theme) => ({
-            ...theme.typography.largeCode,
-            padding: "0.5em 1.1em",
-          })}
-          component="p"
+        <Typography
+          variant="posterCode"
+          sx={{ padding: "0.5em 1.1em" }}
+          //   component="p"
         >
           npm install react-loading-indicators
-        </Styled.Code>
+        </Typography>
       </div>
 
       <div>
-        <Typography variant="h6" style={{ marginTop: "20px" }}>
+        <Typography variant="h6" sx={{ mt: 3 }}>
           Features
         </Typography>
         <ul>
@@ -58,9 +52,7 @@ const Intro = () => {
             <span>🙅‍♀️️ No css import required</span>
           </li>
           <li>
-            <span>
-              ✅️ Perfomant animations
-            </span>
+            <span>✅️ Perfomant animations</span>
           </li>
           <li>
             <span>🚢️ Ships with Typescript declarations</span>

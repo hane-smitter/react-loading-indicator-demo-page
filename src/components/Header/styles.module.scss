@@ -1,0 +1,19 @@
+.homeTopBar {
+  min-height: 80px;
+  align-items: center;
+  justify-content: center;
+
+  &::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: radial-gradient(
+      circle farthest-side at 100% 100%,
+      rgba(245, 245, 245, 0.7) 0%,
+      rgb(245, 245, 245) 40%,
+      rgba(2, 108, 196, 0.08)
+    );
+  }
+}

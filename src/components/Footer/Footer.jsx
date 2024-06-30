@@ -9,6 +9,7 @@ const Footer = () => {
     <Stack
       sx={{ bgcolor: "common.black", flexWrap: "wrap", padding: "10px 5px" }}
       direction="row"
+      component="footer"
     >
       <Stack sx={{ m: "auto" }} direction="row" spacing={4}>
         <Link href="https://twitter.com/smitterhane">

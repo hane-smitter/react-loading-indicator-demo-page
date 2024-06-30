@@ -1,59 +1,33 @@
-import React from "react";
-import AppBar from "@mui/material/AppBar";
-import Link from "@mui/material/Link";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+import AppBar from "@mui/material/AppBar";
 
-import Styled from "./Styled";
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+const packageJson = require("react-loading-indicators/package.json");
 
-// const Code = styled(Paper)(({ theme }) => ({
-//   backgroundColor: "#E3E6E8",
-//   borderRadius: 7,
-//   border: "2px solid rgb(104 102 102 / 87%)",
-//   fontSize: "13px",
-//   fontFamily: `"Azeret Mono", monospace`,
-//   color: "#232629",
-//   padding: "1px 5px",
-// }));
+import styles from "./styles.module.scss";
 
 const Header = () => {
   return (
-    <Styled.WallPaper
-      position="static"
-      // color="transparent"
-      // style={{ backgroundColor: "#102187" }}
-      elevation={0}
-    >
+    <AppBar position="static" elevation={0} className={styles.homeTopBar}>
       <Toolbar sx={{ justifyContent: "stretch", alignItems: "center" }}>
-        {/* <Stack direction={"row"} sx={{ m: "auto" }}> */}
-        {/*<Typography variant="h6" component="span">
-            <Code sx={(theme) => ({ ...theme.typography.h5 })}>
-              react-loading-indicators
-            </Code>
-          </Typography> */}
         <Typography
           variant="h3"
           component="h1"
           sx={{ margin: "auto", fontWeight: 900 }}
         >
           React Loading Indicators
-        </Typography>
-        {/* <Typography
-            variant="caption"
+          <Typography
+            variant="overline"
             component="span"
-            sx={{ m: "auto 0 0 5px" }}
+            sx={{ fontWeight: 700, ml: 1 }}
           >
-            by{" "}
-            <Link
-              href="https://github.com/hane-smitter"
-              sx={{ color: "#fff000" }}
-            >
-              Smitter
-            </Link> 
-          </Typography>*/}
-        {/* </Stack> */}
+            V<span style={{ fontSize: "0.9rem" }}>{packageJson.version}</span>
+          </Typography>
+        </Typography>
       </Toolbar>
-    </Styled.WallPaper>
+    </AppBar>
   );
 };
 
