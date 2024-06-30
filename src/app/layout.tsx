@@ -7,7 +7,7 @@ import { Experimental_CssVarsProvider as CssVarsProvider } from "@mui/material/s
 import theme from "src/theme";
 import "./global.scss";
 
-export const FontInconsolata = Inconsolata({
+const FontInconsolata = Inconsolata({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   display: "swap",
