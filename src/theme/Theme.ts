@@ -69,8 +69,10 @@ let theme = extendTheme({
             }
             body {
                 background-color: #f9fbfd;
-                color: rgb(76 67 67 / 90%);
                 scroll-behavior: smooth;
+                min-height: 100vh;
+                display: grid;
+                grid-template-rows: auto 1fr auto;
             }
 
             * {
@@ -89,7 +91,11 @@ let theme = extendTheme({
   },
   colorSchemes: {
     light: {
-      palette: { primary: { main: "#026CC4" }, common: { black: "#06021d" } },
+      palette: {
+        primary: { main: "#026CC4" },
+        common: { black: "#06021d" },
+        text: { primary: "rgb(76 67 67 / 90%)" },
+      },
     },
   },
   typography: {
