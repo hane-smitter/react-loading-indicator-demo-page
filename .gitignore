@@ -9,7 +9,7 @@
 /coverage
 
 # production
-/build
+/.build
 
 # misc
 .DS_Store
@@ -25,3 +25,8 @@ yarn-error.log*
 .next
 next-env.d.ts
 dist
+
+# Local Netlify folder
+.netlify
+
+*.bak*
