@@ -1,13 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // output: "export", // Outputs a Single-Page Application (SPA).
-  distDir: "./build", // Changes the build output directory to `./dist/`.
-  async rewrites() {
+  distDir: "./.build", // Changes the build output directory to `./.dist/`.
+  async redirects() {
     return [
-      // Rewrite everything else to use `pages/index`
       {
-        source: "/:path*",
+        source: "/:path(.+)",
         destination: "/",
+        permanent: true,
       },
     ];
   },
