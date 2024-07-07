@@ -8,7 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    name: Netlify Deployment
+    name: Site Deployment to Netlify
     steps:
       - name: Get the source code
         uses: actions/checkout@v4
@@ -35,16 +35,7 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ADMIN_ID }}
         shell: bash
-        run : |
+        run: |
           ntl deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN \
             --dir .build \
-            --build
-
-      # - name: Deploy to netlify
-      #   uses: netlify/actions/cli@master
-      #   env:
-      #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
-      #     NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ADMIN_ID }}
-      #   with:
-      #     args: deploy --dir=".build" --prod
-      #     secrets: '["NETLIFY_ACCESS_TOKEN", "NETLIFY_SITE_ADMIN_ID"]'
+            --build --prod
