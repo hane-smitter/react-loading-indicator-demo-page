@@ -38,4 +38,5 @@ jobs:
         run: |
           ntl deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN \
             --dir .build \
-            --build --prod
+            --build --prod \
+            --message "A deploy from github actions"
