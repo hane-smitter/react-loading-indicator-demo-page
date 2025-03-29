@@ -4,8 +4,8 @@ import { HexColorPicker } from "react-colorful";
 // import Styled from "../styled";
 import SelectInput from "../SelectInput";
 import TextInput from "../TextInput";
-import { ISelectInput } from "../SelectInput/SelectInput";
-import { ITextInput } from "../TextInput/TextInput";
+import { type ISelectInput } from "../SelectInput/SelectInput";
+import { type ITextInput } from "../TextInput/TextInput";
 import styles from "./styles.module.scss";
 
 interface IinputTypes {
@@ -17,16 +17,17 @@ interface IinputTypes {
   SelectInput: ISelectInput;
 }
 
+/**Remove `Name` type from `Obj` type */
+type FilterOut<Name, Obj> = Obj extends { name: string }
+  ? Omit<Obj, Name extends string ? Name : "">
+  : Obj;
+
 interface IinputPropsMap {
   colorinput: "ColorInput";
   textinput: "TextInput";
   selectinput: "SelectInput";
 }
 
-/**Remove `Name` type from `Obj` type */
-type FilterOut<Name, Obj> = Obj extends { name: string }
-  ? Omit<Obj, Name extends string ? Name : "">
-  : Obj;
 export interface IActiveWidgetTraits<T> {
   // name: keyof IinputPropsMap | (string & {});
   name: T extends { name: keyof IinputPropsMap }
@@ -43,14 +44,14 @@ export interface IActiveWidgetTraits<T> {
 }
 
 interface IControllerWidget<IT> {
-  targetBtnRef: React.MutableRefObject<HTMLButtonElement | null>;
+  anchorBtnRef: React.MutableRefObject<HTMLButtonElement | null>;
   activeWidgetTraits: IActiveWidgetTraits<IT>;
 }
 
-function ControllerWidget<
+function FloatingWidget<
   IT extends IinputTypes[IinputPropsMap[keyof IinputPropsMap]]
 >({
-  targetBtnRef,
+  anchorBtnRef,
   activeWidgetTraits,
 }: PropsWithChildren<IControllerWidget<IT>>) {
   const elemRef = useRef<HTMLDivElement | null>(null);
@@ -62,9 +63,9 @@ function ControllerWidget<
 
   // effect below is responsible for moving the widget to the active btn on the toolbar that has triggered to show content on widget
   useLayoutEffect(() => {
-    if (elemRef.current && targetBtnRef.current) {
+    if (elemRef.current && anchorBtnRef.current) {
       const widgetElem = elemRef.current;
-      const widgetOpenerBtn = targetBtnRef.current;
+      const widgetOpenerBtn = anchorBtnRef.current;
       let widgetDOMBounds: DOMRect | null = null;
       let widgetOpenerBtnBounds: DOMRect | null = null;
       let widgetOpenerBtnParentBounds: DOMRect | null = null;
@@ -162,4 +163,4 @@ function ControllerWidget<
   );
 }
 
-export default ControllerWidget;
+export default FloatingWidget;
