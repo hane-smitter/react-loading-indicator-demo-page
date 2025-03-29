@@ -4,8 +4,8 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import Stack from "@mui/material/Stack";
 
 import OutsideClickListener from "../OutsideClickListener";
-import ControllerWidget from "./ControllerWidget";
-import { IActiveWidgetTraits } from "./ControllerWidget/ControllerWidget";
+import FloatingWidget from "./FloatingWidget";
+import type { IActiveWidgetTraits } from "./FloatingWidget/FloatingWidget";
 import WidgetBtn from "./WidgetBtn";
 
 const initWidgetTraits = { name: "", props: {} };
@@ -20,6 +20,10 @@ const ToolBar = ({
   textColor,
   setTextColor,
 }) => {
+  console.log(
+    "Toolbar component re-rendered!! textInputValue is %s: ",
+    textInputValue
+  );
   const activeWidgetBtn = useRef<HTMLButtonElement | null>(null);
   // Below refs are useful to find the current active button showing widget
   const colorWidgetBtn = useRef<HTMLButtonElement | null>(null);
@@ -54,11 +58,11 @@ const ToolBar = ({
 
   // Widget traits would have been set from each button click in the JSX `return`ed below just using `setActiveWidgetTraits`
   //
-  // NOTE: The widget in topic, imported as `ControllerWidget`, has all the Elements it needs to show. And `activeWidgetTraits` contains
-  // traits that needs to inform the `ControllerWidget` which widget to show/render(including props to pass to it).
+  // NOTE: The widget in topic, imported as `FloatingWidget`, has all the Elements it needs to show. And `activeWidgetTraits` contains
+  // traits that needs to inform the `FloatingWidget` which widget to show/render(including props to pass to it).
   //
   // We opted to set specific state from each button click, so as to get typechecking on the Input Component we wish to show inside the floating widget.
-  // Then `useEffect`s below would react accordingly to the button that sets new widget traits on its state and apply to the `activeWidgetTraits` being observed by widget container(`ControllerWidget`)
+  // Then `useEffect`s below would react accordingly to the button that sets new widget traits on its state and apply to the `activeWidgetTraits` being observed by widget container(`FloatingWidget`)
   useEffect(() => {
     if (Object.keys(widgetTextinputTraits.props).length < 1) return; // To avoid setting activeWidget on initial render
 
@@ -85,22 +89,22 @@ const ToolBar = ({
         case "indicatorbodycolorbtn":
           setWidgetColorinputTraits({
             ...widgetColorinputTraits,
-            props: { color, onChange: setColor },
+            props: { color: color, onChange: setColor },
           });
           break;
 
         case "indicatorsizebtn":
           setWidgetSelectinputTraits({
             ...widgetSelectinputTraits,
-            props: { handleSizeChange: setSize, size: size },
+            props: { size: size, handleSizeChange: setSize },
           });
           break;
         case "indicatortxtbtn":
           setWidgetTextinputTraits({
             ...widgetTextinputTraits,
             props: {
-              handleTextChange: setTextInputValue,
               value: textInputValue,
+              handleTextChange: setTextInputValue,
             },
           });
           break;
@@ -117,6 +121,10 @@ const ToolBar = ({
       }
     },
     [
+      color,
+      size,
+      textInputValue,
+      textColor,
       setWidgetColorinputTraits,
       setWidgetTextinputTraits,
       setWidgetSelectinputTraits,
@@ -154,8 +162,8 @@ const ToolBar = ({
             },
           })}
         >
-          <ControllerWidget
-            targetBtnRef={activeWidgetBtn}
+          <FloatingWidget
+            anchorBtnRef={activeWidgetBtn}
             activeWidgetTraits={activeWidgetTraits}
           />
 

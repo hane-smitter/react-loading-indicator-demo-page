@@ -36,7 +36,7 @@ const TextInput = ({ value, handleTextChange }: ITextInput) => {
       <div className={styles.txtInp}>
         <input
           ref={inpRef}
-          type={"text"}
+          type="text"
           value={textInpValue}
           onInput={handleTextInput}
           placeholder="Start typing here..."
