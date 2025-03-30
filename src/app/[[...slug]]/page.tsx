@@ -4,6 +4,9 @@ import App from "src/App";
 //   return [{ slug: [""] }];
 // }
 
+export const dynamic = "force-dynamic";
+
 export default function Page() {
-  return <App />;
+  const randomSeed = Math.random();
+  return <App stableRandSeed={randomSeed} />;
 }

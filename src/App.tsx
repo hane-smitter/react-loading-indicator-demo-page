@@ -4,12 +4,12 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Loaders from "./components/IndicatorsPg";
 
-const App = () => {
+const App = ({ stableRandSeed }: { stableRandSeed: number }) => {
   return (
     <>
       <Header />
       <Container maxWidth="lg">
-        <Loaders />
+        <Loaders stableRandSeed={stableRandSeed} />
       </Container>
       <Footer />
     </>

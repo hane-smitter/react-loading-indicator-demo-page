@@ -11,7 +11,7 @@ import PlayColors from "../Examples/PlayColors";
 
 const IndicatorNames = Arrange(Object.keys(LoadingIndicators));
 
-const LoadIndicators = () => {
+const LoadIndicators = ({ stableRandSeed }: { stableRandSeed: number }) => {
   return (
     <>
       <Intro />
@@ -51,7 +51,7 @@ const LoadIndicators = () => {
         An example result would look like this:
       </Typography>
 
-      <PlayColors />
+      <PlayColors stableRandSeed={stableRandSeed} />
 
       <Typography
         variant="body1"

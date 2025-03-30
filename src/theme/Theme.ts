@@ -66,13 +66,16 @@ let theme = extendTheme({
               --text-link: #8cb4ff;
               --text-inactive: #cdcdcda6;
               --font-nunito: ${FontNunito.style.fontFamily};
+              --white-soft: #f8fafc;
+              --white-bg: #f9fbfd;
+              --white-pure: #ffffff;
             }
             body {
-                background-color: #f9fbfd;
-                scroll-behavior: smooth;
-                min-height: 100vh;
-                display: grid;
-                grid-template-rows: auto 1fr auto;
+              background-color: var(--white-bg);
+              scroll-behavior: smooth;
+              min-height: 100vh;
+              display: grid;
+              grid-template-rows: auto 1fr auto;
             }
 
             * {
@@ -92,8 +95,8 @@ let theme = extendTheme({
   colorSchemes: {
     light: {
       palette: {
-        primary: { main: "#026CC4" },
-        common: { black: "#06021d" },
+        primary: { main: "#009da5" }, // #026CC4
+        common: { black: "#06021d" },// #009da5
         text: { primary: "rgb(76 67 67 / 90%)" },
       },
     },
@@ -130,5 +133,7 @@ let theme = extendTheme({
   },
 });
 // theme = responsiveFontSizes(theme);
+// theme.palette.common.black = "#2d3748";
+// theme.palette.common.white = "#f8fafc";
 
 export default theme;
