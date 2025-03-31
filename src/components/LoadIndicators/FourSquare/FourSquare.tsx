@@ -2,7 +2,6 @@
 
 import React from "react";
 import { FourSquare } from "react-loading-indicators";
-import Typography from "@mui/material/Typography";
 
 import ToolBar from "../../ToolBar";
 import CodeHighlighter from "../../CodeHighlighter";
@@ -21,9 +20,9 @@ const FourSquareLoader = () => {
       <ToolBar {...controlStates} />
 
       <div>
-        <Typography variant="code" component={CodeHighlighter}>
+        <CodeHighlighter lang="jsx">
           {`<FourSquare color="${controlStates.color}" size="${controlStates.size}" text="${controlStates.textInputValue}" textColor="${controlStates.textColor}" />`}
-        </Typography>
+        </CodeHighlighter>
       </div>
       <CardContent>
         <IndicatorContainer>

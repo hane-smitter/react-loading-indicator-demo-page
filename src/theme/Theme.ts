@@ -2,10 +2,12 @@
 
 import React from "react";
 import {
-  experimental_extendTheme as extendTheme,
+  createTheme,
+  extendTheme,
   responsiveFontSizes,
 } from "@mui/material/styles";
 import { Nunito } from "next/font/google";
+import { deepmerge } from "@mui/utils";
 
 // import { TypographyOptions } from "@mui/material/styles/createTypography";
 
@@ -56,8 +58,8 @@ export const FontNunito = Nunito({
   display: "swap",
 });
 
-let theme = extendTheme({
-  cssVarPrefix: "rli",
+let theme = createTheme({
+  cssVariables: { cssVarPrefix: "rli" },
   components: {
     MuiCssBaseline: {
       styleOverrides: `
@@ -92,14 +94,20 @@ let theme = extendTheme({
       },
     },
   },
-  colorSchemes: {
-    light: {
-      palette: {
-        primary: { main: "#009da5" }, // #026CC4
-        common: { black: "#06021d" },// #009da5
-        text: { primary: "rgb(76 67 67 / 90%)" },
-      },
-    },
+  // colorSchemes: {
+  //   light: {
+  //     palette: {
+  //       primary: { main: "#009da5" }, // #026CC4
+  //       common: { black: "#06021d" }, // #009da5
+  //       text: { primary: "rgb(76 67 67 / 90%)" },
+  //     },
+  //   },
+  // },
+  palette: {
+    mode: "light",
+    primary: { main: "#009da5" }, // #026CC4
+    common: { black: "#2d3748", white: "#f8fafc" }, // #009da5
+    text: { primary: "rgb(76 67 67 / 90%)" },
   },
   typography: {
     fontFamily: "var(--font-nunito)",
@@ -135,5 +143,12 @@ let theme = extendTheme({
 // theme = responsiveFontSizes(theme);
 // theme.palette.common.black = "#2d3748";
 // theme.palette.common.white = "#f8fafc";
+
+const themeAddon = createTheme({
+  cssVariables: true,
+  palette: { common: { black: "#2d3748", white: "#f8fafc" } },
+});
+
+const refinedTheme = deepmerge(theme, {});
 
 export default theme;

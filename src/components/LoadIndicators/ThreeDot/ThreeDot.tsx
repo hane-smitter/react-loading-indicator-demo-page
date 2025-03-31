@@ -37,13 +37,15 @@ const ThreeDotIndicator = () => {
       <ToolBar {...controlStates} />
 
       <div>
-        <Typography variant="code" component={CodeHighlighter}>
+        <CodeHighlighter lang="jsx">
           {`<ThreeDot${
-            variantOption?.value ? ' variant="' + variantOption?.value + '"' : ""
+            variantOption?.value
+              ? ' variant="' + variantOption?.value + '"'
+              : ""
           } color="${controlStates.color}" size="${controlStates.size}" text="${
             controlStates.textInputValue
           }" textColor="${controlStates.textColor}" />`}
-        </Typography>
+        </CodeHighlighter>
       </div>
 
       <CardContent>

@@ -29,7 +29,7 @@ const LoadIndicators = ({ stableRandSeed }: { stableRandSeed: number }) => {
           const Throbber = LoadingIndicators[name];
 
           return (
-            <Grid item xs={12} sm={6} key={idx}>
+            <Grid size={{ xs: 12, sm: 6 }} key={idx}>
               <Throbber />
             </Grid>
           );

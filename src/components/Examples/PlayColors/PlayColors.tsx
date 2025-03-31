@@ -11,7 +11,7 @@ import {
   CardContent,
   IndicatorContainer,
 } from "src/components/IndicatorsPg/MUIClient/Card";
-import CodeHighlighter from "src/components/CodeHighlighter";
+import CodeHighlighter from "src/components/CodeHighlighter/CodeHighlighter";
 import styles from "./styles.module.scss";
 
 interface ILoadingIndicators {
@@ -34,11 +34,11 @@ const indicatorNames = Object.keys(Indicators) as Array<
 const colors = ["#33CCCC", "#33CC36", "#B8CC33", "#FCCA00"]; // #33CC36, #33CCCC
 
 function PlayColors({ stableRandSeed }: { stableRandSeed: number }) {
-  const [indicatorName, setCurrentIndicatorName] = useState<
-    keyof ILoadingIndicators
-  >(function () {
-    return shuffleArray(indicatorNames, stableRandSeed)[0];
-  });
+  const [indicatorName, setIndicatorName] = useState<keyof ILoadingIndicators>(
+    function () {
+      return shuffleArray(indicatorNames, stableRandSeed)[0];
+    }
+  );
 
   const IndicatorComponent = Indicators[indicatorName];
 
@@ -48,7 +48,12 @@ function PlayColors({ stableRandSeed }: { stableRandSeed: number }) {
         <p>Change Loading Indicator</p>
         <div className={styles.indicatorBtnsContainer}>
           {indicatorNames.map((name) => (
-            <span className={styles.indicatorBtnItem} key={name}>
+            <span
+              className={`${styles.indicatorBtnItem}${
+                name === indicatorName ? " active" : ""
+              }`}
+              key={name}
+            >
               <Button fullWidth sx={{ wordBreak: "break-word" }}>
                 {name}
               </Button>
@@ -60,9 +65,9 @@ function PlayColors({ stableRandSeed }: { stableRandSeed: number }) {
 
       <CardBoard>
         <div style={{ marginBottom: "20px" }}>
-          <Typography variant="code" component={CodeHighlighter}>
+          <CodeHighlighter lang={"jsx"}>
             {`<${indicatorName} color={["${colors.join('", "')}"]} />`}
-          </Typography>
+          </CodeHighlighter>
         </div>
 
         <CardContent>
@@ -83,6 +88,7 @@ function shuffleArray(array: any[], seed?: number) {
     const j = (randomSeed * (i + 1)) | 0;
     [result[i], result[j]] = [result[j], result[i]];
   }
+
   return result;
 }
 

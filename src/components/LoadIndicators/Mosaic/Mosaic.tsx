@@ -2,7 +2,6 @@
 
 import React from "react";
 import Mosaic from "react-loading-indicators/Mosaic";
-import Typography from "@mui/material/Typography";
 
 import ToolBar from "../../ToolBar";
 import CodeHighlighter from "../../CodeHighlighter";
@@ -21,9 +20,9 @@ const MosaicLoader = () => {
       <ToolBar {...controlStates} />
 
       <div>
-        <Typography variant="code" component={CodeHighlighter}>
+        <CodeHighlighter lang="jsx">
           {`<Mosaic color="${controlStates.color}" size="${controlStates.size}" text="${controlStates.textInputValue}" textColor="${controlStates.textColor}" />`}
-        </Typography>
+        </CodeHighlighter>
       </div>
 
       <CardContent>

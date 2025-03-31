@@ -27,7 +27,7 @@
     }
 }
 .indicatorBtnItem {
-    background-color: var(--white-soft);
+    background-color: var(--rli-palette-common-white, var(--white-soft));
     box-shadow:
         inset rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
         inset rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
@@ -35,4 +35,9 @@
     align-items: center;
     justify-content: center;
     border-radius: 4px;
+
+    &.active {
+        outline: 2px solid;
+        outline-offset: 5px;
+    }
 }
