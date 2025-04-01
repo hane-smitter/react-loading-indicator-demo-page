@@ -1,0 +1,7 @@
+.customInp {
+    padding: 5px 10px;
+    border: 1px solid var(--rli-palette-common-black);
+    &::placeholder {
+        font-size: 12px;
+    }
+}

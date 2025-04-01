@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 // import Mosaic from "react-loading-indicators/Mosaic";
 import * as Indicators from "react-loading-indicators";
@@ -12,7 +11,8 @@ import {
   IndicatorContainer,
 } from "src/components/IndicatorsPg/MUIClient/Card";
 import CodeHighlighter from "src/components/CodeHighlighter/CodeHighlighter";
-import styles from "./styles.module.scss";
+import styles from "./PlayColors.module.scss";
+import ChangeColor from "./ChangeColor";
 
 interface ILoadingIndicators {
   Mosaic: Indicators.MosaicProps;
@@ -34,39 +34,55 @@ const indicatorNames = Object.keys(Indicators) as Array<
 const colors = ["#33CCCC", "#33CC36", "#B8CC33", "#FCCA00"]; // #33CC36, #33CCCC
 
 function PlayColors({ stableRandSeed }: { stableRandSeed: number }) {
-  const [indicatorName, setIndicatorName] = useState<keyof ILoadingIndicators>(
-    function () {
-      return shuffleArray(indicatorNames, stableRandSeed)[0];
-    }
-  );
+  const [activeIndicatorName, setActiveIndicatorName] = useState<
+    keyof ILoadingIndicators
+  >(function () {
+    return shuffleArray(indicatorNames, stableRandSeed)[0];
+  });
 
-  const IndicatorComponent = Indicators[indicatorName];
+  function handleChangeCmp(name: keyof ILoadingIndicators) {
+    if (name) {
+      setActiveIndicatorName(name);
+    }
+  }
+
+  const IndicatorComponent = Indicators[activeIndicatorName];
 
   return (
     <div style={{ width: "50%", marginInline: "auto" }}>
-      <div>
+      <div style={{ marginBlockEnd: "30px" }}>
         <p>Change Loading Indicator</p>
         <div className={styles.indicatorBtnsContainer}>
           {indicatorNames.map((name) => (
             <span
               className={`${styles.indicatorBtnItem}${
-                name === indicatorName ? " active" : ""
+                name === activeIndicatorName ? " active" : ""
               }`}
               key={name}
             >
-              <Button fullWidth sx={{ wordBreak: "break-word" }}>
+              <Button
+                fullWidth
+                sx={{ wordBreak: "break-word" }}
+                variant={name === activeIndicatorName ? "contained" : "text"}
+                onClick={
+                  name !== activeIndicatorName
+                    ? (_) => handleChangeCmp(name)
+                    : undefined
+                }
+              >
                 {name}
               </Button>
             </span>
           ))}
         </div>
-        <p>Change color</p>
+
+        <ChangeColor />
       </div>
 
       <CardBoard>
         <div style={{ marginBottom: "20px" }}>
           <CodeHighlighter lang={"jsx"}>
-            {`<${indicatorName} color={["${colors.join('", "')}"]} />`}
+            {`<${activeIndicatorName} color={["${colors.join('", "')}"]} />`}
           </CodeHighlighter>
         </div>
 

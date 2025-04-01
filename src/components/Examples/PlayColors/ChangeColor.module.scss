@@ -1,0 +1,20 @@
+.colorOptsContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: stretch;
+    align-items: stretch;
+    column-gap: 8px;
+
+    & .colorOptWrapper {
+        border: 1px solid var(--rli-palette-grey-300);
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+.colorOptHeadline {
+    font-style: italic;
+    font-weight: 400;
+    margin-block-end: 8px;
+}
