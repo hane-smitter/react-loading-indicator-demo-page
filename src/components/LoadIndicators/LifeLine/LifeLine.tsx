@@ -2,7 +2,6 @@
 
 import React from "react";
 import LifeLine from "react-loading-indicators/LifeLine";
-import Typography from "@mui/material/Typography";
 
 import ToolBar from "../../ToolBar";
 import CodeHighlighter from "../../CodeHighlighter";
@@ -21,9 +20,9 @@ const LifeLineIndicator = () => {
       <ToolBar {...controlStates} />
 
       <div>
-        <Typography variant="code" component={CodeHighlighter}>
+        <CodeHighlighter lang="jsx">
           {`<LifeLine color="${controlStates.color}" size="${controlStates.size}" text="${controlStates.textInputValue}" textColor="${controlStates.textColor}" />`}
-        </Typography>
+        </CodeHighlighter>
       </div>
 
       <CardContent>

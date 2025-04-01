@@ -20,10 +20,6 @@ const ToolBar = ({
   textColor,
   setTextColor,
 }) => {
-  console.log(
-    "Toolbar component re-rendered!! textInputValue is %s: ",
-    textInputValue
-  );
   const activeWidgetBtn = useRef<HTMLButtonElement | null>(null);
   // Below refs are useful to find the current active button showing widget
   const colorWidgetBtn = useRef<HTMLButtonElement | null>(null);

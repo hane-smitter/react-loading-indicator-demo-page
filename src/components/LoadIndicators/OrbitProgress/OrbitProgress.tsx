@@ -42,7 +42,7 @@ const OrbitProgressIndicator = () => {
       <ToolBar {...controlStates} />
 
       <div>
-        <Typography variant="code" component={CodeHighlighter}>
+        <CodeHighlighter lang="jsx">
           {`<OrbitProgress${
             variantOption?.value
               ? ' variant="' + variantOption?.value + '"'
@@ -52,7 +52,7 @@ const OrbitProgressIndicator = () => {
           }" text="${controlStates.textInputValue}" textColor="${
             controlStates.textColor
           }" />`}
-        </Typography>
+        </CodeHighlighter>
       </div>
 
       <CardContent>

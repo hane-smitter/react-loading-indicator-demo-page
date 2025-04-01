@@ -2,7 +2,6 @@
 
 import React from "react";
 import { BlinkBlur } from "react-loading-indicators";
-import Typography from "@mui/material/Typography";
 
 import ToolBar from "../../ToolBar";
 // import Styled from "../../IndicatorsPg/styled";
@@ -22,9 +21,9 @@ const BlinkBlurIndicator = () => {
       <ToolBar {...controlStates} />
 
       <div>
-        <Typography variant="code" component={CodeHighlighter}>
+        <CodeHighlighter lang="jsx">
           {`<BlinkBlur color="${controlStates.color}" size="${controlStates.size}" text="${controlStates.textInputValue}" textColor="${controlStates.textColor}" />`}
-        </Typography>
+        </CodeHighlighter>
       </div>
       <CardContent>
         <IndicatorContainer>

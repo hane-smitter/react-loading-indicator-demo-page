@@ -1,0 +1,21 @@
+.codeHighlight {
+    pre {
+        font-family: var(--font-inconsolata), monospace;
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 1.5;
+        padding: 0.6rem;
+        border-radius: 8px;
+        user-select: all;
+        text-wrap: wrap;
+    }
+    code {
+        font-family: inherit;
+    }
+}
+.placeholderHighlight {
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 300;
+    padding: 15px 10px;
+}

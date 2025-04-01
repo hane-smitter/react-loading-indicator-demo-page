@@ -2,7 +2,6 @@
 
 import React from "react";
 import TrophySpin from "react-loading-indicators/TrophySpin";
-import Typography from "@mui/material/Typography";
 
 import ToolBar from "../../ToolBar";
 import CodeHighlighter from "../../CodeHighlighter";
@@ -21,9 +20,9 @@ const TrophySpinIndicator = () => {
       <ToolBar {...controlStates} />
 
       <div>
-        <Typography variant="code" component={CodeHighlighter}>
+        <CodeHighlighter lang="jsx">
           {`<TrophySpin color="${controlStates.color}" size="${controlStates.size}" text="${controlStates.textInputValue}" textColor="${controlStates.textColor}" />`}
-        </Typography>
+        </CodeHighlighter>
       </div>
 
       <CardContent>

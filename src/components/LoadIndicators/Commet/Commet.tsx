@@ -2,7 +2,6 @@
 
 import React from "react";
 import { Commet } from "react-loading-indicators";
-import Typography from "@mui/material/Typography";
 
 import CodeHighlighter from "../../CodeHighlighter";
 import ToolBar from "../../ToolBar";
@@ -22,9 +21,9 @@ const CommetLoader = () => {
       <ToolBar {...controlStates} />
 
       <div>
-        <Typography variant="code" component={CodeHighlighter}>
+        <CodeHighlighter lang="jsx">
           {`<Commet color="${controlStates.color}" size="${controlStates.size}" text="${controlStates.textInputValue}" textColor="${controlStates.textColor}" />`}
-        </Typography>
+        </CodeHighlighter>
       </div>
 
       <CardContent>

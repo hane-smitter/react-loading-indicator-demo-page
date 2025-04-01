@@ -65,9 +65,9 @@ const CustomizeSpeed = () => {
           </Styled.Code>
         </div> */}
         <div style={{ marginBottom: "20px" }}>
-          <Typography variant="code" component={CodeHighlighter}>
+          <CodeHighlighter lang="jsx">
             {`<OrbitProgress variant="track-disc" speedPlus="${sliderValue}" easing="${easeValue.value}" />`}
-          </Typography>
+          </CodeHighlighter>
         </div>
 
         <Box className={styles.speedAdjustBox}>

@@ -2,7 +2,6 @@
 
 import React from "react";
 import { Atom } from "react-loading-indicators";
-import Typography from "@mui/material/Typography";
 
 import ToolBar from "../../ToolBar";
 // import Styled from "../../IndicatorsPg/styled";
@@ -21,12 +20,9 @@ const AtomLoader = () => {
     <CardBoard>
       <ToolBar {...controlStates} />
       <div>
-        {/* <Styled.Code component={CodeHighlighter}>
+        <CodeHighlighter lang="jsx">
           {`<Atom color="${controlStates.color}" size="${controlStates.size}" text="${controlStates.textInputValue}" textColor="${controlStates.textColor}" />`}
-        </Styled.Code> */}
-        <Typography variant="code" component={CodeHighlighter}>
-          {`<Atom color="${controlStates.color}" size="${controlStates.size}" text="${controlStates.textInputValue}" textColor="${controlStates.textColor}" />`}
-        </Typography>
+        </CodeHighlighter>
       </div>
 
       <CardContent>

@@ -2,10 +2,12 @@
 
 import React from "react";
 import {
-  experimental_extendTheme as extendTheme,
+  createTheme,
+  extendTheme,
   responsiveFontSizes,
 } from "@mui/material/styles";
 import { Nunito } from "next/font/google";
+import { deepmerge } from "@mui/utils";
 
 // import { TypographyOptions } from "@mui/material/styles/createTypography";
 
@@ -56,8 +58,8 @@ export const FontNunito = Nunito({
   display: "swap",
 });
 
-let theme = extendTheme({
-  cssVarPrefix: "rli",
+let theme = createTheme({
+  cssVariables: { cssVarPrefix: "rli" },
   components: {
     MuiCssBaseline: {
       styleOverrides: `
@@ -66,13 +68,16 @@ let theme = extendTheme({
               --text-link: #8cb4ff;
               --text-inactive: #cdcdcda6;
               --font-nunito: ${FontNunito.style.fontFamily};
+              --white-soft: #f8fafc;
+              --white-bg: #f9fbfd;
+              --white-pure: #ffffff;
             }
             body {
-                background-color: #f9fbfd;
-                scroll-behavior: smooth;
-                min-height: 100vh;
-                display: grid;
-                grid-template-rows: auto 1fr auto;
+              background-color: var(--white-bg);
+              scroll-behavior: smooth;
+              min-height: 100vh;
+              display: grid;
+              grid-template-rows: auto 1fr auto;
             }
 
             * {
@@ -89,14 +94,21 @@ let theme = extendTheme({
       },
     },
   },
-  colorSchemes: {
-    light: {
-      palette: {
-        primary: { main: "#026CC4" },
-        common: { black: "#06021d" },
-        text: { primary: "rgb(76 67 67 / 90%)" },
-      },
-    },
+  // colorSchemes: {
+  //   light: {
+  //     palette: {
+  //       primary: { main: "#009da5" }, // #026CC4
+  //       common: { black: "#06021d" }, // #009da5
+  //       text: { primary: "rgb(76 67 67 / 90%)" },
+  //     },
+  //   },
+  // },
+  palette: {
+    mode: "light",
+    primary: { main: "#009da5" }, // #026CC4, #
+    secondary: { main: "#5a00a5" },
+    common: { black: "#2d3748", white: "#f8fafc" }, // #009da5
+    text: { primary: "rgb(76 67 67 / 90%)" },
   },
   typography: {
     fontFamily: "var(--font-nunito)",
@@ -109,10 +121,10 @@ let theme = extendTheme({
     },
     posterCode: {
       // color: "#232629",
-      color: "#373D3F",
+      color: "var(--rli-palette-common-black)", // #373D3F
       fontFamily: "var(--font-inconsolata)",
       fontSize: "0.9rem",
-      fontWeight: 600,
+      fontWeight: 500,
       userSelect: "all",
       backgroundColor: "#e3e6e8",
       boxShadow:
@@ -129,6 +141,5 @@ let theme = extendTheme({
     },
   },
 });
-// theme = responsiveFontSizes(theme);
 
 export default theme;

@@ -1,8 +1,8 @@
 "use client";
 
-import { type ReactNode } from "react";
+import { type ReactNode, type JSX } from "react";
 import Switch from "@mui/material/Switch";
-import styled from "@mui/material/styles/styled";
+import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 
 export { default as ScrollHeading } from "./ScrollHeading";
