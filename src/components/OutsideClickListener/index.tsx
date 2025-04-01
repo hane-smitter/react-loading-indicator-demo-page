@@ -3,8 +3,9 @@ import React, {
   useEffect,
   Children,
   cloneElement,
-  PropsWithChildren,
-  ReactElement,
+  type PropsWithChildren,
+  type ReactElement,
+  type Ref,
 } from "react";
 
 interface IOutsideClickListener {
@@ -21,8 +22,10 @@ const OutsideClickListener = React.memo(
     //   return cloneElement(onlyChild, { ref: elemRef });
     // });
 
-    const Elem = Children.only(children); // assert `children` is a single React element. Otherwise throws error.
-    const ElemWithNewProps = cloneElement(Elem as ReactElement, {
+    const Elem = Children.only(children) as ReactElement<
+      unknown & { ref?: Ref<HTMLElement> }
+    >; // assert `children` is a single React element that can receive `ref`. Otherwise throws error.
+    const ElemWithNewProps = cloneElement(Elem, {
       ref: elemRef,
     });
 
@@ -33,7 +36,6 @@ const OutsideClickListener = React.memo(
 function useOutsideClickListener(
   runner: (event: globalThis.MouseEvent) => void | undefined
 ) {
-
   const parentElemRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -51,7 +53,6 @@ function useOutsideClickListener(
         runner?.call(parentElemRef.current, event);
         return;
       }
-
     }
 
     towerElem.addEventListener("click", handleClickOutsideCheck, {
