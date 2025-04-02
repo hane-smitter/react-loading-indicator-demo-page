@@ -4,17 +4,61 @@
     justify-items: stretch;
     align-items: stretch;
     column-gap: 8px;
+    row-gap: 10px;
+    grid-template-areas:
+        "picker input"
+        "gen  gen";
 
-    & .colorOptWrapper {
+    .colorOptWrapper {
         border: 1px solid var(--rli-palette-grey-300);
         padding: 15px;
         display: flex;
         align-items: center;
         flex-direction: column;
+
+        &.picker {
+            grid-area: picker;
+        }
+        &.input {
+            grid-area: input;
+        }
+        &.gen {
+            grid-area: gen;
+        }
     }
 }
 .colorOptHeadline {
     font-style: italic;
     font-weight: 400;
     margin-block-end: 8px;
+}
+
+.genColorsArea {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 5px;
+}
+.verticalRule {
+    border-left: 1px solid #ccc;
+    height: 100%;
+    margin: 0 10px;
+}
+.genSamples {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+
+    // & .tetrad {
+    // }
+    // & .analogous {
+    // }
+    & .token {
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        border: 1px solid var(--rli-palette-common-white);
+        box-shadow: var(--rli-shadows-2);
+    }
 }

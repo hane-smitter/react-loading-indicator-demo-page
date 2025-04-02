@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import Button from "@mui/material/Button";
 // import Mosaic from "react-loading-indicators/Mosaic";
 import * as Indicators from "react-loading-indicators";
@@ -31,7 +31,7 @@ interface ILoadingIndicators {
 const indicatorNames = Object.keys(Indicators) as Array<
   keyof ILoadingIndicators
 >;
-const colors = ["#33CCCC", "#33CC36", "#B8CC33", "#FCCA00"]; // #33CC36, #33CCCC
+// const colors = ["#33CCCC", "#33CC36", "#B8CC33", "#FCCA00"]; // #33CC36, #33CCCC
 
 function PlayColors({ stableRandSeed }: { stableRandSeed: number }) {
   const [activeIndicatorName, setActiveIndicatorName] = useState<
@@ -39,12 +39,26 @@ function PlayColors({ stableRandSeed }: { stableRandSeed: number }) {
   >(function () {
     return shuffleArray(indicatorNames, stableRandSeed)[0];
   });
+  const [colors, setColors] = useState<string[]>([
+    "#33CCCC",
+    "#33CC36",
+    "#B8CC33",
+    "#FCCA00",
+  ]);
 
   function handleChangeCmp(name: keyof ILoadingIndicators) {
     if (name) {
       setActiveIndicatorName(name);
     }
   }
+  const changeColors = useCallback(
+    (colors: string[]) => {
+      if (colors.length > 0) {
+        setColors(colors);
+      }
+    },
+    [setColors]
+  );
 
   const IndicatorComponent = Indicators[activeIndicatorName];
 
@@ -76,7 +90,7 @@ function PlayColors({ stableRandSeed }: { stableRandSeed: number }) {
           ))}
         </div>
 
-        <ChangeColor />
+        <ChangeColor setColors={changeColors} initialColor="#32cd32" />
       </div>
 
       <CardBoard>
