@@ -36,19 +36,24 @@ const LoadIndicators = ({ stableRandSeed }: { stableRandSeed: number }) => {
         })}
       </Grid>
 
-      <ScrollHeading sx={{ mt: 6 }} variant="h4">
-        Color animation
+      <ScrollHeading sx={{ mt: 10 }} variant="h4">
+        Animating Indicator colors
       </ScrollHeading>
       <BodyText>
-        A loading indicator can change colors. Flashing colors is one way to
-        entice waiting users.
+        A loading indicator can transition between different colors in each
+        frame. This can transform mundane wait times/splash screens into an
+        intriguing and captivating experience — keeping users' attention.
         <br />
-        To make an indicator change between colors, pass an array of colors via
-        the <BodyCode>color</BodyCode> prop. And each color will be applied per
-        frame.
+        To enable this effect, simply pass an <strong>array</strong> of colors
+        via the <BodyCode>color</BodyCode> prop. The indicator will cycle
+        through each, seamlessly animating across every frame.
       </BodyText>
-      <Typography variant="h6" component="p" sx={{ mt: 3, mb: 1 }}>
-        An example result would look like this:
+      <Typography
+        variant="h5"
+        component="p"
+        sx={{ mt: 3, mb: 2, textAlign: "center" }}
+      >
+        An interactive example on how to achieve this:
       </Typography>
 
       <PlayColors stableRandSeed={stableRandSeed} />

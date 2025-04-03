@@ -31,6 +31,9 @@
     font-style: italic;
     font-weight: 400;
     margin-block-end: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .genColorsArea {
@@ -61,4 +64,11 @@
         border: 1px solid var(--rli-palette-common-white);
         box-shadow: var(--rli-shadows-2);
     }
+}
+.helpmark {
+    color: var(--rli-palette-text-primary);
+    stroke: var(--rli-palette-text-primary);
+    width: 14%;
+    aspect-ratio: 1/1;
+    cursor: help;
 }

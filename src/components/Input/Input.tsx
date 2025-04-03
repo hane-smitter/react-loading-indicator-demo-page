@@ -5,11 +5,15 @@ import {
   type InputHTMLAttributes,
   type KeyboardEvent,
   type KeyboardEventHandler,
+  type FC,
   memo,
   useEffect,
   useRef,
   useState,
 } from "react";
+import FormHelperText from "@mui/material/FormHelperText";
+import FormControl from "@mui/material/FormControl";
+
 import styles from "./Input.module.scss";
 
 interface IinputProps
@@ -22,7 +26,24 @@ interface IinputProps
   onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
 }
 
-function Input({ value, onChange, onKeyDown, ...others }: IinputProps) {
+interface PropsWithErrorAsString extends IinputProps {
+  error?: string;
+  msg?: string; // optional when error is a string
+}
+
+interface PropsWithErrorAsTrue extends IinputProps {
+  error: true; // specifically true
+  msg: string; // required when error is true
+}
+
+interface PropsWithErrorAsFalse extends IinputProps {
+  error: false; // specifically false
+  msg?: string; // optional when error is false
+}
+
+const Input: FC<
+  PropsWithErrorAsString | PropsWithErrorAsTrue | PropsWithErrorAsFalse
+> = ({ value, onChange, onKeyDown, error, msg, ...others }) => {
   const [inputValue, setInputValue] = useState<string>(value || "");
   const inpRef = useRef<HTMLInputElement | null>(null);
 
@@ -52,21 +73,28 @@ function Input({ value, onChange, onKeyDown, ...others }: IinputProps) {
   }
 
   return (
-    <input
-      {...others}
-      value={inputValue}
-      onChange={handleInputChange}
-      onKeyDown={handleKeyDown}
-      ref={(elem) => {
-        inpRef.current = elem;
+    <FormControl error={Boolean(error)}>
+      <input
+        {...others}
+        value={inputValue}
+        onChange={handleInputChange}
+        onKeyDown={handleKeyDown}
+        ref={(elem) => {
+          inpRef.current = elem;
+          return () => {
+            inpRef.current = null;
+          };
+        }}
+        className={styles.customInp}
+      />
 
-        return () => {
-          inpRef.current = null;
-        };
-      }}
-      className={styles.customInp}
-    />
+      {(Boolean(error) || Boolean(msg)) && (
+        <FormHelperText id="color-input-helper-text">
+          {typeof error === "string" ? error : msg}
+        </FormHelperText>
+      )}
+    </FormControl>
   );
-}
+};
 
 export default memo(Input);

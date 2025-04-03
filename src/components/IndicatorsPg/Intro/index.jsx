@@ -13,7 +13,7 @@ const Intro = () => {
         at that.
         <br />
         With high customizability and elegance✨, your apps and splash screens
-        should emit pleasantries and good vibes.
+        should emit unmatched visual appeal.
         <SampleIndicator />.
       </Typography>
       <br />

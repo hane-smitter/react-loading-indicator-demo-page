@@ -13,12 +13,14 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormLabel from "@mui/material/FormLabel";
 import Radio from "@mui/material/Radio";
-import { ChevronUp, ChevronDown } from "react-feather";
+import Tooltip from "@mui/material/Tooltip";
+import { ChevronUp, ChevronDown, HelpCircle } from "react-feather";
 import { HexColorPicker } from "react-colorful";
 import colorParse from "tinycolor2";
 
 import styles from "./ChangeColor.module.scss";
 import Input from "src/components/Input";
+
 
 interface IChangeColor {
   setColors(colors: string[]): void;
@@ -38,6 +40,7 @@ function ChangeColor({ initialColor, setColors }: IChangeColor) {
     "tetradic" | "analogous"
   >("tetradic");
   const [colorSets, setColorSets] = useState<IColorSet>({ ...initColorSet });
+  const [colorInputErrMsg, setColorInputErrMsg] = useState<string>("");
 
   useEffect(() => {
     if (colorValue) {
@@ -57,7 +60,7 @@ function ChangeColor({ initialColor, setColors }: IChangeColor) {
     };
   }, [colorValue, preferColorSet]);
 
-  function handleChangeColor() {
+  function openChangeColorView() {
     setShow(!show);
   }
 
@@ -67,8 +70,10 @@ function ChangeColor({ initialColor, setColors }: IChangeColor) {
       const color = colorParse(inputColor);
       if (color.isValid()) {
         setColorValue(color.toHexString());
+        setColorInputErrMsg("");
       } else {
-        setColorValue("#000000");
+        setColorValue("#32cd32");
+        setColorInputErrMsg("Invalid color. Applying fallback — '#32cd32'");
       }
     }
   }
@@ -76,14 +81,9 @@ function ChangeColor({ initialColor, setColors }: IChangeColor) {
     evt.preventDefault();
     const pastedData = evt.clipboardData.getData("text").trim();
 
-    if (pastedData.length < 1) return;
+    if (pastedData.length < 2) return;
 
-    const color = colorParse(pastedData);
-    if (color.isValid()) {
-      setColorValue(color.toHexString());
-    } else {
-      setColorValue("#000000");
-    }
+    handleColorInputChange(pastedData);
   }
 
   function handleRadioChange(
@@ -96,16 +96,18 @@ function ChangeColor({ initialColor, setColors }: IChangeColor) {
   return (
     <>
       <Button
-        onClick={handleChangeColor}
+        onClick={openChangeColorView}
         startIcon={show ? <ChevronUp /> : <ChevronDown />}
+        variant={show ? "text" : "contained"}
+        color="secondary"
         size="small"
-        sx={{ mt: 2 }}
+        sx={{ mt: 4 }}
       >
-        Change colors{!show ? "?" : ""}
+        Change colors&#8202;{!show ? "?" : ""}
       </Button>
 
-      <Box>
-        <Collapse in={show}>
+      <Box sx={{ mt: 2 }}>
+        <Collapse in={show} unmountOnExit>
           <Box className={styles.colorOptsContainer}>
             <Box className={`${styles.colorOptWrapper} ${styles.picker}`}>
               <Typography
@@ -137,6 +139,7 @@ function ChangeColor({ initialColor, setColors }: IChangeColor) {
                   }}
                   maxLength={40}
                   placeholder="Paste or type a color"
+                  error={colorInputErrMsg}
                 />
               </Box>
             </Box>
@@ -146,7 +149,13 @@ function ChangeColor({ initialColor, setColors }: IChangeColor) {
                 variant="subtitle2"
                 className={styles.colorOptHeadline}
               >
-                Generated Colors
+                Generated Colors&#8198;
+                <Tooltip
+                  title="Different shades generated from the color you pick"
+                  arrow
+                >
+                  <HelpCircle className={styles.helpmark} />
+                </Tooltip>
               </Typography>
               <div className={styles.genColorsArea}>
                 <FormControl>

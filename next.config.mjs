@@ -5,7 +5,8 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: "/:path(.+)",
+        // source: "/:path(.+)",
+        source: "/:path((?!manifest.json|icons).+)",
         destination: "/",
         permanent: true,
       },

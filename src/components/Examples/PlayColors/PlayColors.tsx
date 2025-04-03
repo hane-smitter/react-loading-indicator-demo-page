@@ -40,10 +40,10 @@ function PlayColors({ stableRandSeed }: { stableRandSeed: number }) {
     return shuffleArray(indicatorNames, stableRandSeed)[0];
   });
   const [colors, setColors] = useState<string[]>([
-    "#33CCCC",
-    "#33CC36",
-    "#B8CC33",
-    "#FCCA00",
+    "#32cd32",
+    "#327fcd",
+    "#cd32cd",
+    "#cd8032",
   ]);
 
   function handleChangeCmp(name: keyof ILoadingIndicators) {

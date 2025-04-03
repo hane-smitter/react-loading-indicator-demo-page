@@ -105,7 +105,8 @@ let theme = createTheme({
   // },
   palette: {
     mode: "light",
-    primary: { main: "#009da5" }, // #026CC4
+    primary: { main: "#009da5" }, // #026CC4, #
+    secondary: { main: "#5a00a5" },
     common: { black: "#2d3748", white: "#f8fafc" }, // #009da5
     text: { primary: "rgb(76 67 67 / 90%)" },
   },
@@ -120,10 +121,10 @@ let theme = createTheme({
     },
     posterCode: {
       // color: "#232629",
-      color: "#373D3F",
+      color: "var(--rli-palette-common-black)", // #373D3F
       fontFamily: "var(--font-inconsolata)",
       fontSize: "0.9rem",
-      fontWeight: 600,
+      fontWeight: 500,
       userSelect: "all",
       backgroundColor: "#e3e6e8",
       boxShadow:
@@ -140,15 +141,5 @@ let theme = createTheme({
     },
   },
 });
-// theme = responsiveFontSizes(theme);
-// theme.palette.common.black = "#2d3748";
-// theme.palette.common.white = "#f8fafc";
-
-const themeAddon = createTheme({
-  cssVariables: true,
-  palette: { common: { black: "#2d3748", white: "#f8fafc" } },
-});
-
-const refinedTheme = deepmerge(theme, {});
 
 export default theme;
